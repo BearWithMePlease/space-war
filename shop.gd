@@ -8,6 +8,10 @@ extends Panel
 @export var labels_prices:Array[Label]
 @export var default_price_label:String = "Build for"
 @export var starting_prices:Array[int]
+@export var FACTORY_INDEX:int
+@export var FACTORY_COST_GROW_FACTORY:int = 20
+@export var NEW_SLOT_INDEX:int
+@export var SLOT_COST_GROW_FACTORY:int = 20
 
 var current_state: String = "hidden"
 var current_prices: Array[int] = []
@@ -45,5 +49,12 @@ func shop_animation(property: String, value):
 
 
 func _on_item_buy(index: int) -> void:
-	if $"../Inventory".can_add_item():
-		$"../Inventory".add_item(index)
+	$"../Inventory".add_item(index)
+
+func build_factory(factory_count: int):
+	current_prices[FACTORY_INDEX] += ceil((FACTORY_COST_GROW_FACTORY + factory_count) ** 2 / 100) * 100
+	update_price(FACTORY_INDEX)
+
+func add_new_slot(slot_count: int):
+	current_prices[NEW_SLOT_INDEX] += ceil((SLOT_COST_GROW_FACTORY + slot_count) ** 2 / 100) * 100
+	update_price(NEW_SLOT_INDEX)

@@ -31,3 +31,6 @@ func update_label():
 
 func get_total_earn():
 	return BASE_EARN + factory_count * FACTORY_EARN
+
+func build_factory():
+	factory_count += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=350 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=351 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
 [ext_resource type="Texture2D" uid="uid://cquk6gsc360ui" path="res://img/laser.png" id="25_luuys"]
+[ext_resource type="Texture2D" uid="uid://cyyr5rsrhrs8l" path="res://img/slot.png" id="25_mqxf5"]
+[ext_resource type="Texture2D" uid="uid://71ovu7em00na" path="res://img/key_lock.png" id="26_b27ab"]
 [ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="26_n6a6a"]
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
@@ -2264,9 +2266,6 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_ca6o5"]
 font_size = 30
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ut1m"]
-load_path = "res://.godot/imported/shield.png-bdf8e401b772eb7c90cb1fa4b7e06cd1.ctex"
-
 [sub_resource type="LabelSettings" id="LabelSettings_gkb6o"]
 font = ExtResource("26_n6a6a")
 font_size = 20
@@ -2383,25 +2382,27 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
-slots = [NodePath("Slot_0/img_container/TextureRect0"), NodePath("Slot_1/img_container/TextureRect1"), NodePath("Slot_2/img_container/TextureRect2"), NodePath("Slot_3/img_container/TextureRect3"), NodePath("Slot_4/img_container/TextureRect4"), NodePath("Slot_5/img_container/TextureRect5")]
-type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), SubResource("CompressedTexture2D_2ut1m"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("2_ljy56")])
+slots = [NodePath("Slot_0/TextureRect/TextureRect0"), NodePath("Slot_1/TextureRect/TextureRect1"), NodePath("Slot_2/TextureRect/TextureRect2"), NodePath("Slot_3/TextureRect/TextureRect3"), NodePath("Slot_4/TextureRect/TextureRect4"), NodePath("Slot_5/TextureRect/TextureRect5")]
+type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("2_ljy56")])
+NEW_SLOT_INDEX = 5
+start_slot_count = 2
 
 [node name="Slot_0" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_0"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_0"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect0" type="TextureRect" parent="GUI/Inventory/Slot_0/img_container"]
+[node name="TextureRect0" type="TextureRect" parent="GUI/Inventory/Slot_0/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
 expand_mode = 2
 stretch_mode = 5
 
@@ -2409,18 +2410,18 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_1"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_1"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect1" type="TextureRect" parent="GUI/Inventory/Slot_1/img_container"]
+[node name="TextureRect1" type="TextureRect" parent="GUI/Inventory/Slot_1/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
 expand_mode = 2
 stretch_mode = 5
 
@@ -2428,18 +2429,19 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_2"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_2"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect2" type="TextureRect" parent="GUI/Inventory/Slot_2/img_container"]
+[node name="TextureRect2" type="TextureRect" parent="GUI/Inventory/Slot_2/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
+texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2447,18 +2449,19 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_3"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_3"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect3" type="TextureRect" parent="GUI/Inventory/Slot_3/img_container"]
+[node name="TextureRect3" type="TextureRect" parent="GUI/Inventory/Slot_3/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
+texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2466,18 +2469,19 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_4"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_4"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect4" type="TextureRect" parent="GUI/Inventory/Slot_4/img_container"]
+[node name="TextureRect4" type="TextureRect" parent="GUI/Inventory/Slot_4/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
+texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2485,18 +2489,19 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="img_container" type="ColorRect" parent="GUI/Inventory/Slot_5"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_5"]
+texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 3
-color = Color(0.392157, 0.392157, 0.392157, 1)
+texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect5" type="TextureRect" parent="GUI/Inventory/Slot_5/img_container"]
+[node name="TextureRect5" type="TextureRect" parent="GUI/Inventory/Slot_5/TextureRect"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 93.0
+texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2515,7 +2520,9 @@ transition_type = 4
 hidden_position = Vector2(1112, 10)
 visible_position = Vector2(576, 10)
 labels_prices = [NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/Label")]
-starting_prices = Array[int]([3000, 100, 200, 600, 1000, 200])
+starting_prices = Array[int]([300, 100, 200, 600, 1000, 200])
+NEW_SLOT_INDEX = 5
+SLOT_COST_GROW_FACTORY = 22
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop"]
 layout_mode = 1
@@ -2551,22 +2558,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="Navbar" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/Navbar"]
+[node name="Title" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Defensive Measures"
 label_settings = SubResource("LabelSettings_gkb6o")
 horizontal_alignment = 1
-
-[node name="CloseButton" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/Navbar"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("2_ljy56")
-expand_mode = 2
-stretch_mode = 4
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Shop/HBoxContainer/LayoutBox"]
 layout_mode = 2
@@ -3050,10 +3047,9 @@ vertical_alignment = 1
 
 [connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
-[connection signal="gui_input" from="GUI/Shop/HBoxContainer/LayoutBox/Navbar/CloseButton" to="GUI/Shop" method="_on_close_button_gui_input"]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button" to="GUI/Shop" method="_on_item_buy" binds= [1]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button" to="GUI/Shop" method="_on_item_buy" binds= [2]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button" to="GUI/Shop" method="_on_item_buy" binds= [3]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button" to="GUI/Shop" method="_on_item_buy" binds= [4]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button" to="GUI/Shop" method="_on_item_buy" binds= [5]]
