@@ -2314,13 +2314,11 @@ script = ExtResource("14_ij1vu")
 
 [node name="mars line" type="Line2D" parent="."]
 position = Vector2(-6.10352e-05, 0)
-scale = Vector2(1, 1)
 width = 2.0
 
 [node name="Area2D" type="Area2D" parent="mars line"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mars line/Area2D"]
-scale = Vector2(1, 1)
 shape = SubResource("CircleShape2D_fie2w")
 
 [node name="mars" type="AnimatedSprite2D" parent="."]
