@@ -2267,11 +2267,13 @@ font_size = 25
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
 
-[node name="Traaash" type="Sprite2D" parent="."]
+[node name="Planets" type="Node2D" parent="."]
+
+[node name="Traaash" type="Sprite2D" parent="Planets"]
 scale = Vector2(0.807031, 0.80787)
 texture = ExtResource("6_qk6hx")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Planets"]
 visible = false
 scale = Vector2(3, 3.21875)
 sprite_frames = SubResource("SpriteFrames_ahfjy")
@@ -2279,11 +2281,11 @@ animation = &"new_animation"
 frame_progress = 0.476295
 script = ExtResource("3_lcebc")
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Planets"]
 points = PackedVector2Array(-725, -382)
 width = 2.0
 
-[node name="earth" type="AnimatedSprite2D" parent="."]
+[node name="earth" type="AnimatedSprite2D" parent="Planets"]
 position = Vector2(-869, -513)
 scale = Vector2(0.46, 0.48)
 sprite_frames = SubResource("SpriteFrames_2c0xm")
@@ -2291,52 +2293,52 @@ animation = &"new_animation"
 frame_progress = 0.486828
 script = ExtResource("5_58hys")
 
-[node name="moon" type="AnimatedSprite2D" parent="earth"]
+[node name="moon" type="AnimatedSprite2D" parent="Planets/earth"]
 position = Vector2(-6.52173, 104.167)
 scale = Vector2(0.311594, 0.291667)
 sprite_frames = SubResource("SpriteFrames_ukx0k")
 frame_progress = 0.105215
 script = ExtResource("8_q64n8")
 
-[node name="sun" type="AnimatedSprite2D" parent="."]
+[node name="sun" type="AnimatedSprite2D" parent="Planets"]
 scale = Vector2(0.644375, 0.6225)
 sprite_frames = SubResource("SpriteFrames_xew2m")
 frame_progress = 0.757715
 script = ExtResource("8_w08ns")
 
-[node name="mercury line" type="Line2D" parent="."]
+[node name="mercury line" type="Line2D" parent="Planets"]
 width = 2.0
 
-[node name="mercury" type="AnimatedSprite2D" parent="."]
+[node name="mercury" type="AnimatedSprite2D" parent="Planets"]
 position = Vector2(-1001, -514)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o82yg")
 frame_progress = 0.648412
 script = ExtResource("12_4kq2v")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="Planets"]
 zoom = Vector2(0.75, 0.75)
 
-[node name="venus line" type="Line2D" parent="."]
+[node name="venus line" type="Line2D" parent="Planets"]
 width = 2.0
 
-[node name="venus" type="AnimatedSprite2D" parent="."]
+[node name="venus" type="AnimatedSprite2D" parent="Planets"]
 position = Vector2(-941, -514)
 scale = Vector2(0.37, 0.37)
 sprite_frames = SubResource("SpriteFrames_tdx2p")
 frame_progress = 0.0824779
 script = ExtResource("14_ij1vu")
 
-[node name="mars line" type="Line2D" parent="."]
+[node name="mars line" type="Line2D" parent="Planets"]
 position = Vector2(-6.10352e-05, 0)
 width = 2.0
 
-[node name="Area2D" type="Area2D" parent="mars line"]
+[node name="Area2D" type="Area2D" parent="Planets/mars line"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mars line/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/mars line/Area2D"]
 shape = SubResource("CircleShape2D_fie2w")
 
-[node name="mars" type="AnimatedSprite2D" parent="."]
+[node name="mars" type="AnimatedSprite2D" parent="Planets"]
 position = Vector2(-789, -516)
 scale = Vector2(0.63, 0.63)
 sprite_frames = SubResource("SpriteFrames_3dryb")
