@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo5uuf0bv7iet"
-path="res://.godot/imported/arrow_left.svg-4c3b6421f61ff65124aafb6f327e94c4.ctex"
+uid="uid://bpb052dx3smid"
+path="res://.godot/imported/buy_panel.png-9376d93192e4eb711f74a668a0e38232.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/arrow_left.svg"
-dest_files=["res://.godot/imported/arrow_left.svg-4c3b6421f61ff65124aafb6f327e94c4.ctex"]
+source_file="res://img/buy_panel.png"
+dest_files=["res://.godot/imported/buy_panel.png-9376d93192e4eb711f74a668a0e38232.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

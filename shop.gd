@@ -11,7 +11,10 @@ extends Panel
 @export var FACTORY_INDEX:int
 @export var FACTORY_COST_GROW_FACTORY:int = 20
 @export var NEW_SLOT_INDEX:int
-@export var SLOT_COST_GROW_FACTORY:int = 20
+@export var SLOT_COST_GROW_FACTORY:int = 22
+@export var arrow_image: TextureRect
+@export var position_hidden: Control
+@export var position_visible: Control
 
 var current_state: String = "hidden"
 var current_prices: Array[int] = []
@@ -24,17 +27,19 @@ func _ready() -> void:
 		current_prices.append(starting_prices[index])
 		update_price(index)
 
+
 func update_price(index:int):
 	labels_prices[index].text = default_price_label + " " + str(current_prices[index])
 
 func _on_control_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		arrow_image.flip_h = !arrow_image.flip_h
 		if current_state == "hidden":
 			current_state = "visible"
-			shop_animation("position", visible_position)
+			shop_animation("position", position_visible.position)
 		elif current_state == "visible":
 			current_state = "hidden"
-			shop_animation("position", hidden_position)
+			shop_animation("position", position_hidden.position)
 
 func _on_close_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -42,13 +47,13 @@ func _on_close_button_gui_input(event: InputEvent) -> void:
 			current_state = "hidden"
 			shop_animation("position", hidden_position)
 
-
 func shop_animation(property: String, value):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, property, value, seconds).set_trans(transition_type)
 
 
 func _on_item_buy(index: int) -> void:
+	$"../money".buy_item(current_prices[index])
 	$"../Inventory".add_item(index)
 
 func build_factory(factory_count: int):
