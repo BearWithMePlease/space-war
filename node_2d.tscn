@@ -1,4 +1,4 @@
-[gd_scene load_steps=343 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=350 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://img/asteroid.png" id="4_f8klw"]
 [ext_resource type="Script" path="res://animated_sprite_2d_2.gd" id="5_58hys"]
 [ext_resource type="Texture2D" uid="uid://b532yw7t0ipqm" path="res://animated/traaash.png" id="6_qk6hx"]
-[ext_resource type="Texture2D" uid="uid://3v0q0r82hemk" path="res://img/shield.jpg" id="6_wum2w"]
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="7_gwdc2"]
 [ext_resource type="Texture2D" uid="uid://cvtjlcwgo8c3l" path="res://animated/703547277.png" id="7_wlt61"]
 [ext_resource type="Script" path="res://moon.gd" id="8_q64n8"]
@@ -22,6 +21,14 @@
 [ext_resource type="Script" path="res://venus.gd" id="14_ij1vu"]
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="15_b2jf5"]
 [ext_resource type="Script" path="res://mars.gd" id="16_ukqyq"]
+[ext_resource type="Script" path="res://money.gd" id="17_0vhep"]
+[ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
+[ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
+[ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
+[ext_resource type="Texture2D" uid="uid://cquk6gsc360ui" path="res://img/laser.png" id="25_luuys"]
+[ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="26_n6a6a"]
+[ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
+[ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -2257,17 +2264,19 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_ca6o5"]
 font_size = 30
 
-[sub_resource type="LabelSettings" id="LabelSettings_gkb6o"]
-font_size = 32
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ut1m"]
+load_path = "res://.godot/imported/shield.png-bdf8e401b772eb7c90cb1fa4b7e06cd1.ctex"
 
-[sub_resource type="LabelSettings" id="LabelSettings_8siym"]
-font_size = 25
+[sub_resource type="LabelSettings" id="LabelSettings_gkb6o"]
+font = ExtResource("26_n6a6a")
+font_size = 20
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
 
 [node name="Planets" type="Node2D" parent="."]
+visible = false
 
 [node name="Traaash" type="Sprite2D" parent="Planets"]
 scale = Vector2(0.807031, 0.80787)
@@ -2352,8 +2361,13 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 280.0
 offset_bottom = 47.0
-text = "Energy Deposit: ♾️"
+text = "Energy Deposit:"
 label_settings = SubResource("LabelSettings_ca6o5")
+script = ExtResource("17_0vhep")
+START_BALANCE = 1000
+MONEY_CYCLE_TIME = 1
+BASE_EARN = 5
+FACTORY_EARN = 5
 
 [node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots")]
 anchors_preset = 7
@@ -2370,7 +2384,7 @@ grow_vertical = 0
 theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
 slots = [NodePath("Slot_0/img_container/TextureRect0"), NodePath("Slot_1/img_container/TextureRect1"), NodePath("Slot_2/img_container/TextureRect2"), NodePath("Slot_3/img_container/TextureRect3"), NodePath("Slot_4/img_container/TextureRect4"), NodePath("Slot_5/img_container/TextureRect5")]
-type_images = Array[CompressedTexture2D]([ExtResource("4_f8klw"), ExtResource("6_wum2w")])
+type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), SubResource("CompressedTexture2D_2ut1m"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("2_ljy56")])
 
 [node name="Slot_0" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2486,7 +2500,7 @@ grow_vertical = 2
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Shop" type="Panel" parent="GUI"]
+[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices")]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -2500,6 +2514,8 @@ script = ExtResource("1_lrcd3")
 transition_type = 4
 hidden_position = Vector2(1112, 10)
 visible_position = Vector2(576, 10)
+labels_prices = [NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/Label")]
+starting_prices = Array[int]([3000, 100, 200, 600, 1000, 200])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop"]
 layout_mode = 1
@@ -2515,6 +2531,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Arrow_left" type="TextureRect" parent="GUI/Shop/HBoxContainer/Control"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -2540,11 +2557,12 @@ layout_mode = 2
 [node name="Title" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/Navbar"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Galaxy Defense Shop"
+text = "Defensive Measures"
 label_settings = SubResource("LabelSettings_gkb6o")
 horizontal_alignment = 1
 
 [node name="CloseButton" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/Navbar"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("2_ljy56")
 expand_mode = 2
@@ -2579,30 +2597,12 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
-offset_right = 196.0
-offset_bottom = 17.5
+offset_top = -17.0
+offset_right = 123.0
+offset_bottom = 18.0
 grow_vertical = 2
-text = "Asteroid - 499 E"
-label_settings = SubResource("LabelSettings_8siym")
-
-[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 257.0
-offset_top = -20.0
-offset_right = 377.0
-offset_bottom = 20.0
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"]
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 40.0
-text = "BUY NOW!"
-horizontal_alignment = 1
+text = "Factory"
+label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
 
 [node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
@@ -2622,22 +2622,39 @@ size_flags_horizontal = 3
 color = Color(0.207978, 0.135385, 0.187237, 1)
 
 [node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/img_frame"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_f8klw")
+texture = ExtResource("20_n7my1")
 expand_mode = 2
 stretch_mode = 5
-flip_h = true
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Item_1" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2663,26 +2680,8 @@ offset_top = -17.5
 offset_right = 196.0
 offset_bottom = 17.5
 grow_vertical = 2
-text = "Shield - 650 E"
-label_settings = SubResource("LabelSettings_8siym")
-
-[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 257.0
-offset_top = -20.0
-offset_right = 377.0
-offset_bottom = 20.0
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"]
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 40.0
-text = "BUY NOW!"
-horizontal_alignment = 1
+text = "Shield"
+label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
 
 [node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
@@ -2702,24 +2701,359 @@ size_flags_horizontal = 3
 color = Color(0.207978, 0.135385, 0.187237, 1)
 
 [node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/img_frame"]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_wum2w")
+texture = ExtResource("24_nyhc7")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_2" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -17.5
+offset_right = 196.0
+offset_bottom = 17.5
+grow_vertical = 2
+text = "Asteroid"
+label_settings = ExtResource("27_m1ux1")
+vertical_alignment = 1
+
+[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.207978, 0.135385, 0.187237, 1)
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/img_frame"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_f8klw")
+expand_mode = 2
+stretch_mode = 5
+flip_h = true
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_3" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -17.5
+offset_right = 196.0
+offset_bottom = 17.5
+grow_vertical = 2
+text = "Rocket"
+label_settings = ExtResource("27_m1ux1")
+vertical_alignment = 1
+
+[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.207978, 0.135385, 0.187237, 1)
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/img_frame"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_1biib")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_4" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -17.5
+offset_right = 196.0
+offset_bottom = 17.5
+grow_vertical = 2
+text = "Laser"
+label_settings = ExtResource("27_m1ux1")
+
+[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.207978, 0.135385, 0.187237, 1)
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/img_frame"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_luuys")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_5" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.666667, 0.666667, 0.666667, 1)
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -17.5
+offset_right = 196.0
+offset_bottom = 17.5
+grow_vertical = 2
+text = "New Slot"
+label_settings = ExtResource("27_m1ux1")
+
+[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -45.0
+offset_right = -5.0
+offset_bottom = 45.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0.207978, 0.135385, 0.187237, 1)
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/img_frame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build for"
+label_settings = ExtResource("28_4v1wk")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/LayoutBox/Navbar/CloseButton" to="GUI/Shop" method="_on_close_button_gui_input"]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
-[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button" to="GUI/Shop" method="_on_item_buy" binds= [1]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
+[connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
