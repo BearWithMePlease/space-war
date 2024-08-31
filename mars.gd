@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+class_name Mars extends AnimatedSprite2D
 
 var rotation_time = 30
 var time = 15

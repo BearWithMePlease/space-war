@@ -1,4 +1,4 @@
-[gd_scene load_steps=365 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=366 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="15_b2jf5"]
 [ext_resource type="Script" path="res://mars.gd" id="16_ukqyq"]
 [ext_resource type="Script" path="res://money.gd" id="17_0vhep"]
+[ext_resource type="Script" path="res://shield.gd" id="17_wh8ur"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
@@ -37,6 +38,7 @@
 [ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
 [ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
+[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://img/sound-button-click.mp3" id="38_ylaoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -2273,8 +2275,6 @@ animations = [{
 font = ExtResource("26_n6a6a")
 font_size = 20
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t8ej7"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5kk4"]
 texture = ExtResource("27_iklvs")
 expand_margin_top = 5.0
@@ -2379,6 +2379,15 @@ sprite_frames = SubResource("SpriteFrames_3dryb")
 frame_progress = 0.593298
 script = ExtResource("16_ukqyq")
 
+[node name="Shield" type="Node2D" parent="Planets/mars" node_paths=PackedStringArray("firstShieldSprite", "secondShieldSprite")]
+script = ExtResource("17_wh8ur")
+firstShieldSprite = NodePath("Sprite2D")
+secondShieldSprite = NodePath("Sprite2D2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planets/mars/Shield"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Planets/mars/Shield"]
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Money" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("LABEL", "item_buttons")]
@@ -2423,21 +2432,24 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
-slots = [NodePath("Slot_0/TextureRect/TextureRect0"), NodePath("Slot_1/TextureRect/TextureRect1"), NodePath("Slot_2/TextureRect/TextureRect2"), NodePath("Slot_3/TextureRect/TextureRect3"), NodePath("Slot_4/TextureRect/TextureRect4"), NodePath("Slot_5/TextureRect/TextureRect5")]
-type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), SubResource("CompressedTexture2D_t8ej7")])
-NEW_SLOT_INDEX = 1
-start_slot_count = 2
+slots = [NodePath("Slot_0/Button/TextureRect/TextureRect0"), NodePath("Slot_1/Button/TextureRect/TextureRect1"), NodePath("Slot_2/Button/TextureRect/TextureRect2"), NodePath("Slot_3/Button/TextureRect/TextureRect3"), NodePath("Slot_4/Button/TextureRect/TextureRect4"), NodePath("Slot_5/Button/TextureRect/TextureRect5")]
+type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("36_q6e3p"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys")])
 
 [node name="Slot_0" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_0"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_0"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_0/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect0" type="TextureRect" parent="GUI/Inventory/Slot_0/TextureRect"]
+[node name="TextureRect0" type="TextureRect" parent="GUI/Inventory/Slot_0/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2451,12 +2463,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_1"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_1/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect1" type="TextureRect" parent="GUI/Inventory/Slot_1/TextureRect"]
+[node name="TextureRect1" type="TextureRect" parent="GUI/Inventory/Slot_1/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2470,12 +2487,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_2"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_2/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect2" type="TextureRect" parent="GUI/Inventory/Slot_2/TextureRect"]
+[node name="TextureRect2" type="TextureRect" parent="GUI/Inventory/Slot_2/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2490,12 +2512,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_3"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_3/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect3" type="TextureRect" parent="GUI/Inventory/Slot_3/TextureRect"]
+[node name="TextureRect3" type="TextureRect" parent="GUI/Inventory/Slot_3/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2510,12 +2537,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_4"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_4/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect4" type="TextureRect" parent="GUI/Inventory/Slot_4/TextureRect"]
+[node name="TextureRect4" type="TextureRect" parent="GUI/Inventory/Slot_4/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2530,12 +2562,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_5"]
+[node name="Button" type="Button" parent="GUI/Inventory/Slot_5"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_5/Button"]
 texture_filter = 1
 layout_mode = 2
+offset_right = 100.0
+offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="TextureRect5" type="TextureRect" parent="GUI/Inventory/Slot_5/TextureRect"]
+[node name="TextureRect5" type="TextureRect" parent="GUI/Inventory/Slot_5/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2546,7 +2583,7 @@ texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible")]
+[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible", "audio_player")]
 texture_filter = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -2568,6 +2605,7 @@ NEW_SLOT_INDEX = 1
 arrow_image = NodePath("HBoxContainer/Control/Arrow_left")
 position_hidden = NodePath("../position_hidden")
 position_visible = NodePath("../position_visible")
+audio_player = NodePath("../../AudioPlayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop"]
 layout_mode = 1
@@ -3185,6 +3223,16 @@ offset_right = -576.0
 offset_bottom = 10.0
 grow_horizontal = 0
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_ylaoy")
+volume_db = -5.0
+
+[connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
+[connection signal="button_down" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [1]]
+[connection signal="button_down" from="GUI/Inventory/Slot_2/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [2]]
+[connection signal="button_down" from="GUI/Inventory/Slot_3/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [3]]
+[connection signal="button_down" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [4]]
+[connection signal="button_down" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [5]]
 [connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]

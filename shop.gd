@@ -15,6 +15,7 @@ extends Panel
 @export var arrow_image: TextureRect
 @export var position_hidden: Control
 @export var position_visible: Control
+@export var audio_player: AudioStreamPlayer
 
 var current_state: String = "hidden"
 var current_prices: Array[int] = []
@@ -56,6 +57,8 @@ func shop_animation(property: String, value):
 func _on_item_buy(index: int) -> void:
 	$"../Money".buy_item(current_prices[index])
 	$"../Inventory".add_item(index)
+	audio_player.play()
+	
 
 func build_factory(factory_count: int):
 	current_prices[FACTORY_INDEX] += ceil((FACTORY_COST_GROW_FACTORY + factory_count) ** 2 / 100) * 100
