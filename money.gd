@@ -33,7 +33,7 @@ func update_label():
 
 func update_buttons():
 	for index in $"../Shop".current_prices.size():
-		if balance >= $"../Shop".current_prices[index] and can_obtain_item(index):
+		if can_obtain_item(index):
 			item_buttons[index].disabled = false
 			item_buttons[index].mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		else:
@@ -41,7 +41,11 @@ func update_buttons():
 			item_buttons[index].mouse_default_cursor_shape = Control.CURSOR_ARROW
  
 func can_obtain_item(index: int) -> bool:
-	return $"../Inventory".can_add_item() or index == $"../Inventory".ITEM_TYPES.FACTORY || index == $"../Inventory".ITEM_TYPES.SLOT
+	var price_check = balance >= $"../Shop".current_prices[index]
+	var item_check = index != $"../Inventory".ITEM_TYPES.FACTORY and index != $"../Inventory".ITEM_TYPES.SLOT and $"../Inventory".can_add_item()
+	var slot_check = index == $"../Inventory".ITEM_TYPES.SLOT and $"../Inventory".can_add_new_slot()
+	var factory_check = index == $"../Inventory".ITEM_TYPES.FACTORY
+	return price_check and (item_check or factory_check or slot_check)
 
 func get_total_earn():
 	return BASE_EARN + factory_count * FACTORY_EARN

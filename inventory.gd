@@ -59,17 +59,31 @@ func _useItemInSlot(slotIndex: int) -> void:
 	if slotItems[slotIndex] == ITEM_TYPES.SHIELD:
 		if $"../../Planets/mars/Shield".addShield():
 			remove_item_at(slotIndex)
+			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHIELD_ACTIVATE)
 	elif slotItems[slotIndex] == ITEM_TYPES.ROCKET:
 		#var rocket := rocket_prefab.instantiate() as Rocket
 		#rocket.position = mars.position
 		#rocket_parent.add_child(rocket)
 		
 		remove_item_at(slotIndex)
+		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.ROCKET_LAUNCH_SOUND)
+	elif slotItems[slotIndex] == ITEM_TYPES.LASER:
+		remove_item_at(slotIndex)
+		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.LASER_LAUNCH_SOUND)
+	elif slotItems[slotIndex] == ITEM_TYPES.ASTEROID:
+		remove_item_at(slotIndex)
+		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.ASTEROID_LAUNCH_SOUND)
 
 func build_factory() -> void:
 	$"../Money".build_factory()
 	$"../Shop".build_factory($"../Money".factory_count)
-	
+
+func can_add_new_slot() -> bool:
+	for slotIndex in range(slotItems.size()):
+		if slotItems[slotIndex] == ITEM_TYPES.LOCKED:
+			return true
+	return false
+
 func add_new_slot() -> bool:
 	for slotIndex in range(slotItems.size()):
 		if slotItems[slotIndex] == ITEM_TYPES.LOCKED:
@@ -77,3 +91,6 @@ func add_new_slot() -> bool:
 			slots[slotIndex].texture = null
 			return true
 	return false
+
+func on_focus():
+	$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SLOT_SELECT)

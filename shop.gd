@@ -15,7 +15,6 @@ extends Panel
 @export var arrow_image: TextureRect
 @export var position_hidden: Control
 @export var position_visible: Control
-@export var audio_player: AudioStreamPlayer
 
 var current_state: String = "hidden"
 var current_prices: Array[int] = []
@@ -39,26 +38,21 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		if current_state == "hidden":
 			current_state = "visible"
 			shop_animation("position", position_visible.position)
+			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
 		elif current_state == "visible":
 			current_state = "hidden"
 			shop_animation("position", position_hidden.position)
-
-func _on_close_button_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if current_state == "visible":
-			current_state = "hidden"
-			shop_animation("position", hidden_position)
+			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
 
 func shop_animation(property: String, value):
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, property, value, seconds).set_trans(transition_type)
 
-
 func _on_item_buy(index: int) -> void:
-	if $"../Inventory".can_add_item():
+	if $"../Money".can_obtain_item(index):
 		$"../Inventory".add_item(index)
 		$"../Money".buy_item(current_prices[index])
-		audio_player.play()
+		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SOUND_BUTTON_CLICK)
 	
 
 func build_factory(factory_count: int):

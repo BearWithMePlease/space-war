@@ -1,4 +1,4 @@
-[gd_scene load_steps=367 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=387 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -30,13 +30,22 @@
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
-[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://img/sound-button-click.mp3" id="38_ylaoy"]
+[ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="37_uwx67"]
+[ext_resource type="AudioStream" uid="uid://b0dnfm8gwtyu5" path="res://sound/game-background-music-4.mp3" id="38_texrt"]
+[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://sound/sound-button-click.mp3" id="38_ylaoy"]
+[ext_resource type="AudioStream" uid="uid://bnopi05c65xgo" path="res://sound/intro-background-music.mp3" id="39_sevwx"]
+[ext_resource type="AudioStream" uid="uid://jvvqv1l1kx21" path="res://sound/laser-launch-sound.mp3" id="40_141cv"]
+[ext_resource type="AudioStream" uid="uid://canhx72504m37" path="res://sound/rocket-launch-sound.mp3" id="41_r8hss"]
 [ext_resource type="Texture2D" uid="uid://bwutb7k5marf3" path="res://img/background.png" id="41_w0xhp"]
+[ext_resource type="AudioStream" uid="uid://1n424ssmt5ph" path="res://sound/shield_activate.mp3" id="42_i1dpn"]
+[ext_resource type="AudioStream" uid="uid://dnjaq35duuhh4" path="res://sound/shop-window.mp3" id="43_0p38h"]
+[ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="44_pmdl1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -2287,6 +2296,26 @@ animations = [{
 font = ExtResource("26_n6a6a")
 font_size = 20
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okrjq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qi2e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wx28"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyag0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mllmv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3adh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e436e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_su0k2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb0df"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsxef"]
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5kk4"]
 texture = ExtResource("27_iklvs")
 expand_margin_top = 5.0
@@ -2307,6 +2336,8 @@ font_size = 22
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qlivm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pfer"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ymgt3"]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(782, 460)
@@ -2452,7 +2483,7 @@ offset_right = 365.0
 offset_bottom = 50.0
 theme_override_constants/separation = 10
 script = ExtResource("17_0vhep")
-START_BALANCE = 500
+START_BALANCE = 50000
 MONEY_CYCLE_TIME = 1
 BASE_EARN = 5
 FACTORY_EARN = 5
@@ -2496,6 +2527,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_0"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_okrjq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6qi2e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8wx28")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dyag0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mllmv")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_0/Button"]
 texture_filter = 1
@@ -2520,6 +2556,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_1"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_1/Button"]
 texture_filter = 1
@@ -2544,6 +2585,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_2"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_2/Button"]
 texture_filter = 1
@@ -2569,6 +2615,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_3"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_3/Button"]
 texture_filter = 1
@@ -2594,6 +2645,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_4"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_4/Button"]
 texture_filter = 1
@@ -2619,6 +2675,11 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_5"]
 layout_mode = 2
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_5/Button"]
 texture_filter = 1
@@ -2638,7 +2699,7 @@ texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible", "audio_player")]
+[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible")]
 texture_filter = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -2660,7 +2721,6 @@ NEW_SLOT_INDEX = 1
 arrow_image = NodePath("HBoxContainer/Control/Arrow_left")
 position_hidden = NodePath("../position_hidden")
 position_visible = NodePath("../position_visible")
-audio_player = NodePath("../../AudioPlayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop"]
 layout_mode = 1
@@ -3289,8 +3349,12 @@ offset_bottom = 10.0
 grow_horizontal = 0
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("38_ylaoy")
+stream = SubResource("AudioStreamPolyphonic_ymgt3")
 volume_db = -5.0
+autoplay = true
+script = ExtResource("36_q1dpw")
+sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1")])
+change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25])
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -3321,11 +3385,17 @@ script = ExtResource("13_puh5w")
 min_zoom = 0.5
 
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [1]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_2/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [2]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_2/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_3/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [3]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_3/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [4]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [5]]
+[connection signal="focus_entered" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
