@@ -1,4 +1,4 @@
-[gd_scene load_steps=397 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=401 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -27,6 +27,8 @@
 [ext_resource type="Shader" path="res://shield.gdshader" id="18_p5r0d"]
 [ext_resource type="Texture2D" uid="uid://dipx7b38jl1ro" path="res://asteroid.png" id="19_c0fgu"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
+[ext_resource type="Script" path="res://population.gd" id="19_yweg1"]
+[ext_resource type="Texture2D" uid="uid://lq8mobli1seg" path="res://img/population_icon.svg" id="20_jr6a8"]
 [ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
@@ -862,6 +864,15 @@ shader_parameter/edgeThreshhold = 0.9
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aviel"]
 noise = SubResource("FastNoiseLite_nvinr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_73div"]
+font = ExtResource("26_n6a6a")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_efwqt"]
+font = ExtResource("26_n6a6a")
+font_size = 20
+font_color = Color(0.67451, 0.196078, 0.196078, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_do2ld"]
 atlas = ExtResource("13_06qqn")
@@ -2422,6 +2433,59 @@ script = ExtResource("13_7ivgh")
 missile = ExtResource("14_t6mfo")
 asteroid = ExtResource("15_7ern2")
 asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
+
+[node name="Population" type="Control" parent="Planets/mars" node_paths=PackedStringArray("count_label", "death_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -101.587
+offset_top = -107.937
+offset_right = 104.413
+offset_bottom = -84.9365
+script = ExtResource("19_yweg1")
+start_population = 10000000
+count_label = NodePath("HBoxContainer/Label")
+death_label = NodePath("HBoxContainer/Label/Death_Label")
+PEOPLE_GROW_CYCLE_TIME = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Planets/mars/Population"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Planets/mars/Population/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("20_jr6a8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Planets/mars/Population/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "3013k"
+label_settings = SubResource("LabelSettings_73div")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Death_Label" type="Label" parent="Planets/mars/Population/HBoxContainer/Label"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+text = "-50000"
+label_settings = SubResource("LabelSettings_efwqt")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="venus" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
