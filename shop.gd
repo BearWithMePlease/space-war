@@ -50,8 +50,8 @@ func shop_animation(property: String, value):
 
 func _on_item_buy(index: int) -> void:
 	if $"../Money".can_obtain_item(index):
-		$"../Inventory".add_item(index)
-		$"../Money".buy_item(current_prices[index])
+		$"../Money".buy_item(current_prices[index]) 	# Buy first
+		$"../Inventory".add_item(index)				# Then maybe change price	
 		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SOUND_BUTTON_CLICK)
 	
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=387 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=389 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="7_gwdc2"]
 [ext_resource type="Texture2D" uid="uid://cvtjlcwgo8c3l" path="res://animated/703547277.png" id="7_wlt61"]
 [ext_resource type="Script" path="res://sun.gd" id="8_w08ns"]
+[ext_resource type="Script" path="res://laser.gd" id="10_xoyv3"]
 [ext_resource type="Texture2D" uid="uid://c111l8oiw185d" path="res://animated/mercury.png" id="11_6cnfk"]
+[ext_resource type="Texture2D" uid="uid://ce3tt4m8u3iqp" path="res://img/laser_unactive.png" id="11_kp6qh"]
 [ext_resource type="Texture2D" uid="uid://c23ejeuq38uey" path="res://animated/venus.png" id="13_06qqn"]
 [ext_resource type="Script" path="res://pan_zoom_camera.gd" id="13_puh5w"]
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="15_b2jf5"]
@@ -2371,10 +2373,10 @@ scale = Vector2(0.63, 0.63)
 sprite_frames = SubResource("SpriteFrames_3dryb")
 frame_progress = 0.593298
 script = ExtResource("5_58hys")
-rotation_time = 30
-start_time = 15
-height = 370
-length = 550
+rotation_time = 30.0
+start_time = 15.0
+height = 370.0
+length = 550.0
 middle = Vector2(30, 0)
 path_line = NodePath("../mars line")
 
@@ -2394,6 +2396,19 @@ rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
+[node name="Laser" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine")]
+texture_filter = 1
+script = ExtResource("10_xoyv3")
+unActiveLaser = ExtResource("11_kp6qh")
+activeLaser = ExtResource("25_luuys")
+laserLine = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="Planets/mars/Laser"]
+texture_filter = 1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.67451, 0.196078, 0.196078, 1)
+
 [node name="venus" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
@@ -2402,10 +2417,10 @@ scale = Vector2(0.37, 0.37)
 sprite_frames = SubResource("SpriteFrames_tdx2p")
 frame_progress = 0.0824779
 script = ExtResource("5_58hys")
-rotation_time = 12
-start_time = 10
-height = 150
-length = 210
+rotation_time = 12.0
+start_time = 10.0
+height = 150.0
+length = 210.0
 middle = Vector2(0, 10)
 path_line = NodePath("../venus line")
 
@@ -2417,10 +2432,10 @@ scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o82yg")
 frame_progress = 0.648412
 script = ExtResource("5_58hys")
-rotation_time = 8
-start_time = 2
-height = 100
-length = 150
+rotation_time = 8.0
+start_time = 2.0
+height = 100.0
+length = 150.0
 middle = Vector2(-10, 0)
 path_line = NodePath("../mercury line")
 
@@ -2443,9 +2458,9 @@ scale = Vector2(0.311594, 0.291667)
 sprite_frames = SubResource("SpriteFrames_ukx0k")
 frame_progress = 0.105215
 script = ExtResource("5_58hys")
-rotation_time = 2
-height = 100
-length = 100
+rotation_time = 2.0
+height = 100.0
+length = 100.0
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
