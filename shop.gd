@@ -50,10 +50,15 @@ func shop_animation(property: String, value):
 
 func _on_item_buy(index: int) -> void:
 	if $"../Money".can_obtain_item(index):
-		$"../Money".buy_item(current_prices[index]) 	# Buy first
-		$"../Inventory".add_item(index)				# Then maybe change price	
-		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SOUND_BUTTON_CLICK)
-	
+		$"../Money".buy_item(current_prices[index])     # Buy first
+		$"../Inventory".add_item(index)                # Then maybe change price
+		
+		if index == Inventory.ITEM_TYPES.FACTORY:
+			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.BUILD_FACTORY)
+		elif index == Inventory.ITEM_TYPES.SLOT:
+			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.UNLOCK_SLOT)
+		else:
+			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.SOUND_BUTTON_CLICK)
 
 func build_factory(factory_count: int):
 	current_prices[FACTORY_INDEX] += ceil((FACTORY_COST_GROW_FACTORY + factory_count) ** 2 / 100) * 100

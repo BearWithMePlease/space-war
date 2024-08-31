@@ -1,4 +1,4 @@
-[gd_scene load_steps=397 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=371 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -8,24 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://dny8ky8woo8vn" path="res://animated/2237296662.png" id="4_7j4en"]
 [ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://img/asteroid.png" id="4_f8klw"]
 [ext_resource type="Script" path="res://planet.gd" id="5_58hys"]
+[ext_resource type="Texture2D" uid="uid://cxchxafw5n656" path="res://img/sun_light.png" id="6_0p0rs"]
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="7_gwdc2"]
 [ext_resource type="Texture2D" uid="uid://cvtjlcwgo8c3l" path="res://animated/703547277.png" id="7_wlt61"]
 [ext_resource type="Script" path="res://sun.gd" id="8_w08ns"]
-[ext_resource type="Script" path="res://laser.gd" id="10_xoyv3"]
 [ext_resource type="Texture2D" uid="uid://c111l8oiw185d" path="res://animated/mercury.png" id="11_6cnfk"]
-[ext_resource type="Texture2D" uid="uid://ce3tt4m8u3iqp" path="res://img/laser_unactive.png" id="11_kp6qh"]
+[ext_resource type="Script" path="res://laser_satelite.gd" id="11_kmycb"]
+[ext_resource type="Texture2D" uid="uid://dbfw8qmbndjwt" path="res://img/laser_unactive.png" id="12_gg0y1"]
 [ext_resource type="Texture2D" uid="uid://c23ejeuq38uey" path="res://animated/venus.png" id="13_06qqn"]
-[ext_resource type="Script" path="res://missile_launcher.gd" id="13_7ivgh"]
 [ext_resource type="Script" path="res://pan_zoom_camera.gd" id="13_puh5w"]
-[ext_resource type="PackedScene" uid="uid://cqv6dsxgeiivg" path="res://missile.tscn" id="14_t6mfo"]
-[ext_resource type="PackedScene" uid="uid://33604d7grxjo" path="res://asteroid.tscn" id="15_7ern2"]
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="15_b2jf5"]
-[ext_resource type="Texture2D" uid="uid://bj511ybtdewx5" path="res://asteroid1.png" id="17_0oes4"]
 [ext_resource type="Script" path="res://money.gd" id="17_0vhep"]
 [ext_resource type="Script" path="res://shield.gd" id="17_wh8ur"]
-[ext_resource type="Texture2D" uid="uid://bkb8k4hh31hn7" path="res://asteroid2.png" id="18_6fhhp"]
 [ext_resource type="Shader" path="res://shield.gdshader" id="18_p5r0d"]
-[ext_resource type="Texture2D" uid="uid://dipx7b38jl1ro" path="res://asteroid.png" id="19_c0fgu"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
@@ -42,20 +37,9 @@
 [ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
 [ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
 [ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
-[ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
-[ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="37_uwx67"]
-[ext_resource type="AudioStream" uid="uid://b0dnfm8gwtyu5" path="res://sound/game-background-music-4.mp3" id="38_texrt"]
-[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://sound/sound-button-click.mp3" id="38_ylaoy"]
-[ext_resource type="AudioStream" uid="uid://bnopi05c65xgo" path="res://sound/intro-background-music.mp3" id="39_sevwx"]
-[ext_resource type="AudioStream" uid="uid://jvvqv1l1kx21" path="res://sound/laser-launch-sound.mp3" id="40_141cv"]
-[ext_resource type="AudioStream" uid="uid://canhx72504m37" path="res://sound/rocket-launch-sound.mp3" id="41_r8hss"]
+[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://img/sound-button-click.mp3" id="38_ylaoy"]
 [ext_resource type="Texture2D" uid="uid://bwutb7k5marf3" path="res://img/background.png" id="41_w0xhp"]
-[ext_resource type="AudioStream" uid="uid://1n424ssmt5ph" path="res://sound/shield_activate.mp3" id="42_i1dpn"]
-[ext_resource type="AudioStream" uid="uid://dnjaq35duuhh4" path="res://sound/shop-window.mp3" id="43_0p38h"]
-[ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="44_pmdl1"]
-[ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="53_hm1g1"]
-[ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="54_0l4j6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -490,6 +474,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d06fo"]
+radius = 50.1733
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ost08"]
 atlas = ExtResource("15_b2jf5")
@@ -2306,26 +2293,6 @@ animations = [{
 font = ExtResource("26_n6a6a")
 font_size = 20
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okrjq"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qi2e"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8wx28"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyag0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mllmv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3adh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e436e"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_su0k2"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb0df"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hsxef"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5kk4"]
 texture = ExtResource("27_iklvs")
 expand_margin_top = 5.0
@@ -2347,8 +2314,6 @@ font_size = 22
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pfer"]
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ymgt3"]
-
 [node name="Node2D" type="Node2D"]
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
@@ -2359,6 +2324,7 @@ script = ExtResource("1_1wgy6")
 visible = false
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 scale = Vector2(3, 3.21875)
 sprite_frames = SubResource("SpriteFrames_ahfjy")
 animation = &"new_animation"
@@ -2368,14 +2334,28 @@ script = ExtResource("3_lcebc")
 [node name="sun" type="AnimatedSprite2D" parent="Planets"]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 scale = Vector2(0.644375, 0.6225)
 sprite_frames = SubResource("SpriteFrames_xew2m")
 frame_progress = 0.757715
 script = ExtResource("8_w08ns")
 
+[node name="Area2D" type="Area2D" parent="Planets/sun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/sun/Area2D"]
+shape = SubResource("CircleShape2D_d06fo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planets/sun"]
+z_index = -1
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(1.75246, 1.75246)
+texture = ExtResource("6_0p0rs")
+
 [node name="mars" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(-789, -516)
 scale = Vector2(0.63, 0.63)
 sprite_frames = SubResource("SpriteFrames_3dryb")
@@ -2404,28 +2384,27 @@ rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
-[node name="Laser" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine")]
+[node name="LaserSatelite" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine")]
 texture_filter = 1
-script = ExtResource("10_xoyv3")
-unActiveLaser = ExtResource("11_kp6qh")
+position = Vector2(0, -130)
+texture = ExtResource("25_luuys")
+script = ExtResource("11_kmycb")
+unActiveLaser = ExtResource("12_gg0y1")
 activeLaser = ExtResource("25_luuys")
-laserLine = NodePath("Line2D")
+laserLine = NodePath("LaserLine")
+shotCooldown = 2.0
 
-[node name="Line2D" type="Line2D" parent="Planets/mars/Laser"]
-texture_filter = 1
-points = PackedVector2Array(0, 0, 0, 0)
+[node name="LaserLine" type="Line2D" parent="Planets/mars/LaserSatelite"]
+z_index = -1
+y_sort_enabled = true
+points = PackedVector2Array(0, 0, 0, -1000)
 width = 3.0
 default_color = Color(0.67451, 0.196078, 0.196078, 1)
-
-[node name="Missile Launcher" type="Node2D" parent="Planets/mars"]
-script = ExtResource("13_7ivgh")
-missile = ExtResource("14_t6mfo")
-asteroid = ExtResource("15_7ern2")
-asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
 
 [node name="venus" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(-941, -514)
 scale = Vector2(0.37, 0.37)
 sprite_frames = SubResource("SpriteFrames_tdx2p")
@@ -2438,9 +2417,15 @@ length = 210.0
 middle = Vector2(0, 10)
 path_line = NodePath("../venus line")
 
+[node name="Area2D" type="Area2D" parent="Planets/venus"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/venus/Area2D"]
+shape = SubResource("CircleShape2D_d06fo")
+
 [node name="mercury" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(-1001, -514)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o82yg")
@@ -2453,9 +2438,15 @@ length = 150.0
 middle = Vector2(-10, 0)
 path_line = NodePath("../mercury line")
 
+[node name="Area2D" type="Area2D" parent="Planets/mercury"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/mercury/Area2D"]
+shape = SubResource("CircleShape2D_d06fo")
+
 [node name="earth" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(-869, -513)
 scale = Vector2(0.46, 0.48)
 sprite_frames = SubResource("SpriteFrames_2c0xm")
@@ -2467,6 +2458,7 @@ path_line = NodePath("../earth line")
 [node name="moon" type="AnimatedSprite2D" parent="Planets/earth"]
 z_index = 1
 y_sort_enabled = true
+texture_filter = 1
 position = Vector2(-6.52173, 104.167)
 scale = Vector2(0.311594, 0.291667)
 sprite_frames = SubResource("SpriteFrames_ukx0k")
@@ -2476,27 +2468,36 @@ rotation_time = 2.0
 height = 100.0
 length = 100.0
 
+[node name="Area2D" type="Area2D" parent="Planets/earth"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/earth/Area2D"]
+shape = SubResource("CircleShape2D_d06fo")
+
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
 points = PackedVector2Array(-725, -382)
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="mercury line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="venus line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="mars line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(-6.10352e-05, 0)
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="Area2D" type="Area2D" parent="Planets/mars line"]
 
@@ -2533,7 +2534,7 @@ texture = ExtResource("19_lqr0b")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots", "mars", "earth")]
+[node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2549,8 +2550,6 @@ theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
 slots = [NodePath("Slot_0/Button/Hintergrund/Icon0"), NodePath("Slot_1/Button/Hintergrund/Icon1"), NodePath("Slot_2/Button/Hintergrund/Icon2"), NodePath("Slot_3/Button/Hintergrund/Icon3"), NodePath("Slot_4/Button/Hintergrund/Icon4"), NodePath("Slot_5/Button/Hintergrund/Icon5")]
 type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("36_q6e3p"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("26_b27ab")])
-mars = NodePath("../../Planets/mars")
-earth = NodePath("../../Planets/earth")
 
 [node name="Slot_0" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2558,11 +2557,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_0"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_okrjq")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6qi2e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_8wx28")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dyag0")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_mllmv")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_0/Button"]
 texture_filter = 1
@@ -2587,11 +2581,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_1"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_1/Button"]
 texture_filter = 1
@@ -2616,11 +2605,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_2"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_2/Button"]
 texture_filter = 1
@@ -2646,11 +2630,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_3"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_3/Button"]
 texture_filter = 1
@@ -2676,11 +2655,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_4"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_4/Button"]
 texture_filter = 1
@@ -2706,11 +2680,6 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_5"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_v3adh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_e436e")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_su0k2")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_eb0df")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_hsxef")
 
 [node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_5/Button"]
 texture_filter = 1
@@ -2730,7 +2699,7 @@ texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible")]
+[node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible", "audio_player")]
 texture_filter = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -2752,6 +2721,7 @@ NEW_SLOT_INDEX = 1
 arrow_image = NodePath("HBoxContainer/Control/Arrow_left")
 position_hidden = NodePath("../position_hidden")
 position_visible = NodePath("../position_visible")
+audio_player = NodePath("../../AudioPlayer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop"]
 layout_mode = 1
@@ -3380,12 +3350,8 @@ offset_bottom = 10.0
 grow_horizontal = 0
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPolyphonic_ymgt3")
+stream = ExtResource("38_ylaoy")
 volume_db = -5.0
-autoplay = true
-script = ExtResource("36_q1dpw")
-sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6")])
-change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true
@@ -3395,18 +3361,22 @@ position = Vector2(0, -2)
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(725, 510)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="StarBackground" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
 texture = ExtResource("41_w0xhp")
 
-[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="StarBackground2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
 position = Vector2(1444, 0)
 texture = ExtResource("41_w0xhp")
 
-[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="StarBackground3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
 position = Vector2(1444, 1016)
 texture = ExtResource("41_w0xhp")
 
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="StarBackground4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
 position = Vector2(0, 1016)
 texture = ExtResource("41_w0xhp")
 
@@ -3416,17 +3386,11 @@ script = ExtResource("13_puh5w")
 min_zoom = 0.5
 
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [1]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_2/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [2]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_2/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_3/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [3]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_3/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [4]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [5]]
-[connection signal="focus_entered" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
 [connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]

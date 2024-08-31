@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqv6dsxgeiivg"]
+
+[ext_resource type="Texture2D" uid="uid://b2pny2n8nmg2n" path="res://animated/rocket_fire.png" id="1_25j2k"]
+[ext_resource type="Script" path="res://missile.gd" id="2_lqbdj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxulu"]
+atlas = ExtResource("1_25j2k")
+region = Rect2(0, 0, 43, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mca1k"]
+atlas = ExtResource("1_25j2k")
+region = Rect2(43, 0, 43, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgxbu"]
+atlas = ExtResource("1_25j2k")
+region = Rect2(86, 0, 43, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvdos"]
+atlas = ExtResource("1_25j2k")
+region = Rect2(129, 0, 43, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4na6o"]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_oxulu")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_mca1k")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_hgxbu")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_bvdos")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="missile" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(500, 500)
+sprite_frames = SubResource("SpriteFrames_4na6o")
+frame = 3
+frame_progress = 0.123188
+script = ExtResource("2_lqbdj")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(-1, -9)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2"]
+polygon = PackedVector2Array(-6, 15, -6, 10, -4, 8, -4, -7, -3, -28, 2, -43, 7, -28, 7, -8, 8, -3, 8, -3, 8, 8, 10, 9, 10, 15)

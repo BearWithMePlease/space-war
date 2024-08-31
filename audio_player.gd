@@ -1,4 +1,5 @@
 extends AudioStreamPlayer
+class_name AudioPlayer
 
 @export var sounds: Array[AudioStreamMP3]
 @export var change_volume: Array[int]
@@ -12,7 +13,9 @@ enum SoundType {
 	SOUND_BUTTON_CLICK = 5,
 	SHIELD_ACTIVATE = 6,
 	SHOP_WINDOW = 7,
-	SLOT_SELECT = 8
+	SLOT_SELECT = 8,
+	UNLOCK_SLOT = 9,
+	BUILD_FACTORY = 10
 }
 
 func play_sound(type: SoundType):

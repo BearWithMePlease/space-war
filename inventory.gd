@@ -1,4 +1,5 @@
 extends HBoxContainer
+class_name Inventory
 
 @export var MAX_SLOT_SIZE:int = 5
 @export var START_SLOT_SIZE:int = 5
@@ -8,6 +9,7 @@ extends HBoxContainer
 @export var rocket_prefab: PackedScene
 @export var rocket_parent: Node2D
 @export var mars: Planet
+@export var earth: Planet
 
 var slotItems: Array[ITEM_TYPES] = []
 
@@ -33,12 +35,14 @@ func _ready() -> void:
 	add_new_slot()
 	add_new_slot()
 
+# Check if the are empty slots
 func can_add_item():
 	for item in slotItems:
 		if item == ITEM_TYPES.EMPTY:
 			return true
 	return false
 
+# Bought item: Does not add to inv if Factory/New_Slot && Check if possible otherwise
 func add_item(type: int):
 	if type == ITEM_TYPES.FACTORY: 
 		build_factory()
@@ -51,6 +55,7 @@ func add_item(type: int):
 				slotItems[slotIndex] = type as ITEM_TYPES
 				break
 
+# Set Slot image to null
 func remove_item_at(slotIndex: int):
 	slots[slotIndex].texture = null
 	slotItems[slotIndex] = ITEM_TYPES.EMPTY
@@ -59,32 +64,33 @@ func _useItemInSlot(slotIndex: int) -> void:
 	if slotItems[slotIndex] == ITEM_TYPES.SHIELD:
 		if $"../../Planets/mars/Shield".addShield():
 			remove_item_at(slotIndex)
-			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHIELD_ACTIVATE)
+			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.SHIELD_ACTIVATE)
 	elif slotItems[slotIndex] == ITEM_TYPES.ROCKET:
-		#var rocket := rocket_prefab.instantiate() as Rocket
-		#rocket.position = mars.position
-		#rocket_parent.add_child(rocket)
-		
+		$"../../Planets/mars/Missile Launcher".launch_missile(earth)
 		remove_item_at(slotIndex)
-		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.ROCKET_LAUNCH_SOUND)
+		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ROCKET_LAUNCH_SOUND)
 	elif slotItems[slotIndex] == ITEM_TYPES.LASER:
 		if $"../../Planets/mars/Laser".addLaserSatelite():
 			remove_item_at(slotIndex)
-			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.LASER_LAUNCH_SOUND)
+			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
 	elif slotItems[slotIndex] == ITEM_TYPES.ASTEROID:
+		$"../../Planets/mars/Missile Launcher".launch_asteroid(earth)
 		remove_item_at(slotIndex)
-		$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.ASTEROID_LAUNCH_SOUND)
+		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ASTEROID_LAUNCH_SOUND)
 
+# Build Factory: Money -> +1 Factory && Shop update Factory price
 func build_factory() -> void:
 	$"../Money".build_factory()
 	$"../Shop".build_factory($"../Money".factory_count)
 
+# Check if there are LOCKED slots
 func can_add_new_slot() -> bool:
 	for slotIndex in range(slotItems.size()):
 		if slotItems[slotIndex] == ITEM_TYPES.LOCKED:
 			return true
 	return false
 
+# Add bought item to leftest empty slot
 func add_new_slot() -> bool:
 	for slotIndex in range(slotItems.size()):
 		if slotItems[slotIndex] == ITEM_TYPES.LOCKED:
@@ -93,5 +99,6 @@ func add_new_slot() -> bool:
 			return true
 	return false
 
+# Play click sound on slot select
 func on_focus():
-	$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SLOT_SELECT)
+	$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.SLOT_SELECT)
