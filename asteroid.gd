@@ -9,6 +9,8 @@ var time: float = 0
 var castTime := 0.0
 var directionSet: bool = false
 
+var isPlayer: bool = false
+
 func initialize(launcher: Node2D, target: Node2D, texture: Texture2D) -> void:
 	self.launcher = launcher
 	self.target = target
@@ -19,22 +21,29 @@ func _ready() -> void:
 	global_position = launcher.global_position
 
 func _process(delta: float) -> void:
-	if not directionSet:
-		global_position = launcher.global_position
-		
-	castTime = max(0.0, castTime - delta)
-	if(castTime > 0.01):
-		return
-		
-	if Input.is_action_just_pressed("click") and !directionSet:
-		var mouse_position = get_global_mouse_position()
-		var direction = mouse_position - global_position
-		rotation = direction.angle()
-		directionSet = true
 	
-	if not directionSet:
-		return
+	if isPlayer:
+		if not directionSet:
+			global_position = launcher.global_position
+			
+		castTime = max(0.0, castTime - delta)
+		if(castTime > 0.01):
+			return
+			
+		if Input.is_action_just_pressed("click") and !directionSet:
+			var mouse_position = get_global_mouse_position()
+			var direction = mouse_position - global_position
+			rotation = direction.angle()
+			directionSet = true
 		
+		if not directionSet:
+			return
+	else:
+		if !directionSet:
+			var direction = target.global_position - global_position
+			rotation = direction.angle() + deg_to_rad(15)
+			directionSet = true
+			
 	time += delta
 	move_local_x(speed * delta)
 	
