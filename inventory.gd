@@ -6,12 +6,16 @@ class_name Inventory
 
 @export var slots: Array[TextureRect] = []
 @export var type_images: Array[CompressedTexture2D] = []
+@export var cooldown_images: Array[ColorRect] = []
 @export var rocket_prefab: PackedScene
 @export var rocket_parent: Node2D
 @export var mars: Planet
 @export var earth: Planet
+@export var default_cooldown: int = 2
+@export var shield_cooldown: int = 5
 
 var slotItems: Array[ITEM_TYPES] = []
+var cooldowns: Array[bool] = []
 
 enum ITEM_TYPES {
 	EMPTY = -1,
@@ -28,6 +32,7 @@ enum ITEM_TYPES {
 func _ready() -> void:
 	slotItems.resize(6)
 	slotItems.fill(ITEM_TYPES.LOCKED)
+	cooldowns.resize(6)
 	var i := 0
 	for slotIcon in slots:
 		slotIcon.texture = type_images[slotItems[i]] if slotItems[i] != ITEM_TYPES.EMPTY else null
@@ -53,7 +58,29 @@ func add_item(type: int):
 			if slotItems[slotIndex] == ITEM_TYPES.EMPTY:
 				slots[slotIndex].texture = type_images[type]
 				slotItems[slotIndex] = type as ITEM_TYPES
+				
+				if type == ITEM_TYPES.SHIELD:
+					set_cooldown(slotIndex, shield_cooldown)
+				else:
+					set_cooldown(slotIndex, default_cooldown)
 				break
+
+func set_cooldown(slotIndex:int, seconds: int):
+	
+	cooldowns[slotIndex] = true
+	
+	# animate
+	cooldown_images[slotIndex].size = Vector2(88, 88)
+	cooldown_images[slotIndex].position = Vector2(6, 6)
+	
+	var tween = get_tree().create_tween()
+	tween.set_parallel()
+	tween.tween_property(cooldown_images[slotIndex], "position", Vector2(6, 94), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	tween.tween_property(cooldown_images[slotIndex], "size", Vector2(88, 0), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	
+	# wait for cooldown to finish and enable slot use
+	await get_tree().create_timer(seconds).timeout
+	cooldowns[slotIndex] = false
 
 # Set Slot image to null
 func remove_item_at(slotIndex: int):
@@ -61,6 +88,9 @@ func remove_item_at(slotIndex: int):
 	slotItems[slotIndex] = ITEM_TYPES.EMPTY
 
 func _useItemInSlot(slotIndex: int) -> void:
+	# check if slot was recently bought (cooldown)
+	if cooldowns[slotIndex]: return
+	
 	if slotItems[slotIndex] == ITEM_TYPES.SHIELD:
 		if $"../../Planets/mars/Shield".addShield():
 			remove_item_at(slotIndex)

@@ -38,10 +38,10 @@
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
 [ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="37_uwx67"]
@@ -2306,7 +2306,7 @@ animations = [{
 font = ExtResource("26_n6a6a")
 font_size = 20
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okrjq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgdsu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6qi2e"]
 
@@ -2533,7 +2533,7 @@ texture = ExtResource("19_lqr0b")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots", "mars", "earth")]
+[node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots", "cooldown_images", "mars", "earth")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2549,6 +2549,7 @@ theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
 slots = [NodePath("Slot_0/Button/Hintergrund/Icon0"), NodePath("Slot_1/Button/Hintergrund/Icon1"), NodePath("Slot_2/Button/Hintergrund/Icon2"), NodePath("Slot_3/Button/Hintergrund/Icon3"), NodePath("Slot_4/Button/Hintergrund/Icon4"), NodePath("Slot_5/Button/Hintergrund/Icon5")]
 type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("36_q6e3p"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("26_b27ab")])
+cooldown_images = [NodePath("Slot_0/Button/CoolDown0"), NodePath("Slot_1/Button/CoolDown1"), NodePath("Slot_2/Button/CoolDown2"), NodePath("Slot_3/Button/CoolDown3"), NodePath("Slot_4/Button/CoolDown4"), NodePath("Slot_5/Button/CoolDown5")]
 mars = NodePath("../../Planets/mars")
 earth = NodePath("../../Planets/earth")
 
@@ -2558,7 +2559,7 @@ size_flags_horizontal = 3
 
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_0"]
 layout_mode = 2
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_okrjq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cgdsu")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_6qi2e")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8wx28")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_dyag0")
@@ -2580,6 +2581,15 @@ offset_right = 92.0
 offset_bottom = 93.0
 expand_mode = 2
 stretch_mode = 5
+
+[node name="CoolDown0" type="ColorRect" parent="GUI/Inventory/Slot_0/Button"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.784314)
 
 [node name="Slot_1" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2609,6 +2619,14 @@ offset_right = 92.0
 offset_bottom = 93.0
 expand_mode = 2
 stretch_mode = 5
+
+[node name="CoolDown1" type="ColorRect" parent="GUI/Inventory/Slot_1/Button"]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.392157)
 
 [node name="Slot_2" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2640,6 +2658,14 @@ texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="CoolDown2" type="ColorRect" parent="GUI/Inventory/Slot_2/Button"]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.392157)
+
 [node name="Slot_3" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -2669,6 +2695,14 @@ offset_bottom = 93.0
 texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="CoolDown3" type="ColorRect" parent="GUI/Inventory/Slot_3/Button"]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.392157)
 
 [node name="Slot_4" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2700,6 +2734,14 @@ texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="CoolDown4" type="ColorRect" parent="GUI/Inventory/Slot_4/Button"]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.392157)
+
 [node name="Slot_5" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -2729,6 +2771,14 @@ offset_bottom = 93.0
 texture = ExtResource("26_b27ab")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="CoolDown5" type="ColorRect" parent="GUI/Inventory/Slot_5/Button"]
+texture_filter = 1
+offset_left = 6.0
+offset_top = 94.0
+offset_right = 94.0
+offset_bottom = 94.0
+color = Color(0.0862745, 0.0862745, 0.0862745, 0.392157)
 
 [node name="Shop" type="Panel" parent="GUI" node_paths=PackedStringArray("labels_prices", "arrow_image", "position_hidden", "position_visible")]
 texture_filter = 1
