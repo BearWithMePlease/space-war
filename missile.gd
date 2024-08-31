@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 		speed = 1300*time + 300
 		scale = Vector2(0.0 + 1.5*time, 0.0 + 1.5*time)
 	else:
-		target_vector = Vector2(position.x - target.position.x, position.y- target.position.y)
+		target_vector = Vector2(position.x - target.position.x, position.y - target.position.y)
 		target_angle = target_vector.angle()
 		self.rotation = target_angle - 0.5 * PI
 
