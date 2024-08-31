@@ -10,24 +10,32 @@ const MAX_LASER_DST := 3000.0
 var needsToShot: bool = false
 var coolDownTimer: float = 0.0
 var bought: bool = false
-	
-func addLaserSatelite() -> bool:
+
+var isPlayer = true
+var target
+func addLaserSatelite(target1, player: bool) -> bool:
 	if bought:
 		return false
 	bought = true
 	coolDownTimer = 0.05 # don't shot immediately after bought
+	isPlayer = player
+	target = target1
 	return true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	if !bought and coolDownTimer < 0.01:
 		self.visible = false
 		return
 	self.visible = true
 	
 	# Moving in circle around planet following mouse
+
 	var mousePos := get_global_mouse_position()
-	var targetDirection: Vector2 = (mousePos - get_parent().global_position).normalized()
+	if !isPlayer:
+		mousePos = target.global_position
+	var targetDirection: Vector2 = ( mousePos - get_parent().global_position).normalized()
 	self.position = targetDirection * radius;
 	var angle := atan2(targetDirection.y, targetDirection.x) + PI * 0.5
 	self.rotation = angle
@@ -40,15 +48,24 @@ func _process(delta: float) -> void:
 	laserLine.default_color = Color(172.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0, alpha)
 	self.texture = activeLaser if coolDownTimer > shotCooldown - 0.1 else unActiveLaser
 	
+
+
+	
 	# Input for shot
 	if laserLine != null:
-		if Input.is_action_just_pressed("click") and coolDownTimer < 0.01:
+		if !isPlayer and coolDownTimer < 0.01:
+			coolDownTimer = shotCooldown
+			needsToShot = true
+			bought = false
+		if isPlayer == true && Input.is_action_just_pressed("click") and coolDownTimer < 0.01:
 			coolDownTimer = shotCooldown
 			needsToShot = true
 			bought = false
 
+
 func _physics_process(delta):
 	# Raycast planets
+	
 	var mousePos := get_global_mouse_position()
 	var targetDirection: Vector2 = (mousePos - laserLine.global_position).normalized()
 	

@@ -100,11 +100,11 @@ func _useItemInSlot(slotIndex: int) -> void:
 		remove_item_at(slotIndex)
 		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ROCKET_LAUNCH_SOUND)
 	elif slotItems[slotIndex] == ITEM_TYPES.LASER:
-		if $"../../Planets/mars/Laser".addLaserSatelite():
+		if $"../../Planets/mars/Laser".addLaserSatelite(null, true):
 			remove_item_at(slotIndex)
 			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
 	elif slotItems[slotIndex] == ITEM_TYPES.ASTEROID:
-		$"../../Planets/mars/Missile Launcher".launch_asteroid(earth)
+		$"../../Planets/mars/Missile Launcher".launch_asteroid(earth,true)
 		remove_item_at(slotIndex)
 		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ASTEROID_LAUNCH_SOUND)
 

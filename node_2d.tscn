@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
 [ext_resource type="Script" path="res://shop.gd" id="1_lrcd3"]
 [ext_resource type="Texture2D" uid="uid://dta13s1ypo2lr" path="res://animated/Sprite-0001.png" id="2_5i5np"]
+[ext_resource type="Script" path="res://earth_bot_script.gd" id="2_ua6it"]
 [ext_resource type="Script" path="res://slimmy.gd" id="3_lcebc"]
 [ext_resource type="Texture2D" uid="uid://dny8ky8woo8vn" path="res://animated/2237296662.png" id="4_7j4en"]
 [ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://img/asteroid.png" id="4_f8klw"]
@@ -2364,6 +2365,26 @@ font_size = 22
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
 
+[node name="earth_bot_script" type="Node" parent="."]
+script = ExtResource("2_ua6it")
+
+[node name="start_of_match" type="Timer" parent="earth_bot_script"]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="probing_shot" type="Timer" parent="earth_bot_script"]
+wait_time = 10.0
+autostart = true
+
+[node name="melee_asteroid" type="Timer" parent="earth_bot_script"]
+wait_time = 20.0
+autostart = true
+
+[node name="random_lazer_poke" type="Timer" parent="earth_bot_script"]
+one_shot = true
+autostart = true
+
 [node name="Planets" type="Node2D" parent="."]
 
 [node name="Slimy" type="AnimatedSprite2D" parent="Planets"]
@@ -2540,6 +2561,41 @@ rotation_time = 2.0
 height = 100.0
 length = 100.0
 
+[node name="Shield" type="Node2D" parent="Planets/earth" node_paths=PackedStringArray("firstShieldSprite", "secondShieldSprite")]
+script = ExtResource("17_wh8ur")
+firstShieldSprite = NodePath("Sprite2D")
+secondShieldSprite = NodePath("Sprite2D2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planets/earth/Shield"]
+material = SubResource("ShaderMaterial_x0j2w")
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_aviel")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Planets/earth/Shield"]
+material = SubResource("ShaderMaterial_x0j2w")
+rotation = -3.14159
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_aviel")
+
+[node name="Laser" type="Sprite2D" parent="Planets/earth" node_paths=PackedStringArray("laserLine")]
+texture_filter = 1
+script = ExtResource("10_xoyv3")
+unActiveLaser = ExtResource("11_kp6qh")
+activeLaser = ExtResource("25_luuys")
+laserLine = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="Planets/earth/Laser"]
+texture_filter = 1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[node name="Missile Launcher" type="Node2D" parent="Planets/earth"]
+script = ExtResource("13_7ivgh")
+missile = ExtResource("14_t6mfo")
+asteroid = ExtResource("15_7ern2")
+asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
+
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
@@ -2686,6 +2742,7 @@ stretch_mode = 5
 
 [node name="CoolDown1" type="ColorRect" parent="GUI/Inventory/Slot_1/Button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 94.0
 offset_right = 94.0
@@ -2724,6 +2781,7 @@ stretch_mode = 5
 
 [node name="CoolDown2" type="ColorRect" parent="GUI/Inventory/Slot_2/Button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 94.0
 offset_right = 94.0
@@ -2762,6 +2820,7 @@ stretch_mode = 5
 
 [node name="CoolDown3" type="ColorRect" parent="GUI/Inventory/Slot_3/Button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 94.0
 offset_right = 94.0
@@ -2800,6 +2859,7 @@ stretch_mode = 5
 
 [node name="CoolDown4" type="ColorRect" parent="GUI/Inventory/Slot_4/Button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 94.0
 offset_right = 94.0
@@ -2838,6 +2898,7 @@ stretch_mode = 5
 
 [node name="CoolDown5" type="ColorRect" parent="GUI/Inventory/Slot_5/Button"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 94.0
 offset_right = 94.0
@@ -3529,6 +3590,10 @@ zoom = Vector2(0.75, 0.75)
 script = ExtResource("13_puh5w")
 min_zoom = 0.5
 
+[connection signal="timeout" from="earth_bot_script/start_of_match" to="earth_bot_script" method="_on_start_of_match_timeout"]
+[connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
+[connection signal="timeout" from="earth_bot_script/melee_asteroid" to="earth_bot_script" method="_on_melee_asteroid_timeout"]
+[connection signal="timeout" from="earth_bot_script/random_lazer_poke" to="earth_bot_script" method="_on_random_lazer_poke_timeout"]
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
 [connection signal="focus_entered" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [1]]
