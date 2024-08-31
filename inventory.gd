@@ -7,11 +7,9 @@ extends HBoxContainer
 @export var type_images: Array[CompressedTexture2D] = []
 @export var rocket_prefab: PackedScene
 @export var rocket_parent: Node2D
-@export var mars: Mars
+@export var mars: Planet
 
 var slotItems: Array[ITEM_TYPES] = []
-var used_slots:int = 0
-var available_slots: int
 
 enum ITEM_TYPES {
 	EMPTY = -1,
@@ -20,14 +18,20 @@ enum ITEM_TYPES {
 	SHIELD = 2, 
 	ASTEROID = 3, 
 	ROCKET = 4, 
-	LASER = 5, 
+	LASER = 5,
+	LOCKED = 6,
 }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	slotItems.resize(6)
-	slotItems.fill(ITEM_TYPES.EMPTY)
-	add_item(ITEM_TYPES.ROCKET)
+	slotItems.fill(ITEM_TYPES.LOCKED)
+	var i := 0
+	for slotIcon in slots:
+		slotIcon.texture = type_images[slotItems[i]] if slotItems[i] != ITEM_TYPES.EMPTY else null
+		i += 1
+	add_new_slot()
+	add_new_slot()
 
 func can_add_item():
 	for item in slotItems:
@@ -62,12 +66,14 @@ func _useItemInSlot(slotIndex: int) -> void:
 		
 		remove_item_at(slotIndex)
 
-func build_factory():
+func build_factory() -> void:
 	$"../Money".build_factory()
 	$"../Shop".build_factory($"../Money".factory_count)
 	
-func add_new_slot():
-	if available_slots <= MAX_SLOT_SIZE:
-		slots[available_slots].texture = null
-		available_slots += 1
-		$"../Shop".add_new_slot(available_slots)
+func add_new_slot() -> bool:
+	for slotIndex in range(slotItems.size()):
+		if slotItems[slotIndex] == ITEM_TYPES.LOCKED:
+			slotItems[slotIndex] = ITEM_TYPES.EMPTY
+			slots[slotIndex].texture = null
+			return true
+	return false

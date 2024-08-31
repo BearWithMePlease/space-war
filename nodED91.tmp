@@ -2316,8 +2316,6 @@ script = ExtResource("1_1wgy6")
 
 [node name="Slimy" type="AnimatedSprite2D" parent="Planets"]
 visible = false
-z_index = 1
-y_sort_enabled = true
 scale = Vector2(3, 3.21875)
 sprite_frames = SubResource("SpriteFrames_ahfjy")
 animation = &"new_animation"
@@ -2325,16 +2323,12 @@ frame_progress = 0.476295
 script = ExtResource("3_lcebc")
 
 [node name="sun" type="AnimatedSprite2D" parent="Planets"]
-z_index = 1
-y_sort_enabled = true
 scale = Vector2(0.644375, 0.6225)
 sprite_frames = SubResource("SpriteFrames_xew2m")
 frame_progress = 0.757715
 script = ExtResource("8_w08ns")
 
 [node name="mars" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-789, -516)
 scale = Vector2(0.63, 0.63)
 sprite_frames = SubResource("SpriteFrames_3dryb")
@@ -2364,8 +2358,6 @@ scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
 [node name="venus" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-941, -514)
 scale = Vector2(0.37, 0.37)
 sprite_frames = SubResource("SpriteFrames_tdx2p")
@@ -2379,8 +2371,6 @@ middle = Vector2(0, 10)
 path_line = NodePath("../venus line")
 
 [node name="mercury" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-1001, -514)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_o82yg")
@@ -2394,8 +2384,6 @@ middle = Vector2(-10, 0)
 path_line = NodePath("../mercury line")
 
 [node name="earth" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-869, -513)
 scale = Vector2(0.46, 0.48)
 sprite_frames = SubResource("SpriteFrames_2c0xm")
@@ -2405,8 +2393,6 @@ script = ExtResource("5_58hys")
 path_line = NodePath("../earth line")
 
 [node name="moon" type="AnimatedSprite2D" parent="Planets/earth"]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(-6.52173, 104.167)
 scale = Vector2(0.311594, 0.291667)
 sprite_frames = SubResource("SpriteFrames_ukx0k")
@@ -2417,24 +2403,16 @@ height = 100
 length = 100
 
 [node name="earth line" type="Line2D" parent="Planets"]
-z_index = -1
-y_sort_enabled = true
 points = PackedVector2Array(-725, -382)
 width = 2.0
 
 [node name="mercury line" type="Line2D" parent="Planets"]
-z_index = -1
-y_sort_enabled = true
 width = 2.0
 
 [node name="venus line" type="Line2D" parent="Planets"]
-z_index = -1
-y_sort_enabled = true
 width = 2.0
 
 [node name="mars line" type="Line2D" parent="Planets"]
-z_index = -1
-y_sort_enabled = true
 position = Vector2(-6.10352e-05, 0)
 width = 2.0
 
@@ -2487,8 +2465,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
 script = ExtResource("1_1rxv7")
-slots = [NodePath("Slot_0/Button/Hintergrund/Icon0"), NodePath("Slot_1/Button/Hintergrund/Icon1"), NodePath("Slot_2/Button/Hintergrund/Icon2"), NodePath("Slot_3/Button/Hintergrund/Icon3"), NodePath("Slot_4/Button/Hintergrund/Icon4"), NodePath("Slot_5/Button/Hintergrund/Icon5")]
-type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("36_q6e3p"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys"), ExtResource("26_b27ab")])
+MAX_SLOT_SIZE = null
+START_SLOT_SIZE = null
+slots = [NodePath("Slot_0/Button/TextureRect/TextureRect0"), NodePath("Slot_1/Button/TextureRect/TextureRect1"), NodePath("Slot_2/Button/TextureRect/TextureRect2"), NodePath("Slot_3/Button/TextureRect/TextureRect3"), NodePath("Slot_4/Button/TextureRect/TextureRect4"), NodePath("Slot_5/Button/TextureRect/TextureRect5")]
+type_images = Array[CompressedTexture2D]([ExtResource("20_n7my1"), ExtResource("36_q6e3p"), ExtResource("24_nyhc7"), ExtResource("4_f8klw"), ExtResource("25_1biib"), ExtResource("25_luuys")])
 
 [node name="Slot_0" type="AspectRatioContainer" parent="GUI/Inventory"]
 layout_mode = 2
@@ -2497,14 +2477,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_0"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_0/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_0/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon0" type="TextureRect" parent="GUI/Inventory/Slot_0/Button/Hintergrund"]
+[node name="TextureRect0" type="TextureRect" parent="GUI/Inventory/Slot_0/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2521,14 +2501,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_1"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_1/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_1/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon1" type="TextureRect" parent="GUI/Inventory/Slot_1/Button/Hintergrund"]
+[node name="TextureRect1" type="TextureRect" parent="GUI/Inventory/Slot_1/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2545,14 +2525,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_2"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_2/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_2/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon2" type="TextureRect" parent="GUI/Inventory/Slot_2/Button/Hintergrund"]
+[node name="TextureRect2" type="TextureRect" parent="GUI/Inventory/Slot_2/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2570,14 +2550,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_3"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_3/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_3/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon3" type="TextureRect" parent="GUI/Inventory/Slot_3/Button/Hintergrund"]
+[node name="TextureRect3" type="TextureRect" parent="GUI/Inventory/Slot_3/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2595,14 +2575,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_4"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_4/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_4/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon4" type="TextureRect" parent="GUI/Inventory/Slot_4/Button/Hintergrund"]
+[node name="TextureRect4" type="TextureRect" parent="GUI/Inventory/Slot_4/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -2620,14 +2600,14 @@ size_flags_horizontal = 3
 [node name="Button" type="Button" parent="GUI/Inventory/Slot_5"]
 layout_mode = 2
 
-[node name="Hintergrund" type="TextureRect" parent="GUI/Inventory/Slot_5/Button"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Inventory/Slot_5/Button"]
 texture_filter = 1
 layout_mode = 2
 offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("25_mqxf5")
 
-[node name="Icon5" type="TextureRect" parent="GUI/Inventory/Slot_5/Button/Hintergrund"]
+[node name="TextureRect5" type="TextureRect" parent="GUI/Inventory/Slot_5/Button/TextureRect"]
 texture_filter = 1
 layout_mode = 1
 offset_left = 8.0
@@ -3293,6 +3273,7 @@ stream = ExtResource("38_ylaoy")
 volume_db = -5.0
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]

@@ -55,9 +55,10 @@ func shop_animation(property: String, value):
 
 
 func _on_item_buy(index: int) -> void:
-	$"../Money".buy_item(current_prices[index])
-	$"../Inventory".add_item(index)
-	audio_player.play()
+	if $"../Inventory".can_add_item():
+		$"../Inventory".add_item(index)
+		$"../Money".buy_item(current_prices[index])
+		audio_player.play()
 	
 
 func build_factory(factory_count: int):

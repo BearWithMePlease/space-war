@@ -40,8 +40,8 @@ func update_buttons():
 			item_buttons[index].disabled = true
 			item_buttons[index].mouse_default_cursor_shape = Control.CURSOR_ARROW
  
-func can_obtain_item(index: int):
-	return $"../Inventory".can_add_item() || index == $"../Inventory".FACTORY_INDEX || index == $"../Inventory".NEW_SLOT_INDEX
+func can_obtain_item(index: int) -> bool:
+	return $"../Inventory".can_add_item() or index == $"../Inventory".ITEM_TYPES.FACTORY || index == $"../Inventory".ITEM_TYPES.SLOT
 
 func get_total_earn():
 	return BASE_EARN + factory_count * FACTORY_EARN
