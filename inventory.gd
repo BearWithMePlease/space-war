@@ -29,8 +29,8 @@ func add_item(type: int):
 		used_slots += 1
 
 func build_factory():
-	$"../money".build_factory()
-	$"../Shop".build_factory($"../money".factory_count)
+	$"../Money".build_factory()
+	$"../Shop".build_factory($"../Money".factory_count)
 	
 func add_new_slot():
 	if available_slots <= MAX_SLOT_SIZE:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=363 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=365 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="15_b2jf5"]
 [ext_resource type="Script" path="res://mars.gd" id="16_ukqyq"]
 [ext_resource type="Script" path="res://money.gd" id="17_0vhep"]
+[ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
@@ -35,6 +36,7 @@
 [ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
 [ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
 [ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -2275,6 +2277,7 @@ font_size = 20
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5kk4"]
 texture = ExtResource("27_iklvs")
+expand_margin_top = 5.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_gkb6o"]
@@ -2378,21 +2381,33 @@ script = ExtResource("16_ukqyq")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="money" type="Label" parent="GUI" node_paths=PackedStringArray("item_buttons")]
-texture_filter = 1
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 280.0
-offset_bottom = 47.0
-text = "Energy Deposit:"
-label_settings = SubResource("LabelSettings_ca6o5")
-vertical_alignment = 1
+[node name="Money" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("LABEL", "item_buttons")]
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 365.0
+offset_bottom = 50.0
+theme_override_constants/separation = 10
 script = ExtResource("17_0vhep")
-START_BALANCE = 200
+START_BALANCE = 500
 MONEY_CYCLE_TIME = 1
 BASE_EARN = 5
 FACTORY_EARN = 5
+LABEL = NodePath("label")
 item_buttons = [NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button")]
+
+[node name="label" type="Label" parent="GUI/Money"]
+texture_filter = 1
+layout_mode = 2
+text = "Energy Deposit:"
+label_settings = SubResource("LabelSettings_ca6o5")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Money"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Inventory" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("slots")]
 anchors_preset = 7
@@ -2538,7 +2553,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -576.0
-offset_top = 10.0
+offset_top = 15.0
 offset_bottom = -130.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -2547,7 +2562,7 @@ script = ExtResource("1_lrcd3")
 transition_type = 4
 hidden_position = Vector2(1100, 10)
 visible_position = Vector2(576, 10)
-labels_prices = [NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/Label")]
+labels_prices = [NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/HBoxContainer/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/HBoxContainer/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/HBoxContainer/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/HBoxContainer/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/HBoxContainer/Label"), NodePath("HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/HBoxContainer/Label")]
 starting_prices = Array[int]([300, 200, 100, 200, 600, 1000])
 NEW_SLOT_INDEX = 1
 arrow_image = NodePath("HBoxContainer/Control/Arrow_left")
@@ -2580,6 +2595,7 @@ offset_right = 12.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 texture = ExtResource("27_vgd7e")
 expand_mode = 2
 stretch_mode = 5
@@ -2588,7 +2604,7 @@ flip_h = true
 [node name="LayoutBox" type="VBoxContainer" parent="GUI/Shop/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox"]
 texture_filter = 1
@@ -2609,6 +2625,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 
 [node name="Item_0" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2622,7 +2639,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
 texture_filter = 1
@@ -2631,38 +2648,30 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.0
-offset_right = 123.0
-offset_bottom = 18.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
 grow_vertical = 2
 text = "Factory"
 label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
 
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
 
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/img_frame"]
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/TextureRect"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
 texture = ExtResource("20_n7my1")
 expand_mode = 2
 stretch_mode = 5
@@ -2673,9 +2682,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -2686,18 +2695,28 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"]
-texture_filter = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Item_1" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2711,7 +2730,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
 texture_filter = 1
@@ -2720,38 +2739,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
+offset_top = -50.0
 offset_right = 196.0
-offset_bottom = 17.5
+offset_bottom = 50.0
 grow_vertical = 2
 text = "New Slot"
 label_settings = ExtResource("27_m1ux1")
-
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
-
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/img_frame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 2
-stretch_mode = 5
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
 texture_filter = 1
@@ -2759,9 +2753,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -2772,18 +2766,46 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"]
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/HBoxContainer"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/TextureRect2"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
+texture = ExtResource("36_q6e3p")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Item_2" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2797,7 +2819,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
 texture_filter = 1
@@ -2806,41 +2828,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
+offset_top = -50.0
 offset_right = 196.0
-offset_bottom = 17.5
+offset_bottom = 50.0
 grow_vertical = 2
 text = "Shield"
 label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
-
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
-
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/img_frame"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("24_nyhc7")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
 texture_filter = 1
@@ -2848,9 +2842,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -2861,18 +2855,46 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"]
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/HBoxContainer"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/TextureRect"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
+texture = ExtResource("24_nyhc7")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Item_3" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2886,7 +2908,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
 texture_filter = 1
@@ -2895,42 +2917,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
+offset_top = -50.0
 offset_right = 196.0
-offset_bottom = 17.5
+offset_bottom = 50.0
 grow_vertical = 2
 text = "Asteroid"
 label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
-
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
-
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/img_frame"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_f8klw")
-expand_mode = 2
-stretch_mode = 5
-flip_h = true
 
 [node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
 texture_filter = 1
@@ -2938,9 +2931,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -2951,18 +2944,46 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"]
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/HBoxContainer"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/TextureRect"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
+texture = ExtResource("4_f8klw")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Item_4" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -2976,7 +2997,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
 texture_filter = 1
@@ -2985,41 +3006,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
+offset_top = -50.0
 offset_right = 196.0
-offset_bottom = 17.5
+offset_bottom = 50.0
 grow_vertical = 2
 text = "Rocket"
 label_settings = ExtResource("27_m1ux1")
 vertical_alignment = 1
-
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
-
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/img_frame"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("25_1biib")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
 texture_filter = 1
@@ -3027,9 +3020,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -3040,18 +3033,46 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"]
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/HBoxContainer"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/TextureRect"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
+texture = ExtResource("25_1biib")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Item_5" type="Control" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items"]
 custom_minimum_size = Vector2(0, 100)
@@ -3065,7 +3086,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-color = Color(0.666667, 0.666667, 0.666667, 1)
+color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
 texture_filter = 1
@@ -3074,40 +3095,13 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 10.0
-offset_top = -17.5
+offset_top = -50.0
 offset_right = 196.0
-offset_bottom = 17.5
+offset_bottom = 50.0
 grow_vertical = 2
 text = "Laser"
 label_settings = ExtResource("27_m1ux1")
-
-[node name="img_frame" type="ColorRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -45.0
-offset_right = -5.0
-offset_bottom = 45.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 3
-color = Color(0.207978, 0.135385, 0.187237, 1)
-
-[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/img_frame"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("25_luuys")
-expand_mode = 2
-stretch_mode = 5
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
 texture_filter = 1
@@ -3115,9 +3109,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
+offset_left = 185.0
 offset_top = -25.0
-offset_right = 400.0
+offset_right = 405.0
 offset_bottom = 25.0
 grow_vertical = 2
 mouse_default_cursor_shape = 2
@@ -3128,18 +3122,46 @@ theme_override_styles/hover = ExtResource("32_asw5v")
 theme_override_styles/pressed = ExtResource("31_wyo3l")
 theme_override_styles/normal = ExtResource("30_ay4ey")
 
-[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button"]
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button"]
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 215.0
+offset_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/HBoxContainer"]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 text = "Build for"
 label_settings = ExtResource("28_4v1wk")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5"]
+texture_filter = 1
+offset_left = 417.0
+offset_top = 5.0
+offset_right = 507.0
+offset_bottom = 95.0
+texture = ExtResource("25_mqxf5")
+
+[node name="img" type="TextureRect" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/TextureRect"]
+texture_filter = 1
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 80.0
+texture = ExtResource("25_luuys")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="position_hidden" type="Control" parent="GUI"]
 layout_mode = 3

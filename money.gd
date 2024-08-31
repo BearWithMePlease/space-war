@@ -1,10 +1,11 @@
-extends Label
+extends BoxContainer
 
 @export var START_BALANCE:int
 @export var MONEY_CYCLE_TIME:int
 @export var BASE_EARN:int
 @export var FACTORY_EARN:int
-@export var LABEL: String = "Energy Deposit"
+@export var LABEL: Label
+@export var LABEL_TEXT: String = "Energy Deposit"
 @export var item_buttons: Array[Button]
 
 var balance: int
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 		update_buttons()
 
 func update_label():
-	self.text = LABEL + " (" + str(get_total_earn()) + "/s):" + " " + str(balance)
+	LABEL.text = LABEL_TEXT + " (" + str(get_total_earn()) + "/s):" + " " + str(balance)
 
 func update_buttons():
 	for index in $"../Shop".current_prices.size():
@@ -47,6 +48,8 @@ func get_total_earn():
 
 func build_factory():
 	factory_count += 1
+	update_label()
+	update_buttons()
 
 func buy_item(value:int):
 	balance -= value

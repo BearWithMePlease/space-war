@@ -23,6 +23,7 @@ var current_prices: Array[int] = []
 func _ready() -> void:
 	self.position = hidden_position
 	
+	current_prices = []
 	for index in starting_prices.size():
 		current_prices.append(starting_prices[index])
 		update_price(index)
@@ -53,7 +54,7 @@ func shop_animation(property: String, value):
 
 
 func _on_item_buy(index: int) -> void:
-	$"../money".buy_item(current_prices[index])
+	$"../Money".buy_item(current_prices[index])
 	$"../Inventory".add_item(index)
 
 func build_factory(factory_count: int):
