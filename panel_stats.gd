@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@export var BONUS_FACTOR:float = 0.01
+@export var BONUS_FACTOR:float = 0.000001
 @export var title: Label
 @export var casualties:RichTextLabel
 @export var shame_info:RichTextLabel

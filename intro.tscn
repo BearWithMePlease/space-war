@@ -1,0 +1,553 @@
+[gd_scene load_steps=19 format=3 uid="uid://dv0jk2rrkq4my"]
+
+[ext_resource type="Script" path="res://intro.gd" id="1_l7vtg"]
+[ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="1_vj3ps"]
+[ext_resource type="Script" path="res://node_2d.gd" id="1_wgr72"]
+[ext_resource type="Texture2D" uid="uid://dm7sx1hyn6rss" path="res://img/first_slide.png" id="4_3m7ho"]
+[ext_resource type="Texture2D" uid="uid://duwiqly182bde" path="res://img/second_slide.png" id="5_3k7yl"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="5_5vi75"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="6_rhd72"]
+[ext_resource type="Texture2D" uid="uid://m3xqbqrxq4ho" path="res://img/third_slide.png" id="6_wsvf2"]
+[ext_resource type="Texture2D" uid="uid://wxbyri53bffa" path="res://img/fourth_slide_2.png" id="7_3061v"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="7_w5yi4"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="8_fntrh"]
+[ext_resource type="AudioStream" uid="uid://b3afiopadeuhy" path="res://sound/war_horn.mp3" id="9_6om8o"]
+[ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="9_c3xtd"]
+[ext_resource type="AudioStream" uid="uid://d228tajssxvuj" path="res://sound/paper-flutter.mp3" id="15_c4as3"]
+[ext_resource type="AudioStream" uid="uid://cm5phpf4u5jg1" path="res://sound/text_blub.mp3" id="20_rnmhv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4i8mk"]
+font = ExtResource("1_vj3ps")
+font_size = 14
+font_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_chdiy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4klhq"]
+font = ExtResource("1_vj3ps")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wgr72")
+current_state = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("panels", "txts", "audio_player", "war_audio_player", "paper_fluter_player")]
+script = ExtResource("1_l7vtg")
+panels = [NodePath("Panel0"), NodePath("Panel1"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5")]
+txts = [NodePath("Panel0/txt0"), NodePath("Panel1/txt1"), NodePath("Panel2/txt2"), NodePath("Panel3/txt3"), NodePath("Panel4/txt4"), NodePath("Panel5/txt5")]
+audio_player = NodePath("../BlubPlayer")
+war_audio_player = NodePath("../WarPlayer")
+paper_fluter_player = NodePath("../PaperFlutter")
+
+[node name="Panel0" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="txt0" type="RichTextLabel" parent="CanvasLayer/Panel0"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -393.5
+offset_top = -18.5
+offset_right = 393.5
+offset_bottom = 18.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center]You are the Emperor of [color=E0693D]Mars[/color]."
+
+[node name="click_to_continue" type="Label" parent="CanvasLayer/Panel0"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press left click to continue"
+label_settings = SubResource("LabelSettings_4i8mk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel1" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -313.0
+offset_right = 576.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_3m7ho")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="txt1" type="RichTextLabel" parent="CanvasLayer/Panel1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = -176.0
+offset_right = 407.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 7
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "My [color=E0693D]liege[/color], we've found a new robot from those pesky [color=32ac32]Earthlings[/color].
+
+They call it 'Perseverance' and [color=EEC39A]this note[/color] was attached to it."
+
+[node name="click_to_continue" type="Label" parent="CanvasLayer/Panel1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press left click to open note"
+label_settings = SubResource("LabelSettings_4i8mk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="OpenNote" type="Button" parent="CanvasLayer/Panel1"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 716.0
+offset_top = 552.0
+offset_right = 1016.0
+offset_bottom = 602.0
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_chdiy")
+theme_override_styles/disabled = ExtResource("5_5vi75")
+theme_override_styles/hover_pressed = ExtResource("6_rhd72")
+theme_override_styles/hover = ExtResource("7_w5yi4")
+theme_override_styles/pressed = ExtResource("6_rhd72")
+theme_override_styles/normal = ExtResource("8_fntrh")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel1/OpenNote"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Open Note"
+label_settings = ExtResource("9_c3xtd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -313.0
+offset_right = 576.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_3k7yl")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="txt2" type="RichTextLabel" parent="CanvasLayer/Panel2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -80.0
+offset_right = 317.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 5
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+
+[node name="click_to_continue" type="Label" parent="CanvasLayer/Panel2"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press left click to continue"
+label_settings = SubResource("LabelSettings_4i8mk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel3" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -313.0
+offset_right = 576.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_wsvf2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="txt3" type="RichTextLabel" parent="CanvasLayer/Panel3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 82.0
+offset_right = 402.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 7
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "That's [color=cd3232]outrageous![/color]
+They want to take away our population by luring them with their [color=32ac32]green nature[/color]."
+
+[node name="click_to_continue" type="Label" parent="CanvasLayer/Panel3"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press left click to continue"
+label_settings = SubResource("LabelSettings_4i8mk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel4" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -313.0
+offset_right = 576.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_3061v")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="txt4" type="RichTextLabel" parent="CanvasLayer/Panel4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -167.0
+offset_right = 113.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 7
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+text = "You must act now to [color=E0693D]protect our people![/color]"
+
+[node name="click_to_continue" type="Label" parent="CanvasLayer/Panel4"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -513.0
+offset_top = -27.0
+offset_right = -13.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press left click to continue"
+label_settings = SubResource("LabelSettings_4i8mk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel5" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Panel5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0783522, 0.0727488, 0.128578, 1)
+
+[node name="txt5" type="RichTextLabel" parent="CanvasLayer/Panel5"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -104.0
+offset_right = 350.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_separation = 7
+theme_override_fonts/normal_font = ExtResource("1_vj3ps")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Do you want to play the [color=E0693D]Tutorial[/color]?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -375.0
+offset_top = -25.0
+offset_right = 375.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="PlayTutorial" type="Button" parent="CanvasLayer/Panel5/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_chdiy")
+theme_override_styles/disabled = ExtResource("5_5vi75")
+theme_override_styles/hover_pressed = ExtResource("6_rhd72")
+theme_override_styles/hover = ExtResource("7_w5yi4")
+theme_override_styles/pressed = ExtResource("6_rhd72")
+theme_override_styles/normal = ExtResource("8_fntrh")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel5/HBoxContainer/PlayTutorial"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Tutorial"
+label_settings = SubResource("LabelSettings_4klhq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NahImGood" type="Button" parent="CanvasLayer/Panel5/HBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_chdiy")
+theme_override_styles/disabled = ExtResource("5_5vi75")
+theme_override_styles/hover_pressed = ExtResource("6_rhd72")
+theme_override_styles/hover = ExtResource("7_w5yi4")
+theme_override_styles/pressed = ExtResource("6_rhd72")
+theme_override_styles/normal = ExtResource("8_fntrh")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel5/HBoxContainer/NahImGood"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Nah I'll win"
+label_settings = SubResource("LabelSettings_4klhq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlubPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_rnmhv")
+volume_db = -35.0
+parameters/looping = true
+
+[node name="WarPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_6om8o")
+volume_db = -20.0
+
+[node name="PaperFlutter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_c4as3")
+volume_db = -15.0
+
+[connection signal="button_down" from="CanvasLayer/Panel5/HBoxContainer/PlayTutorial" to="CanvasLayer" method="finished_intro" binds= [true]]
+[connection signal="button_down" from="CanvasLayer/Panel5/HBoxContainer/NahImGood" to="CanvasLayer" method="finished_intro" binds= [false]]

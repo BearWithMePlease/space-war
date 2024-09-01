@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name Main
 
 @export var pause_panel: Panel
@@ -12,7 +12,7 @@ enum GameState {
 	PAUSE = 3,
 	DEFEAT = 4,
 	VICTORY = 5,
-	TUTORIAL = 6,
+	TUTORIAL = 6
 }
 
 @export var current_state: GameState = GameState.PLAYING
@@ -27,6 +27,9 @@ func _ready() -> void:
 	for child:Node in self.get_children():
 		if child.process_mode == Node.PROCESS_MODE_INHERIT:
 			child.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	
+	
 
 func change_state(state:GameState):
 	if current_state == state: 
@@ -52,9 +55,14 @@ func change_state(state:GameState):
 	elif state == GameState.MENU:
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://menu.tscn")
-	elif state == GameState.PLAYING:
+	elif current_state == GameState.INTRO and state == GameState.PLAYING:
+		print("From menu to play")
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://node_2d.tscn")
+	elif current_state == GameState.MENU and state == GameState.INTRO:
+		print("From menu to intro")
+		set_pause_mode(false)
+		get_tree().change_scene_to_file("res://intro.tscn")
 	elif state == GameState.TUTORIAL:
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://tutorial.tscn")

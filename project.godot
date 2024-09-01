@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="test"
+config/name="Nuke these Greens: Mars vs Earth"
 run/main_scene="res://menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/show_image=false
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.0509804, 0.105882, 0.215686, 1)
+config/icon="res://icon.png"
 
 [display]
 
