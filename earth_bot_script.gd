@@ -98,6 +98,7 @@ func _on_allout_timeout() -> void:
 	print("ALL OUT")
 	earth_lazer.initialize()
 	
+	await get_tree().create_timer(0.5).timeout
 	earth_launcher.launch_missile(mars)
 	await get_tree().create_timer(0.5).timeout
 	earth_launcher.launch_missile(mars)
@@ -105,4 +106,5 @@ func _on_allout_timeout() -> void:
 	await get_tree().create_timer(0.5).timeout
 	earth_launcher.launch_missile(mars)
 	
-	allout_timer.wait_time -= 10
+	if allout_timer.wait_time > 20:
+		allout_timer.wait_time -= 10
