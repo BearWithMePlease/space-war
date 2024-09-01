@@ -26,6 +26,9 @@ func _ready() -> void:
 	for child:Node in self.get_children():
 		if child.process_mode == Node.PROCESS_MODE_INHERIT:
 			child.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	
+	
 
 func change_state(state:GameState):
 	if current_state == state: 
