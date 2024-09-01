@@ -25,6 +25,9 @@ func launch_missile(target: Node2D):
 	new_smoke.position = Vector2(0,0)
 	self.add_child(new_smoke)
 	
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.ROCKET_LAUNCH_SOUND)
+
+	
 	$"../../..".add_child(new_missile)
 
 func launch_asteroid(target: Node2D, player:bool):
@@ -35,6 +38,7 @@ func launch_asteroid(target: Node2D, player:bool):
 	new_asteroid.sun = $"../../sun"
 	new_asteroid.venus = $"../../venus"
 	new_asteroid.mercury = $"../../mercury"
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.ASTEROID_LAUNCH_SOUND)
 	$"../../..".add_child(new_asteroid)
 	
 	

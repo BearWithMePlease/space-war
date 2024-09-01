@@ -2424,7 +2424,7 @@ one_shot = true
 autostart = true
 
 [node name="probing_shot" type="Timer" parent="earth_bot_script"]
-wait_time = 10.0
+wait_time = 36.113
 autostart = true
 
 [node name="melee_asteroid" type="Timer" parent="earth_bot_script"]
@@ -2432,8 +2432,12 @@ wait_time = 20.0
 autostart = true
 
 [node name="random_lazer_poke" type="Timer" parent="earth_bot_script"]
+wait_time = 166.045
 one_shot = true
 autostart = true
+
+[node name="rebuild shields" type="Timer" parent="earth_bot_script"]
+wait_time = 22.612
 
 [node name="Planets" type="Node2D" parent="."]
 
@@ -2533,7 +2537,7 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 10000000
+start_population = 2
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Mars/label")
 GUI_Text = "Martians:  "
@@ -2704,13 +2708,14 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 8200000000
+start_population = 2
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Earth/label")
 GUI_Text = "Earthlings:"
 death_label = NodePath("HBoxContainer/Label/Death_Label")
 DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
 GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
+isEarth = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Planets/earth/Population"]
 layout_mode = 1
@@ -4040,6 +4045,7 @@ min_zoom = 0.5
 [connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
 [connection signal="timeout" from="earth_bot_script/melee_asteroid" to="earth_bot_script" method="_on_melee_asteroid_timeout"]
 [connection signal="timeout" from="earth_bot_script/random_lazer_poke" to="earth_bot_script" method="_on_random_lazer_poke_timeout"]
+[connection signal="timeout" from="earth_bot_script/rebuild shields" to="earth_bot_script" method="_on_rebuild_shields_timeout"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered2"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D2/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered"]
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]

@@ -16,6 +16,8 @@ func addShield() -> bool:
 	#else:
 		#secondShieldSprite.visible = true
 	shieldCount += 1
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.SHIELD_ACTIVATE)
+
 	updateVisible()
 	return true
 

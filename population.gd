@@ -13,6 +13,7 @@ class_name Population
 @export var MIN_GROWTH_FACTOR: float = 0.001
 @export var DAMAGE_COLOR: Color
 @export var GROWTH_COLOR: Color
+@export var isEarth: bool
 
 var population:int
 var cycle_time = 0
@@ -38,6 +39,7 @@ func _process(delta: float) -> void:
 		population += new_population
 		update_label()
 		label_animation(new_population, false)
+		
 
 func update_label():
 	var txt = get_k_string(population)
@@ -47,6 +49,9 @@ func update_label():
 func is_dead() -> bool:
 	return population == 0
 
+
+@onready var recoveryTimer = $"../../../earth_bot_script/rebuild shields"
+var dmgTag = false
 # Count Death, returns true if population is still alive
 func take_hit(kill_count:int) -> bool:
 	var actual_kills = min(kill_count, population)
@@ -55,6 +60,22 @@ func take_hit(kill_count:int) -> bool:
 	
 	update_label()
 	label_animation(actual_kills, true)
+	
+	if isEarth && population > 0:
+		recoveryTimer.start()
+	
+	if !isEarth && population > 0:
+		dmgTag = true
+	
+	
+	if isEarth && population == 0:
+		recoveryTimer.start()
+		$"../../..".change_state(Main.GameState.VICTORY)
+	
+	if !isEarth && population == 0:
+		recoveryTimer.start()
+		$"../../..".change_state(Main.GameState.DEFEAT)
+	
 	return population == 0
 
 func label_animation(count:int, is_damage:bool):
