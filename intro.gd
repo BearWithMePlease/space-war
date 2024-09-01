@@ -8,6 +8,7 @@ extends CanvasLayer
 @export var paper_fluter_player: AudioStreamPlayer
 
 var current_panel: int = -1
+var has_opend_letter = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +23,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
-		if current_panel != 1:
+		if current_panel != 2 or has_opend_letter:
 			next_panel()
 
 func next_panel():
@@ -33,13 +34,17 @@ func next_panel():
 		# To playing state
 		$"..".change_state(Main.GameState.PLAYING)
 		return
-	
+
 	current_panel += 1
 	panels[current_panel].visible = true
 	play_animation(txts[current_panel])
 	
 	if current_panel == 0 or current_panel == 4:
 		war_audio_player.playing = true
+		
+	if current_panel == 2:
+		await get_tree().create_timer(0.1).timeout
+		has_opend_letter = true
 	
 func player_paper_flutter():
 	paper_fluter_player.playing = true

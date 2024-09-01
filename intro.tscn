@@ -36,7 +36,6 @@ war_audio_player = NodePath("../WarPlayer")
 paper_fluter_player = NodePath("../PaperFlutter")
 
 [node name="Panel0" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,7 +151,6 @@ text = "My [color=E0693D]liege[/color], we've found a new robot from those pesky
 They call it 'Perseverance' and [color=EEC39A]this note[/color] was attached to it."
 
 [node name="click_to_continue" type="Label" parent="CanvasLayer/Panel1"]
-visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 3
@@ -173,6 +171,7 @@ vertical_alignment = 1
 
 [node name="OpenNote" type="Button" parent="CanvasLayer/Panel1"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 716.0
 offset_top = 552.0
 offset_right = 1016.0
@@ -200,7 +199,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel2" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -276,7 +274,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Panel3" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -354,7 +351,6 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Panel4" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -443,5 +439,5 @@ volume_db = -20.0
 stream = ExtResource("15_c4as3")
 volume_db = -15.0
 
-[connection signal="button_down" from="CanvasLayer/Panel1/OpenNote" to="CanvasLayer" method="player_paper_flutter"]
 [connection signal="button_down" from="CanvasLayer/Panel1/OpenNote" to="CanvasLayer" method="next_panel"]
+[connection signal="button_down" from="CanvasLayer/Panel1/OpenNote" to="CanvasLayer" method="player_paper_flutter"]

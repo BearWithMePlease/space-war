@@ -2409,7 +2409,7 @@ font_size = 20
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ymgt3"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("pause_panel", "victory_panel")]
+[node name="Node2D2" type="Node2D" node_paths=PackedStringArray("pause_panel", "victory_panel")]
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
 pause_panel = NodePath("GUI/PausePanel")
