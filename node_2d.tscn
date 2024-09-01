@@ -1,4 +1,4 @@
-[gd_scene load_steps=441 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=412 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -42,10 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="Texture2D" uid="uid://5ry1e3lmybb0" path="res://img/population_icon.png" id="28_4a5l7"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="32_lb4f2"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
@@ -866,10 +866,10 @@ shader_parameter/noiseFrequency = 50.0
 shader_parameter/noiseClamp = 0.2
 shader_parameter/edgeThreshhold = 0.9
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nvinr"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f0er2"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aviel"]
-noise = SubResource("FastNoiseLite_nvinr")
+noise = SubResource("FastNoiseLite_f0er2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_73div"]
 font = ExtResource("26_n6a6a")
@@ -3819,6 +3819,8 @@ text = "Quit to Menu"
 label_settings = ExtResource("32_lb4f2")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
 
 [node name="position_hidden" type="Control" parent="GUI"]
 layout_mode = 3

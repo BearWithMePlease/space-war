@@ -8,7 +8,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("escape"):
+	if Input.is_action_just_pressed("escape") and self.name == "PausePanel":
 		if $"../..".current_state == Main.GameState.PLAYING:
 			$"../..".change_state(Main.GameState.PAUSE)
 		elif $"../..".current_state == Main.GameState.PAUSE:
@@ -20,4 +20,4 @@ func _on_resume_button_down() -> void:
 
 
 func _on_quit_to_menu_button_down() -> void:
-	pass # Replace with function body.
+	$"../..".change_state(Main.GameState.MENU)

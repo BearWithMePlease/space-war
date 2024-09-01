@@ -52,19 +52,21 @@ func _process(delta: float) -> void:
 
 
 func collision_detection():
-	sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
-	if sun_vector.length() < 30:
-		print("hit the sun")
-		queue_free()
-	venus_vector = Vector2(position.x - venus.position.x, position.y - venus.position.y)
-	if venus_vector.length() < 30:
-		print("hit the venus")
-		queue_free()
-		
-	mercury_vector = Vector2(position.x -mercury.position.x, position.y - mercury.position.y)
-	if mercury_vector.length() < 30:
-		print("hit the mercury")
-		queue_free()
+	if sun != null:
+		sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
+		if sun_vector.length() < 30:
+			print("hit the sun")
+			queue_free()
+	if venus != null:
+		venus_vector = Vector2(position.x - venus.position.x, position.y - venus.position.y)
+		if venus_vector.length() < 30:
+			print("hit the venus")
+			queue_free()
+	if mercury != null:
+		mercury_vector = Vector2(position.x -mercury.position.x, position.y - mercury.position.y)
+		if mercury_vector.length() < 30:
+			print("hit the mercury")
+			queue_free()
 	
 	
 

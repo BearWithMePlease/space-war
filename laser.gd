@@ -98,7 +98,6 @@ func _physics_process(delta):
 				canApplyDamage = false
 				for child in hitPlanet.get_children():
 					if child is Population:
-						print("suck my laser")
 						child.take_hit(10000)
 						break
 				
