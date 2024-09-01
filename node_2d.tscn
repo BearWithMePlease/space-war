@@ -4007,7 +4007,6 @@ grow_horizontal = 0
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamPolyphonic_ymgt3")
-volume_db = 24.0
 autoplay = true
 script = ExtResource("36_q1dpw")
 sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6")])

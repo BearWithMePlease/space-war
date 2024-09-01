@@ -48,7 +48,7 @@ func change_state(state:GameState):
 		$GUI/GameEndPanel/Container/Stats.update_stats(state == GameState.VICTORY)
 		pause_panel.visible = false
 		victory_panel.visible = true
-		set_pause_mode(true)
+		set_pause_mode(false)
 	elif state == GameState.MENU:
 		print("From play to menu")
 		set_pause_mode(false)

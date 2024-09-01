@@ -1436,7 +1436,6 @@ texture = ExtResource("12_yu5p2")
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamPolyphonic_3gsgh")
-volume_db = 24.0
 autoplay = true
 script = ExtResource("30_4nmah")
 sounds = Array[AudioStreamMP3]([ExtResource("31_pow2m"), ExtResource("32_xda0j"), ExtResource("33_fkfab"), ExtResource("34_gj4xc"), ExtResource("35_jxw0y"), ExtResource("36_euywn"), ExtResource("37_6g7h0"), ExtResource("38_gbcj7"), ExtResource("39_rep05"), ExtResource("40_h3fyc"), ExtResource("41_porsf")])
