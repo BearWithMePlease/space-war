@@ -1,0 +1,172 @@
+[gd_scene load_steps=31 format=3 uid="uid://b1kffb40s6u5k"]
+
+[ext_resource type="Texture2D" uid="uid://8ptp2uk0myw5" path="res://animated/Circle_explosion/Circle_explosion1.png" id="1_uieox"]
+[ext_resource type="Texture2D" uid="uid://cyrsh0tpwus2d" path="res://animated/Circle_explosion/Circle_explosion2.png" id="2_4j0cu"]
+[ext_resource type="Texture2D" uid="uid://qgly0q23koy1" path="res://animated/Circle_explosion/Circle_explosion3.png" id="3_m0u5w"]
+[ext_resource type="Texture2D" uid="uid://bmaida5yax7fn" path="res://animated/Circle_explosion/Circle_explosion4.png" id="4_epo54"]
+[ext_resource type="Texture2D" uid="uid://buv8u516o2284" path="res://animated/Circle_explosion/Circle_explosion5.png" id="5_bs0t8"]
+[ext_resource type="Texture2D" uid="uid://2lsgtshbeqfr" path="res://animated/Circle_explosion/Circle_explosion6.png" id="6_mwenh"]
+[ext_resource type="Texture2D" uid="uid://78uy2oasea2t" path="res://animated/Circle_explosion/Circle_explosion7.png" id="7_1m4sq"]
+[ext_resource type="Texture2D" uid="uid://ds6vmhte5s8ug" path="res://animated/Circle_explosion/Circle_explosion8.png" id="8_tej6o"]
+[ext_resource type="Texture2D" uid="uid://cie38k6u2woo" path="res://animated/Circle_explosion/Circle_explosion9.png" id="9_ixbxy"]
+[ext_resource type="Texture2D" uid="uid://1nf0j2ip4ixo" path="res://animated/Circle_explosion/Circle_explosion10.png" id="10_tnnf4"]
+[ext_resource type="Texture2D" uid="uid://yn7doxqti3bc" path="res://animated/Circle_explosion/Explosion_blue_circle1.png" id="11_ui4h0"]
+[ext_resource type="Texture2D" uid="uid://b82dendj51w82" path="res://animated/Circle_explosion/Explosion_blue_circle2.png" id="12_gdsx2"]
+[ext_resource type="Texture2D" uid="uid://b1bkms20qdvb" path="res://animated/Circle_explosion/Explosion_blue_circle3.png" id="13_73syh"]
+[ext_resource type="Texture2D" uid="uid://bg8jsv76vdu2f" path="res://animated/Circle_explosion/Explosion_blue_circle4.png" id="14_3y4bs"]
+[ext_resource type="Texture2D" uid="uid://bx1tr7aw8kkht" path="res://animated/Circle_explosion/Explosion_blue_circle5.png" id="15_wea47"]
+[ext_resource type="Texture2D" uid="uid://bmtyo77t0bvo2" path="res://animated/Circle_explosion/Explosion_blue_circle6.png" id="16_f4wa2"]
+[ext_resource type="Texture2D" uid="uid://dytqufqh53rc5" path="res://animated/Circle_explosion/Explosion_blue_circle7.png" id="17_4eaek"]
+[ext_resource type="Texture2D" uid="uid://bd4f3xr04k5o4" path="res://animated/Circle_explosion/Explosion_blue_circle8.png" id="18_dcoe2"]
+[ext_resource type="Texture2D" uid="uid://ikx3inhwkh1h" path="res://animated/Circle_explosion/Explosion_blue_circle9.png" id="19_kv331"]
+[ext_resource type="Texture2D" uid="uid://bnvtfuggfsdiu" path="res://animated/Circle_explosion/Explosion_blue_circle10.png" id="20_jp175"]
+[ext_resource type="Texture2D" uid="uid://bq1cmvhhido1k" path="res://animated/Circle_explosion/Smoke_4_128-sheet.png" id="21_187oc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypqeg"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgo34"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3igl"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxmgh"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqsb0"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urd5y"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thji8"]
+atlas = ExtResource("21_187oc")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7irc"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": ExtResource("1_uieox")
+}, {
+"duration": 0.1,
+"texture": ExtResource("2_4j0cu")
+}, {
+"duration": 0.1,
+"texture": ExtResource("3_m0u5w")
+}, {
+"duration": 0.1,
+"texture": ExtResource("4_epo54")
+}, {
+"duration": 0.3,
+"texture": ExtResource("5_bs0t8")
+}, {
+"duration": 0.4,
+"texture": ExtResource("6_mwenh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_1m4sq")
+}, {
+"duration": 0.8,
+"texture": ExtResource("8_tej6o")
+}, {
+"duration": 0.8,
+"texture": ExtResource("9_ixbxy")
+}, {
+"duration": 0.8,
+"texture": ExtResource("10_tnnf4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("11_ui4h0")
+}, {
+"duration": 0.5,
+"texture": ExtResource("12_gdsx2")
+}, {
+"duration": 0.5,
+"texture": ExtResource("13_73syh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("14_3y4bs")
+}, {
+"duration": 0.5,
+"texture": ExtResource("15_wea47")
+}, {
+"duration": 0.5,
+"texture": ExtResource("16_f4wa2")
+}, {
+"duration": 0.5,
+"texture": ExtResource("17_4eaek")
+}, {
+"duration": 0.5,
+"texture": ExtResource("18_dcoe2")
+}, {
+"duration": 0.5,
+"texture": ExtResource("19_kv331")
+}, {
+"duration": 0.5,
+"texture": ExtResource("20_jp175")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ypqeg")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_jgo34")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_h3igl")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_fxmgh")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_pqsb0")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_urd5y")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_thji8")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_3gw5b"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	play()
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="explosion" type="AnimatedSprite2D"]
+position = Vector2(-397, -16)
+sprite_frames = SubResource("SpriteFrames_t7irc")
+animation = &"new_animation"
+frame_progress = 0.80326
+script = SubResource("GDScript_3gw5b")

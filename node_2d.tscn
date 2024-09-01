@@ -1,4 +1,4 @@
-[gd_scene load_steps=401 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=436 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -59,6 +59,27 @@
 [ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="44_pmdl1"]
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="53_hm1g1"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="54_0l4j6"]
+[ext_resource type="Texture2D" uid="uid://8ptp2uk0myw5" path="res://animated/Circle_explosion/Circle_explosion1.png" id="59_4b1s8"]
+[ext_resource type="Texture2D" uid="uid://cyrsh0tpwus2d" path="res://animated/Circle_explosion/Circle_explosion2.png" id="60_63qs7"]
+[ext_resource type="Texture2D" uid="uid://bq1cmvhhido1k" path="res://animated/Circle_explosion/Smoke_4_128-sheet.png" id="60_phouj"]
+[ext_resource type="Texture2D" uid="uid://qgly0q23koy1" path="res://animated/Circle_explosion/Circle_explosion3.png" id="61_5a8rv"]
+[ext_resource type="Texture2D" uid="uid://bmaida5yax7fn" path="res://animated/Circle_explosion/Circle_explosion4.png" id="62_pghcu"]
+[ext_resource type="Texture2D" uid="uid://buv8u516o2284" path="res://animated/Circle_explosion/Circle_explosion5.png" id="63_7pjvd"]
+[ext_resource type="Texture2D" uid="uid://2lsgtshbeqfr" path="res://animated/Circle_explosion/Circle_explosion6.png" id="64_h87pw"]
+[ext_resource type="Texture2D" uid="uid://78uy2oasea2t" path="res://animated/Circle_explosion/Circle_explosion7.png" id="65_3ce5d"]
+[ext_resource type="Texture2D" uid="uid://ds6vmhte5s8ug" path="res://animated/Circle_explosion/Circle_explosion8.png" id="66_jcse2"]
+[ext_resource type="Texture2D" uid="uid://cie38k6u2woo" path="res://animated/Circle_explosion/Circle_explosion9.png" id="67_7mm14"]
+[ext_resource type="Texture2D" uid="uid://1nf0j2ip4ixo" path="res://animated/Circle_explosion/Circle_explosion10.png" id="68_yslwj"]
+[ext_resource type="Texture2D" uid="uid://yn7doxqti3bc" path="res://animated/Circle_explosion/Explosion_blue_circle1.png" id="69_edqi6"]
+[ext_resource type="Texture2D" uid="uid://b82dendj51w82" path="res://animated/Circle_explosion/Explosion_blue_circle2.png" id="70_lyjwr"]
+[ext_resource type="Texture2D" uid="uid://b1bkms20qdvb" path="res://animated/Circle_explosion/Explosion_blue_circle3.png" id="71_5gbph"]
+[ext_resource type="Texture2D" uid="uid://bg8jsv76vdu2f" path="res://animated/Circle_explosion/Explosion_blue_circle4.png" id="72_csgtg"]
+[ext_resource type="Texture2D" uid="uid://bx1tr7aw8kkht" path="res://animated/Circle_explosion/Explosion_blue_circle5.png" id="73_q75nn"]
+[ext_resource type="Texture2D" uid="uid://bmtyo77t0bvo2" path="res://animated/Circle_explosion/Explosion_blue_circle6.png" id="74_xyx1t"]
+[ext_resource type="Texture2D" uid="uid://dytqufqh53rc5" path="res://animated/Circle_explosion/Explosion_blue_circle7.png" id="75_jqi8n"]
+[ext_resource type="Texture2D" uid="uid://bd4f3xr04k5o4" path="res://animated/Circle_explosion/Explosion_blue_circle8.png" id="76_1bdra"]
+[ext_resource type="Texture2D" uid="uid://ikx3inhwkh1h" path="res://animated/Circle_explosion/Explosion_blue_circle9.png" id="77_ovkxt"]
+[ext_resource type="Texture2D" uid="uid://bnvtfuggfsdiu" path="res://animated/Circle_explosion/Explosion_blue_circle10.png" id="78_bguro"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -494,6 +515,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hdh5"]
+radius = 51.2376
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ost08"]
 atlas = ExtResource("15_b2jf5")
 region = Rect2(0, 0, 100, 100)
@@ -875,6 +899,9 @@ font = ExtResource("26_n6a6a")
 font_size = 20
 font_color = Color(0.67451, 0.196078, 0.196078, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldvwn"]
+radius = 49.2319
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_do2ld"]
 atlas = ExtResource("13_06qqn")
 region = Rect2(0, 0, 100, 100)
@@ -1233,6 +1260,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5fuar"]
+radius = 51.4224
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebdoq"]
 atlas = ExtResource("11_6cnfk")
 region = Rect2(0, 0, 100, 100)
@@ -1590,6 +1620,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4skd4"]
+radius = 50.111
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnb68"]
 atlas = ExtResource("4_7j4en")
@@ -2312,6 +2345,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5r8y"]
+radius = 50.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fie2w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ca6o5"]
@@ -2342,6 +2378,133 @@ font_size = 20
 texture = ExtResource("27_iklvs")
 expand_margin_top = 5.0
 expand_margin_bottom = 10.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypqeg"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgo34"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3igl"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxmgh"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqsb0"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urd5y"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thji8"]
+atlas = ExtResource("60_phouj")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kt5u6"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": ExtResource("59_4b1s8")
+}, {
+"duration": 0.1,
+"texture": ExtResource("60_63qs7")
+}, {
+"duration": 0.1,
+"texture": ExtResource("61_5a8rv")
+}, {
+"duration": 0.1,
+"texture": ExtResource("62_pghcu")
+}, {
+"duration": 0.3,
+"texture": ExtResource("63_7pjvd")
+}, {
+"duration": 0.4,
+"texture": ExtResource("64_h87pw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("65_3ce5d")
+}, {
+"duration": 0.8,
+"texture": ExtResource("66_jcse2")
+}, {
+"duration": 0.8,
+"texture": ExtResource("67_7mm14")
+}, {
+"duration": 0.8,
+"texture": ExtResource("68_yslwj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("69_edqi6")
+}, {
+"duration": 0.5,
+"texture": ExtResource("70_lyjwr")
+}, {
+"duration": 0.5,
+"texture": ExtResource("71_5gbph")
+}, {
+"duration": 0.5,
+"texture": ExtResource("72_csgtg")
+}, {
+"duration": 0.5,
+"texture": ExtResource("73_q75nn")
+}, {
+"duration": 0.5,
+"texture": ExtResource("74_xyx1t")
+}, {
+"duration": 0.5,
+"texture": ExtResource("75_jqi8n")
+}, {
+"duration": 0.5,
+"texture": ExtResource("76_1bdra")
+}, {
+"duration": 0.5,
+"texture": ExtResource("77_ovkxt")
+}, {
+"duration": 0.5,
+"texture": ExtResource("78_bguro")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_ypqeg")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_jgo34")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_h3igl")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_fxmgh")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_pqsb0")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_urd5y")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_thji8")
+}],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gkb6o"]
 font = ExtResource("26_n6a6a")
@@ -2404,6 +2567,11 @@ scale = Vector2(0.644375, 0.6225)
 sprite_frames = SubResource("SpriteFrames_xew2m")
 frame_progress = 0.757715
 script = ExtResource("8_w08ns")
+
+[node name="Area2D" type="Area2D" parent="Planets/sun"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/sun/Area2D"]
+shape = SubResource("CircleShape2D_1hdh5")
 
 [node name="mars" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
@@ -2508,6 +2676,11 @@ label_settings = SubResource("LabelSettings_efwqt")
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Area2D" type="Area2D" parent="Planets/mars"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/mars/Area2D"]
+shape = SubResource("CircleShape2D_ldvwn")
+
 [node name="venus" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
@@ -2523,6 +2696,11 @@ length = 210.0
 middle = Vector2(0, 10)
 path_line = NodePath("../venus line")
 
+[node name="Area2D" type="Area2D" parent="Planets/venus"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/venus/Area2D"]
+shape = SubResource("CircleShape2D_5fuar")
+
 [node name="mercury" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
 y_sort_enabled = true
@@ -2537,6 +2715,11 @@ height = 100.0
 length = 150.0
 middle = Vector2(-10, 0)
 path_line = NodePath("../mercury line")
+
+[node name="Area2D" type="Area2D" parent="Planets/mercury"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/mercury/Area2D"]
+shape = SubResource("CircleShape2D_4skd4")
 
 [node name="earth" type="AnimatedSprite2D" parent="Planets" node_paths=PackedStringArray("path_line")]
 z_index = 1
@@ -2595,6 +2778,11 @@ script = ExtResource("13_7ivgh")
 missile = ExtResource("14_t6mfo")
 asteroid = ExtResource("15_7ern2")
 asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
+
+[node name="Area2D" type="Area2D" parent="Planets/earth"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/earth/Area2D"]
+shape = SubResource("CircleShape2D_v5r8y")
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
@@ -2959,6 +3147,10 @@ texture = ExtResource("27_vgd7e")
 expand_mode = 2
 stretch_mode = 5
 flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GUI/Shop/HBoxContainer/Control"]
+position = Vector2(180, 23)
+sprite_frames = SubResource("SpriteFrames_kt5u6")
 
 [node name="LayoutBox" type="VBoxContainer" parent="GUI/Shop/HBoxContainer"]
 layout_mode = 2
