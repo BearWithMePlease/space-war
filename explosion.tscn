@@ -152,9 +152,20 @@ animations = [{
 [sub_resource type="GDScript" id="GDScript_3gw5b"]
 script/source = "extends AnimatedSprite2D
 
+var attackVector = 0
+var length = 60
+var strike =  0
+
+var venus = 0
+var mercury = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var angle = attackVector.angle()
+	if self.get_parent() == $Planets/mars:
+		length = 54
+	position = Vector2(cos(angle), sin(angle)) * length
 	play()
 	pass # Replace with function body.
 
@@ -162,11 +173,23 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_animation_looped() -> void:
+	#print(self.get_parent())
+	#print(venus)
+	if self.get_parent() == venus or self.get_parent() == mercury:
+		#print(\"reached\")
+		self.get_parent().hide()
+	else:
+		queue_free()
 "
 
 [node name="explosion" type="AnimatedSprite2D"]
 position = Vector2(-397, -16)
 sprite_frames = SubResource("SpriteFrames_t7irc")
 animation = &"new_animation"
-frame_progress = 0.80326
+frame_progress = 0.210002
 script = SubResource("GDScript_3gw5b")
+
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]

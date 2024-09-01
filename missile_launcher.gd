@@ -4,6 +4,10 @@ extends Node2D
 @export var asteroid: PackedScene = null
 @export var asteroidSprites: Array[Texture2D] = []
 
+
+var object_struck_shield1 = false
+var object_struck_shield2 = false
+
 var smoke = preload("res://smoke.tscn")
 
 
@@ -28,6 +32,20 @@ func launch_asteroid(target: Node2D, player:bool):
 	new_asteroid.initialize(self, target, asteroidSprites.pick_random())
 	var mouse_position := get_global_mouse_position()
 	new_asteroid.isPlayer = player
+	new_asteroid.sun = $"../../sun"
+	new_asteroid.venus = $"../../venus"
+	new_asteroid.mercury = $"../../mercury"
 	$"../../..".add_child(new_asteroid)
 	
 	
+
+
+	
+func _on_area_2d_area_entered2(area: Area2D) -> void:
+	object_struck_shield1 = true
+
+	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	object_struck_shield2 = true

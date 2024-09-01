@@ -11,11 +11,19 @@ var directionSet: bool = false
 
 var isPlayer: bool = false
 
+var sun = null
+var venus = null
+var mercury = null
+
+var sun_vector: Vector2
+var venus_vector: Vector2
+var mercury_vector: Vector2
+
 func initialize(launcher: Node2D, target: Node2D, texture: Texture2D) -> void:
 	self.launcher = launcher
 	self.target = target
 	self.texture = texture
-	castTime = 0.5
+	castTime = 0.1
 
 func _ready() -> void:
 	global_position = launcher.global_position
@@ -51,5 +59,43 @@ func _process(delta: float) -> void:
 		queue_free()
 	
 	var target_vector := Vector2(position.x - target.position.x, position.y - target.position.y)
+	
+	
 	if target_vector.length() < 45.0:
-		queue_free()
+		target.find_child("Population").take_hit(100000)
+		detonate(target)
+		
+	
+	collision_detection()
+
+var explosion = preload("res://explosion.tscn")
+var hit:bool = false
+
+func detonate(strike):
+	hit = true
+	var new_explosion = explosion.instantiate()
+	new_explosion.attackVector = self.global_position-strike.global_position
+	new_explosion.mercury = mercury
+	new_explosion.venus = venus	
+	strike.add_child(new_explosion)
+	queue_free()
+
+func collision_detection():
+	sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
+	if sun_vector.length() < 50:
+		print("hit the sun")
+		detonate(sun)
+	
+	if !venus.isHit:
+		venus_vector = Vector2(position.x - venus.position.x, position.y - venus.position.y)
+		if venus_vector.length() < 30:
+			print("hit the venus")
+			venus.isHit = true
+			detonate(venus)
+		
+	if !mercury.isHit:
+		mercury_vector = Vector2(position.x -mercury.position.x, position.y - mercury.position.y)
+		if mercury_vector.length() < 30:
+			print("hit the mercury")
+			mercury.isHit = true
+			detonate(mercury)
