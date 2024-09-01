@@ -1,4 +1,4 @@
-[gd_scene load_steps=402 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=435 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -2344,9 +2344,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v5r8y"]
-radius = 50.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_fie2w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ca6o5"]
@@ -2798,23 +2795,6 @@ death_label = NodePath("HBoxContainer/Label/Death_Label")
 DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
 GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
 
-[node name="Population" type="Control" parent="Planets/earth" node_paths=PackedStringArray("count_label", "GUI_Label", "death_label")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -78.0
-offset_top = -111.0
-offset_right = 92.0
-offset_bottom = -85.0
-size_flags_horizontal = 3
-script = ExtResource("19_yweg1")
-start_population = 8200000000
-count_label = NodePath("HBoxContainer/Label")
-GUI_Label = NodePath("../../../GUI/Stats/Population_Earth/label")
-GUI_Text = "Earthlings:"
-death_label = NodePath("HBoxContainer/Label/Death_Label")
-DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
-GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
-
 [node name="HBoxContainer" type="HBoxContainer" parent="Planets/earth/Population"]
 layout_mode = 1
 anchors_preset = 15
@@ -2853,7 +2833,6 @@ grow_horizontal = 0
 label_settings = SubResource("LabelSettings_efwqt")
 horizontal_alignment = 2
 vertical_alignment = 1
-
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
