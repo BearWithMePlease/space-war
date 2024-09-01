@@ -2781,7 +2781,6 @@ missile = ExtResource("14_t6mfo")
 asteroid = ExtResource("15_7ern2")
 asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
 
-<<<<<<< HEAD
 [node name="Population" type="Control" parent="Planets/earth" node_paths=PackedStringArray("count_label", "GUI_Label", "death_label")]
 layout_mode = 3
 anchors_preset = 0
@@ -2799,13 +2798,6 @@ death_label = NodePath("HBoxContainer/Label/Death_Label")
 DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
 GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
 
-=======
-<<<<<<< HEAD
-[node name="Area2D" type="Area2D" parent="Planets/earth"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/earth/Area2D"]
-shape = SubResource("CircleShape2D_v5r8y")
-=======
 [node name="Population" type="Control" parent="Planets/earth" node_paths=PackedStringArray("count_label", "GUI_Label", "death_label")]
 layout_mode = 3
 anchors_preset = 0
@@ -2823,7 +2815,6 @@ death_label = NodePath("HBoxContainer/Label/Death_Label")
 DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
 GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
 
->>>>>>> 1878ba92d26b0cc755121aa92220304526836fa3
 [node name="HBoxContainer" type="HBoxContainer" parent="Planets/earth/Population"]
 layout_mode = 1
 anchors_preset = 15
@@ -2862,10 +2853,7 @@ grow_horizontal = 0
 label_settings = SubResource("LabelSettings_efwqt")
 horizontal_alignment = 2
 vertical_alignment = 1
-<<<<<<< HEAD
-=======
->>>>>>> d6716b3077e9b3ea17dd70085be6ae1fd687f8f8
->>>>>>> 1878ba92d26b0cc755121aa92220304526836fa3
+
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
