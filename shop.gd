@@ -22,7 +22,7 @@ var mouse_over_arrow: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self.position = hidden_position
+	shop_animation("position", position_hidden.position, true)
 	
 	current_prices = []
 	for index in starting_prices.size():
@@ -51,9 +51,10 @@ func update_price(index:int):
 func change_mouse_over_arrow(status:bool):
 	mouse_over_arrow = status
 
-func shop_animation(property: String, value):
+func shop_animation(property: String, value, instant: bool = false):
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, property, value, seconds).set_trans(transition_type)
+	var timing = 0.01 if instant else seconds
+	tween.tween_property(self, property, value, timing).set_trans(transition_type)
 
 func _on_item_buy(index: int) -> void:
 	if $"../Stats/Money".can_obtain_item(index):
