@@ -105,7 +105,7 @@ func _physics_process(delta):
 					print("reached the planet")
 					for child in hitPlanet.get_children():
 						if child is Population:
-							child.take_hit(10000)
+							child.take_hit(1000000000)
 							break
 				if hitShield != null:
 					print("reached the shield")

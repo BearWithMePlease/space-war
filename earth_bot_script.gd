@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_start_of_match_timeout() -> void:
 	earth_shield.addShield()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(10.0).timeout
 	earth_shield.addShield()
 	
 	print("first round of protection")
@@ -91,3 +91,18 @@ func _on_rebuild_shields_timeout() -> void:
 	await get_tree().create_timer(2.0).timeout
 	earth_shield.addShield()
 	
+
+@onready var allout_timer = $allout
+func _on_allout_timeout() -> void:
+	
+	print("ALL OUT")
+	earth_lazer.initialize()
+	
+	earth_launcher.launch_missile(mars)
+	await get_tree().create_timer(0.5).timeout
+	earth_launcher.launch_missile(mars)
+	
+	await get_tree().create_timer(0.5).timeout
+	earth_launcher.launch_missile(mars)
+	
+	allout_timer.wait_time -= 10

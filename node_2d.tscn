@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://earth_bot_script.gd" id="2_ua6it"]
 [ext_resource type="Script" path="res://slimmy.gd" id="3_lcebc"]
 [ext_resource type="Texture2D" uid="uid://dny8ky8woo8vn" path="res://animated/2237296662.png" id="4_7j4en"]
-[ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://animated/img/asteroid.png" id="4_f8klw"]
+[ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://img/asteroid.png" id="4_f8klw"]
 [ext_resource type="Script" path="res://planet.gd" id="5_58hys"]
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="7_gwdc2"]
 [ext_resource type="Texture2D" uid="uid://cvtjlcwgo8c3l" path="res://animated/703547277.png" id="7_wlt61"]
@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dipx7b38jl1ro" path="res://asteroid.png" id="19_c0fgu"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Script" path="res://population.gd" id="19_yweg1"]
-[ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://animated/img/factory.png" id="20_n7my1"]
+[ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
 [ext_resource type="Texture2D" uid="uid://cquk6gsc360ui" path="res://img/laser.png" id="25_luuys"]
@@ -42,10 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="Texture2D" uid="uid://5ry1e3lmybb0" path="res://img/population_icon.png" id="28_4a5l7"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="32_lb4f2"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
@@ -2424,7 +2424,7 @@ one_shot = true
 autostart = true
 
 [node name="probing_shot" type="Timer" parent="earth_bot_script"]
-wait_time = 36.113
+wait_time = 43.384
 autostart = true
 
 [node name="melee_asteroid" type="Timer" parent="earth_bot_script"]
@@ -2432,12 +2432,16 @@ wait_time = 20.0
 autostart = true
 
 [node name="random_lazer_poke" type="Timer" parent="earth_bot_script"]
-wait_time = 2.283
+wait_time = 42.971
 one_shot = true
 autostart = true
 
 [node name="rebuild shields" type="Timer" parent="earth_bot_script"]
-wait_time = 22.612
+wait_time = 15.668
+
+[node name="allout" type="Timer" parent="earth_bot_script"]
+wait_time = 100.0
+autostart = true
 
 [node name="Planets" type="Node2D" parent="."]
 
@@ -2539,7 +2543,7 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 100000
+start_population = 8000000000
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Mars/label")
 GUI_Text = "Martians:  "
@@ -2712,7 +2716,7 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 200000
+start_population = 8000000000
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Earth/label")
 GUI_Text = "Earthlings:"
@@ -2811,10 +2815,10 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 10
 script = ExtResource("17_0vhep")
-START_BALANCE = 50000
+START_BALANCE = 1000
 MONEY_CYCLE_TIME = 1
-BASE_EARN = 5
-FACTORY_EARN = 5
+BASE_EARN = 20
+FACTORY_EARN = 20
 LABEL = NodePath("label")
 item_buttons = [NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button")]
 
@@ -4044,6 +4048,7 @@ stretch_mode = 1
 [connection signal="timeout" from="earth_bot_script/melee_asteroid" to="earth_bot_script" method="_on_melee_asteroid_timeout"]
 [connection signal="timeout" from="earth_bot_script/random_lazer_poke" to="earth_bot_script" method="_on_random_lazer_poke_timeout"]
 [connection signal="timeout" from="earth_bot_script/rebuild shields" to="earth_bot_script" method="_on_rebuild_shields_timeout"]
+[connection signal="timeout" from="earth_bot_script/allout" to="earth_bot_script" method="_on_allout_timeout"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered2"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D2/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered"]
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
