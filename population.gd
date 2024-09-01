@@ -1,5 +1,7 @@
 extends Control
 
+class_name Population
+
 @export var start_population: int
 @export var count_label: Label
 @export var GUI_Label: Label

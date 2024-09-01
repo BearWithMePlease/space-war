@@ -39,10 +39,14 @@ func _on_control_gui_input(event: InputEvent) -> void:
 			current_state = "visible"
 			shop_animation("position", position_visible.position)
 			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
+			var camera := $"../../Camera2D" as PanZoomCamera
+			camera.setActive(false)
 		elif current_state == "visible":
 			current_state = "hidden"
 			shop_animation("position", position_hidden.position)
 			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
+			var camera := $"../../Camera2D" as PanZoomCamera
+			camera.setActive(true)
 
 func shop_animation(property: String, value):
 	var tween = get_tree().create_tween()

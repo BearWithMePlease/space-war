@@ -41,10 +41,10 @@
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
 [ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="37_uwx67"]
@@ -2435,12 +2435,14 @@ rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
-[node name="Laser" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine")]
+[node name="Laser" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine", "botTarget")]
 texture_filter = 1
 script = ExtResource("10_xoyv3")
 unActiveLaser = ExtResource("11_kp6qh")
 activeLaser = ExtResource("25_luuys")
 laserLine = NodePath("Line2D")
+botTarget = NodePath("../../earth")
+isPlayer = true
 
 [node name="Line2D" type="Line2D" parent="Planets/mars/Laser"]
 texture_filter = 1
@@ -2579,12 +2581,13 @@ rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
-[node name="Laser" type="Sprite2D" parent="Planets/earth" node_paths=PackedStringArray("laserLine")]
+[node name="Laser" type="Sprite2D" parent="Planets/earth" node_paths=PackedStringArray("laserLine", "botTarget")]
 texture_filter = 1
 script = ExtResource("10_xoyv3")
 unActiveLaser = ExtResource("11_kp6qh")
 activeLaser = ExtResource("25_luuys")
 laserLine = NodePath("Line2D")
+botTarget = NodePath("../../mars")
 
 [node name="Line2D" type="Line2D" parent="Planets/earth/Laser"]
 texture_filter = 1

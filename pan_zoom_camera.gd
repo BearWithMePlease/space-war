@@ -1,5 +1,7 @@
 extends Camera2D
 
+class_name PanZoomCamera
+
 @export var min_zoom := 0.1
 @export var max_zoom := 5.0
 @export var zoom_factor := 0.1
@@ -8,13 +10,19 @@ var zoom_level: float = 1
 var position_before_drag
 var position_before_drag2
 
+var is_active := true
 
 func _ready():
 	pass
 	#GlobalEvents.center_camera.connect(center_on_tables)
 
+func setActive(state: bool) -> void:
+	is_active = state
 
 func _unhandled_input(event):
+	if not is_active:
+		return
+		
 	if event.is_action_pressed("zoom_in"):
 		set_zoom_level(zoom_level + zoom_factor)
 	elif event.is_action_pressed("zoom_out"):
