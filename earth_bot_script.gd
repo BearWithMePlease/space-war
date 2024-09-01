@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 @onready var earth_shield = $"../Planets/earth/Shield"
 @onready var earth_lazer := $"../Planets/earth/Laser" as Laser
 
+
 func _on_start_of_match_timeout() -> void:
 	earth_shield.addShield()
 	await get_tree().create_timer(2.0).timeout
@@ -61,6 +62,9 @@ func _on_melee_asteroid_timeout() -> void:
 	
 	on_melee_timer.wait_time = randi_range(20,30)
 
+@onready var random_lazer_timer = $random_lazer_poke
 func _on_random_lazer_poke_timeout() -> void:
 	earth_lazer.initialize()
+	on_melee_timer.wait_time = randi_range(10,30)
+
 	pass # Replace with function body.

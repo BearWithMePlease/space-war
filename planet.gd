@@ -10,6 +10,8 @@ class_name Planet
 @export var path_line: Line2D = null
 var time = 0
 
+@export var isHit = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	time = start_time

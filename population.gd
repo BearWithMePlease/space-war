@@ -17,6 +17,7 @@ class_name Population
 var population:int
 var cycle_time = 0
 var current_grow_time:int
+var casualties:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,6 +51,7 @@ func is_dead() -> bool:
 func take_hit(kill_count:int) -> bool:
 	var actual_kills = min(kill_count, population)
 	population -= actual_kills
+	casualties += actual_kills
 	
 	update_label()
 	label_animation(actual_kills, true)
@@ -79,7 +81,7 @@ func label_animation(count:int, is_damage:bool):
 	await get_tree().create_timer(4).timeout
 	label.queue_free() # destroy node after invisible (after 4s)
 
-func get_k_string(number: int):
+static func get_k_string(number: int):
 	if number < 100_000: return str(number)
 	if number < 10_000_000: return str(number / 1_000) + "k"
 	return str(number / 1_000_000) + "M"

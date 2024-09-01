@@ -1,4 +1,4 @@
-[gd_scene load_steps=412 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=415 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -59,6 +59,7 @@
 [ext_resource type="AudioStream" uid="uid://1n424ssmt5ph" path="res://sound/shield_activate.mp3" id="42_i1dpn"]
 [ext_resource type="AudioStream" uid="uid://dnjaq35duuhh4" path="res://sound/shop-window.mp3" id="43_0p38h"]
 [ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="44_pmdl1"]
+[ext_resource type="Script" path="res://panel_stats.gd" id="48_xwk53"]
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="53_hm1g1"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="54_0l4j6"]
 
@@ -2325,6 +2326,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8r8m"]
+radius = 50.0434
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_fie2w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ca6o5"]
@@ -2383,7 +2387,7 @@ corner_detail = 20
 [sub_resource type="LabelSettings" id="LabelSettings_qulgs"]
 font = ExtResource("26_n6a6a")
 font_size = 80
-font_color = Color(0.682242, 0.660645, 0.693088, 1)
+font_color = Color(0.682353, 0.658824, 0.694118, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4nu8m"]
 font = ExtResource("26_n6a6a")
@@ -2398,12 +2402,18 @@ corner_radius_bottom_left = 5
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_fidey"]
+line_spacing = 5.0
+font = ExtResource("26_n6a6a")
+font_size = 20
+
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ymgt3"]
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("pause_panel")]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("pause_panel", "victory_panel")]
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
 pause_panel = NodePath("GUI/PausePanel")
+victory_panel = NodePath("GUI/GameEndPanel")
 
 [node name="earth_bot_script" type="Node" parent="."]
 script = ExtResource("2_ua6it")
@@ -2475,11 +2485,23 @@ material = SubResource("ShaderMaterial_x0j2w")
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
+[node name="Area2D" type="Area2D" parent="Planets/mars/Shield/Sprite2D"]
+scale = Vector2(2.78069, 2.78069)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/mars/Shield/Sprite2D/Area2D"]
+polygon = PackedVector2Array(0, -85.7143, 14.2857, -84.127, 26.9841, -80.9524, 36.5079, -77.7778, 46.0317, -71.4286, 55.5556, -65.0794, 63.4921, -57.1429, 69.8413, -49.2063, 77.7778, -36.5079, 82.5397, -22.2222, 85.7143, -6.34921, 85.7143, 6.34921, 82.5397, 20.6349, 76.1905, 36.5079, 66.6667, 52.381, 58.7302, 61.9048, 47.619, 71.4286, 36.5079, 77.7778, 22.2222, 82.5397, 6.34921, 85.7143, 0, 85.7143, 0, 68.254, 41.2698, 53.9683, 65.0794, 6.34921, 57.1429, -36.5079, 0, -68.254)
+
 [node name="Sprite2D2" type="Sprite2D" parent="Planets/mars/Shield"]
 material = SubResource("ShaderMaterial_x0j2w")
 rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
+
+[node name="Area2D" type="Area2D" parent="Planets/mars/Shield/Sprite2D2"]
+scale = Vector2(2.78069, 2.78069)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/mars/Shield/Sprite2D2/Area2D"]
+polygon = PackedVector2Array(0, -85.7143, 14.2857, -84.127, 26.9841, -80.9524, 36.5079, -77.7778, 46.0317, -71.4286, 55.5556, -65.0794, 63.4921, -57.1429, 69.8413, -49.2063, 77.7778, -36.5079, 82.5397, -22.2222, 85.7143, -6.34921, 85.7143, 6.34921, 82.5397, 20.6349, 76.1905, 36.5079, 66.6667, 52.381, 58.7302, 61.9048, 47.619, 71.4286, 36.5079, 77.7778, 22.2222, 82.5397, 6.34921, 85.7143, 0, 85.7143, 0, 68.254, 41.2698, 53.9683, 65.0794, 6.34921, 57.1429, -36.5079, 0, -68.254)
 
 [node name="Laser" type="Sprite2D" parent="Planets/mars" node_paths=PackedStringArray("laserLine", "botTarget")]
 texture_filter = 1
@@ -2637,11 +2659,21 @@ material = SubResource("ShaderMaterial_x0j2w")
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
 
+[node name="Area2D" type="Area2D" parent="Planets/earth/Shield/Sprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/earth/Shield/Sprite2D/Area2D"]
+polygon = PackedVector2Array(0, -237.517, 18.1349, -237.517, 54.4048, -231.724, 96.7197, -220.138, 120.9, -202.759, 157.169, -179.586, 181.349, -150.621, 199.484, -127.448, 211.574, -104.276, 223.664, -69.5172, 235.754, -23.1724, 235.754, 17.3793, 229.709, 57.931, 217.619, 92.6897, 181.349, 150.621, 157.169, 173.793, 120.9, 202.759, 84.6297, 220.138, 42.3149, 231.724, 0, 237.517, 0, 185.379, 126.945, 139.035, 187.394, 23.1724, 145.079, -121.655, 0, -191.172)
+
 [node name="Sprite2D2" type="Sprite2D" parent="Planets/earth/Shield"]
 material = SubResource("ShaderMaterial_x0j2w")
 rotation = -3.14159
 scale = Vector2(0.359623, 0.359623)
 texture = SubResource("NoiseTexture2D_aviel")
+
+[node name="Area2D" type="Area2D" parent="Planets/earth/Shield/Sprite2D2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/earth/Shield/Sprite2D2/Area2D"]
+polygon = PackedVector2Array(0, -237.517, 18.1349, -237.517, 54.4048, -231.724, 96.7197, -220.138, 120.9, -202.759, 157.169, -179.586, 181.349, -150.621, 199.484, -127.448, 211.574, -104.276, 223.664, -69.5172, 235.754, -23.1724, 235.754, 17.3793, 229.709, 57.931, 217.619, 92.6897, 181.349, 150.621, 157.169, 173.793, 120.9, 202.759, 84.6297, 220.138, 42.3149, 231.724, 0, 237.517, 0, 185.379, 126.945, 139.035, 187.394, 23.1724, 145.079, -121.655, 0, -191.172)
 
 [node name="Laser" type="Sprite2D" parent="Planets/earth" node_paths=PackedStringArray("laserLine", "botTarget")]
 texture_filter = 1
@@ -2723,7 +2755,7 @@ vertical_alignment = 1
 [node name="Area2D" type="Area2D" parent="Planets/earth"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/earth/Area2D"]
-shape = SubResource("CircleShape2D_4skd4")
+shape = SubResource("CircleShape2D_w8r8m")
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
@@ -3708,6 +3740,7 @@ stretch_mode = 5
 
 [node name="PausePanel" type="Panel" parent="GUI"]
 process_mode = 3
+visible = false
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -3820,6 +3853,128 @@ label_settings = ExtResource("32_lb4f2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameEndPanel" type="Panel" parent="GUI"]
+process_mode = 3
+visible = false
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5ul4")
+script = ExtResource("27_8qsbf")
+
+[node name="Container" type="VBoxContainer" parent="GUI/GameEndPanel"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_right = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="GUI/GameEndPanel/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.196078, 0.67451, 0.196078, 1)
+theme_override_fonts/font = ExtResource("26_n6a6a")
+theme_override_font_sizes/font_size = 75
+text = "VICTORY"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Stats" type="VBoxContainer" parent="GUI/GameEndPanel/Container" node_paths=PackedStringArray("title", "casualties", "shame_info", "score")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+script = ExtResource("48_xwk53")
+title = NodePath("../Title")
+casualties = NodePath("CasualtiesStats")
+shame_info = NodePath("ShameInfo")
+score = NodePath("Score")
+victory_color = Color(0.196078, 0.67451, 0.196078, 1)
+defeat_color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[node name="CasualtiesTitle" type="Label" parent="GUI/GameEndPanel/Container/Stats"]
+texture_filter = 1
+layout_mode = 2
+text = "Casualties:"
+label_settings = SubResource("LabelSettings_fidey")
+horizontal_alignment = 1
+
+[node name="CasualtiesStats" type="RichTextLabel" parent="GUI/GameEndPanel/Container/Stats"]
+layout_mode = 2
+theme_override_constants/line_separation = 3
+theme_override_fonts/normal_font = ExtResource("26_n6a6a")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center][color=ac3232]10M[/color] Martians[/center]
+[center][color=ac3232]15M[/color] Earthlings[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="ShameInfo" type="RichTextLabel" parent="GUI/GameEndPanel/Container/Stats"]
+layout_mode = 2
+theme_override_constants/line_separation = 3
+theme_override_fonts/normal_font = ExtResource("26_n6a6a")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Your actions have killed [color=ac3232]25M[/color] Civilians[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Score" type="RichTextLabel" parent="GUI/GameEndPanel/Container/Stats"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("26_n6a6a")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Your Score: [color=FBF236]5140[/color][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Buttons" type="VBoxContainer" parent="GUI/GameEndPanel/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Quit_To_Menu" type="Button" parent="GUI/GameEndPanel/Container/Buttons"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t3xxb")
+theme_override_styles/disabled = ExtResource("30_tims1")
+theme_override_styles/hover_pressed = ExtResource("31_wyo3l")
+theme_override_styles/hover = ExtResource("32_asw5v")
+theme_override_styles/pressed = ExtResource("31_wyo3l")
+theme_override_styles/normal = ExtResource("30_ay4ey")
+
+[node name="Label" type="Label" parent="GUI/GameEndPanel/Container/Buttons/Quit_To_Menu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back to Menu"
+label_settings = ExtResource("32_lb4f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Node2D" type="Node2D" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
 
 [node name="position_hidden" type="Control" parent="GUI"]
@@ -3885,6 +4040,8 @@ min_zoom = 0.5
 [connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
 [connection signal="timeout" from="earth_bot_script/melee_asteroid" to="earth_bot_script" method="_on_melee_asteroid_timeout"]
 [connection signal="timeout" from="earth_bot_script/random_lazer_poke" to="earth_bot_script" method="_on_random_lazer_poke_timeout"]
+[connection signal="area_entered" from="Planets/mars/Shield/Sprite2D/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered2"]
+[connection signal="area_entered" from="Planets/mars/Shield/Sprite2D2/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered"]
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]
 [connection signal="focus_entered" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_1/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [1]]
@@ -3908,3 +4065,4 @@ min_zoom = 0.5
 [connection signal="value_changed" from="GUI/PausePanel/Container/Volume/VolumeSlider" to="AudioPlayer" method="_on_volume_slider_value_changed"]
 [connection signal="button_down" from="GUI/PausePanel/Container/Buttons/Resume" to="GUI/PausePanel" method="_on_resume_button_down"]
 [connection signal="button_down" from="GUI/PausePanel/Container/Buttons/Quit_To_Menu" to="GUI/PausePanel" method="_on_quit_to_menu_button_down"]
+[connection signal="button_down" from="GUI/GameEndPanel/Container/Buttons/Quit_To_Menu" to="GUI/GameEndPanel" method="_on_quit_to_menu_button_down"]
