@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 			else:
 				var population = target.find_child("Population")
 				if population != null:
-					target.find_child("Population").take_hit(900000)
+					target.find_child("Population").take_hit(900000000)
 
 				detonate(target)
 		

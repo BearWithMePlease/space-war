@@ -1,7 +1,7 @@
 extends Sprite2D
 
 class_name Asteroid
-
+@export var orbitRadius: float = 50.0
 @export var speed := 200.0
 var launcher: Node2D = null
 var target: Node2D = null
@@ -32,7 +32,9 @@ func _process(delta: float) -> void:
 	
 	if isPlayer:
 		if not directionSet:
-			global_position = launcher.global_position
+			var targetPos := get_global_mouse_position()
+			var targetDirection = (targetPos - launcher.global_position).normalized()
+			self.global_position = launcher.global_position + targetDirection * orbitRadius;
 			
 		castTime = max(0.0, castTime - delta)
 		if(castTime > 0.01):
@@ -80,7 +82,7 @@ func _process(delta: float) -> void:
 		else:
 			var population = target.find_child("Population")
 			if population != null:
-				target.find_child("Population").take_hit(100000)
+				target.find_child("Population").take_hit(700000000)
 				detonate(target)
 
 	

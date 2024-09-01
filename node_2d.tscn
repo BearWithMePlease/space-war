@@ -2424,7 +2424,7 @@ one_shot = true
 autostart = true
 
 [node name="probing_shot" type="Timer" parent="earth_bot_script"]
-wait_time = 36.113
+wait_time = 43.384
 autostart = true
 
 [node name="melee_asteroid" type="Timer" parent="earth_bot_script"]
@@ -2432,12 +2432,16 @@ wait_time = 20.0
 autostart = true
 
 [node name="random_lazer_poke" type="Timer" parent="earth_bot_script"]
-wait_time = 2.283
+wait_time = 42.971
 one_shot = true
 autostart = true
 
 [node name="rebuild shields" type="Timer" parent="earth_bot_script"]
-wait_time = 22.612
+wait_time = 15.668
+
+[node name="allout" type="Timer" parent="earth_bot_script"]
+wait_time = 100.0
+autostart = true
 
 [node name="Planets" type="Node2D" parent="."]
 
@@ -2539,7 +2543,7 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 100000
+start_population = 8000000000
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Mars/label")
 GUI_Text = "Martians:  "
@@ -2712,7 +2716,7 @@ offset_right = 92.0
 offset_bottom = -85.0
 size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
-start_population = 200000
+start_population = 8000000000
 count_label = NodePath("HBoxContainer/Label")
 GUI_Label = NodePath("../../../GUI/Stats/Population_Earth/label")
 GUI_Text = "Earthlings:"
@@ -2811,10 +2815,10 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 10
 script = ExtResource("17_0vhep")
-START_BALANCE = 50000
+START_BALANCE = 1000
 MONEY_CYCLE_TIME = 1
-BASE_EARN = 5
-FACTORY_EARN = 5
+BASE_EARN = 20
+FACTORY_EARN = 20
 LABEL = NodePath("label")
 item_buttons = [NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button")]
 
@@ -2839,7 +2843,7 @@ theme_override_constants/separation = 10
 [node name="label" type="Label" parent="GUI/Stats/Population_Mars"]
 texture_filter = 1
 layout_mode = 2
-text = "Martians: "
+text = "Martians (you): "
 label_settings = SubResource("LabelSettings_ca6o5")
 vertical_alignment = 1
 
@@ -4044,6 +4048,7 @@ stretch_mode = 1
 [connection signal="timeout" from="earth_bot_script/melee_asteroid" to="earth_bot_script" method="_on_melee_asteroid_timeout"]
 [connection signal="timeout" from="earth_bot_script/random_lazer_poke" to="earth_bot_script" method="_on_random_lazer_poke_timeout"]
 [connection signal="timeout" from="earth_bot_script/rebuild shields" to="earth_bot_script" method="_on_rebuild_shields_timeout"]
+[connection signal="timeout" from="earth_bot_script/allout" to="earth_bot_script" method="_on_allout_timeout"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered2"]
 [connection signal="area_entered" from="Planets/mars/Shield/Sprite2D2/Area2D" to="Planets/earth/Missile Launcher" method="_on_area_2d_area_entered"]
 [connection signal="button_down" from="GUI/Inventory/Slot_0/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [0]]

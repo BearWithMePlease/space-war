@@ -57,20 +57,22 @@ func _process(delta: float) -> void:
 	coolDownTimer = max(coolDownTimer - delta, 0.0)
 	initCoolDownTimer = max(initCoolDownTimer - delta, 0.0)
 	self.visible = coolDownTimer > 0.01 or isInitialized
-	laserLine.visible = coolDownTimer > 0.01 and not isInitialized
-	var alpha: float = -(4.0 * (coolDownTimer - shotCooldownBeforeHide)) * (4.0 * (coolDownTimer - shotCooldownBeforeHide)) + 1.0
-	laserLine.default_color = Color(172.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0, alpha)
 	self.texture = activeLaser if coolDownTimer > shotCooldownBeforeHide - 0.1 else unActiveLaser
 	
 	if not isInitialized:
+		var alpha: float = -(4.0 * (coolDownTimer - shotCooldownBeforeHide)) * (4.0 * (coolDownTimer - shotCooldownBeforeHide)) + 1.0
+		laserLine.default_color = Color(172.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0, alpha)
 		return
 		
 	# Input for shot
 	if coolDownTimer < 0.01:
 		if !isPlayer and initCoolDownTimer < 0.01:
 			shot(targetPos)
-		elif isPlayer && Input.is_action_just_pressed("click"):
-			shot(targetPos)
+		elif isPlayer:
+			const AIM_COLOR := Color("9badb7")
+			laserLine.default_color = AIM_COLOR
+			if Input.is_action_just_pressed("click"):
+				shot(targetPos)
 
 
 
@@ -105,7 +107,7 @@ func _physics_process(delta):
 					print("reached the planet")
 					for child in hitPlanet.get_children():
 						if child is Population:
-							child.take_hit(10000)
+							child.take_hit(1000000000)
 							break
 				if hitShield != null:
 					print("reached the shield")
