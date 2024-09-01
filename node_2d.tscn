@@ -1,4 +1,4 @@
-[gd_scene load_steps=436 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=402 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -897,7 +897,6 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_efwqt"]
 font = ExtResource("26_n6a6a")
 font_size = 20
-font_color = Color(0.67451, 0.196078, 0.196078, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ldvwn"]
 radius = 49.2319
@@ -2623,18 +2622,22 @@ missile = ExtResource("14_t6mfo")
 asteroid = ExtResource("15_7ern2")
 asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
 
-[node name="Population" type="Control" parent="Planets/mars" node_paths=PackedStringArray("count_label", "death_label")]
+[node name="Population" type="Control" parent="Planets/mars" node_paths=PackedStringArray("count_label", "GUI_Label", "death_label")]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -101.587
-offset_top = -107.937
-offset_right = 104.413
-offset_bottom = -84.9365
+offset_left = -78.0
+offset_top = -111.0
+offset_right = 92.0
+offset_bottom = -85.0
+size_flags_horizontal = 3
 script = ExtResource("19_yweg1")
 start_population = 10000000
 count_label = NodePath("HBoxContainer/Label")
+GUI_Label = NodePath("../../../GUI/Stats/Population_Mars/label")
+GUI_Text = "Martians:  "
 death_label = NodePath("HBoxContainer/Label/Death_Label")
-PEOPLE_GROW_CYCLE_TIME = 3
+DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
+GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Planets/mars/Population"]
 layout_mode = 1
@@ -2654,7 +2657,7 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="Planets/mars/Population/HBoxContainer"]
 texture_filter = 1
 layout_mode = 2
-text = "3013k"
+text = "10000k"
 label_settings = SubResource("LabelSettings_73div")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2671,7 +2674,6 @@ offset_left = -120.0
 offset_top = -10.0
 offset_bottom = 10.0
 grow_horizontal = 0
-text = "-50000"
 label_settings = SubResource("LabelSettings_efwqt")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -2779,10 +2781,68 @@ missile = ExtResource("14_t6mfo")
 asteroid = ExtResource("15_7ern2")
 asteroidSprites = Array[Texture2D]([ExtResource("19_c0fgu"), ExtResource("17_0oes4"), ExtResource("18_6fhhp")])
 
+<<<<<<< HEAD
 [node name="Area2D" type="Area2D" parent="Planets/earth"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/earth/Area2D"]
 shape = SubResource("CircleShape2D_v5r8y")
+=======
+[node name="Population" type="Control" parent="Planets/earth" node_paths=PackedStringArray("count_label", "GUI_Label", "death_label")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -78.0
+offset_top = -111.0
+offset_right = 92.0
+offset_bottom = -85.0
+size_flags_horizontal = 3
+script = ExtResource("19_yweg1")
+start_population = 8200000000
+count_label = NodePath("HBoxContainer/Label")
+GUI_Label = NodePath("../../../GUI/Stats/Population_Earth/label")
+GUI_Text = "Earthlings:"
+death_label = NodePath("HBoxContainer/Label/Death_Label")
+DAMAGE_COLOR = Color(0.67451, 0.196078, 0.196078, 1)
+GROWTH_COLOR = Color(0.196078, 0.67451, 0.196078, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Planets/earth/Population"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Planets/earth/Population/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("20_jr6a8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Planets/earth/Population/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "10000k"
+label_settings = SubResource("LabelSettings_73div")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Death_Label" type="Label" parent="Planets/earth/Population/HBoxContainer/Label"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+label_settings = SubResource("LabelSettings_efwqt")
+horizontal_alignment = 2
+vertical_alignment = 1
+>>>>>>> d6716b3077e9b3ea17dd70085be6ae1fd687f8f8
 
 [node name="earth line" type="Line2D" parent="Planets"]
 z_index = -1
@@ -2813,11 +2873,16 @@ shape = SubResource("CircleShape2D_fie2w")
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Money" type="HBoxContainer" parent="GUI" node_paths=PackedStringArray("LABEL", "item_buttons")]
-offset_left = 15.0
+[node name="Stats" type="VBoxContainer" parent="GUI"]
+offset_left = 10.0
 offset_top = 10.0
-offset_right = 365.0
+offset_right = 340.0
 offset_bottom = 50.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="GUI/Stats" node_paths=PackedStringArray("LABEL", "item_buttons")]
+layout_mode = 2
 theme_override_constants/separation = 10
 script = ExtResource("17_0vhep")
 START_BALANCE = 50000
@@ -2825,19 +2890,55 @@ MONEY_CYCLE_TIME = 1
 BASE_EARN = 5
 FACTORY_EARN = 5
 LABEL = NodePath("label")
-item_buttons = [NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"), NodePath("../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button")]
+item_buttons = [NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button"), NodePath("../../Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button")]
 
-[node name="label" type="Label" parent="GUI/Money"]
+[node name="label" type="Label" parent="GUI/Stats/Money"]
 texture_filter = 1
 layout_mode = 2
 text = "Energy Deposit:"
 label_settings = SubResource("LabelSettings_ca6o5")
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Money"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Stats/Money"]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("19_lqr0b")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Population_Mars" type="HBoxContainer" parent="GUI/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="GUI/Stats/Population_Mars"]
+texture_filter = 1
+layout_mode = 2
+text = "Martians: "
+label_settings = SubResource("LabelSettings_ca6o5")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Stats/Population_Mars"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("20_jr6a8")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Population_Earth" type="HBoxContainer" parent="GUI/Stats"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="label" type="Label" parent="GUI/Stats/Population_Earth"]
+texture_filter = 1
+layout_mode = 2
+text = "Earthlings:"
+label_settings = SubResource("LabelSettings_ca6o5")
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Stats/Population_Earth"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("20_jr6a8")
 expand_mode = 2
 stretch_mode = 5
 
