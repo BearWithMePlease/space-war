@@ -2843,7 +2843,7 @@ theme_override_constants/separation = 10
 [node name="label" type="Label" parent="GUI/Stats/Population_Mars"]
 texture_filter = 1
 layout_mode = 2
-text = "Martians: "
+text = "Martians (you): "
 label_settings = SubResource("LabelSettings_ca6o5")
 vertical_alignment = 1
 

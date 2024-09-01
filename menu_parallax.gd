@@ -3,7 +3,7 @@ extends ParallaxBackground
 @export var camera: Camera2D = null
 @export var effect: float = 50.0
 
-var mouse_in_window:bool = false
+var mouse_in_window: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
