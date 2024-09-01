@@ -41,11 +41,16 @@ func launch_asteroid(target: Node2D, player:bool):
 
 
 	
-func _on_area_2d_area_entered2(area: Area2D) -> void:
-	object_struck_shield1 = true
+#func _on_area_2d_area_entered2(area: Area2D) -> void:
+	#
+	#if $"../Shield".firstShieldSprite.visible == true:
+		#object_struck_shield1 = true
+		#$"../Shield".removeSpecificShield(1)
 
 	
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	object_struck_shield2 = true
+#
+#
+#func _on_area_2d_area_entered(area: Area2D) -> void:
+	#if $"../Shield".secondShieldSprite.visible == true:
+		#object_struck_shield2 = true
+	##object_struck_shield2 = true
