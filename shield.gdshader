@@ -7,7 +7,7 @@ uniform float noiseFrequency = 50;
 uniform float noiseClamp = 0.2;
 uniform float edgeThreshhold = 0.9;
 
-//	Classic Perlin 2D Noise 
+//	Classic Perlin 2D Noise
 //	by Stefan Gustavson (https://github.com/stegu/webgl-noise)
 //
 vec2 fade(vec2 t) {return t*t*t*(t*(t*6.0-15.0)+10.0);}
@@ -30,7 +30,7 @@ float cnoise(vec2 P){
   vec2 g10 = vec2(gx.y,gy.y);
   vec2 g01 = vec2(gx.z,gy.z);
   vec2 g11 = vec2(gx.w,gy.w);
-  vec4 norm = 1.79284291400159 - 0.85373472095314 * 
+  vec4 norm = 1.79284291400159 - 0.85373472095314 *
     vec4(dot(g00, g00), dot(g01, g01), dot(g10, g10), dot(g11, g11));
   g00 *= norm.x;
   g01 *= norm.y;
@@ -50,19 +50,19 @@ void fragment() {
 	// Called for every pixel the material is visible on.
 	if(UV.x < 0.5)
 		discard;
-		
+
 	vec2 centeredUV = UV.xy - vec2(0.5, 0.5);
-		
+
 	float sqrDst = length(centeredUV);
 	sqrDst *= sqrDst * sqrDst * (100.0 - radius);
-		
+
 	float noiseValue = cnoise(UV * noiseFrequency + vec2(TIME, 0.0));
 	float circle = round(1.0 - sqrDst + clamp(noiseValue * round((1.0 + noiseClamp) - sqrDst), 0.0, 1.0));
 	if(1.0 - circle < 0.001)
 		discard;
-		
+
 	if(sqrDst > 1.0)
 		discard;
-		
+
 	COLOR.rgba = vec4(sqrDst > edgeThreshhold ? EDGE_COLOR : SHIELD_COLOR, sqrDst * sqrDst);
 }

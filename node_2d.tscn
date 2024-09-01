@@ -1,4 +1,4 @@
-[gd_scene load_steps=417 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=418 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -64,6 +64,7 @@
 [ext_resource type="Script" path="res://fade_in.gd" id="49_f4kqi"]
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="53_hm1g1"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="54_0l4j6"]
+[ext_resource type="AudioStream" uid="uid://p8dvo5po7t6p" path="res://sound/shield-break.mp3" id="63_4c7ws"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")
@@ -4081,8 +4082,8 @@ process_mode = 3
 stream = SubResource("AudioStreamPolyphonic_ymgt3")
 autoplay = true
 script = ExtResource("36_q1dpw")
-sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6")])
-change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
+sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6"), ExtResource("63_4c7ws")])
+change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15, -15])
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("38_texrt")
