@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("zoom_in") || Input.is_action_pressed("zoom_out") || Input.is_action_pressed("camera_drag"):
 			print("trying")
 			_prodceedTutorial(int(SLIDES.CHECK_ENERGY))
-			
+
 	var shopOpen := $"../GUI/Shop".current_state == "visible" as bool
 	if currentState == SLIDES.OPEN_SHOP and shopOpen:
 		_prodceedTutorial(int(SLIDES.BUY_ITEM))
