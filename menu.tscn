@@ -1,19 +1,18 @@
-[gd_scene load_steps=196 format=3 uid="uid://0u5die1juldc"]
+[gd_scene load_steps=195 format=3 uid="uid://cwu72ds36ylg8"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_chtbm"]
-[ext_resource type="Texture2D" uid="uid://cebewwokl8152" path="res://img/big_button.png" id="2_0d3iq"]
 [ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="2_kcwb4"]
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="2_y767o"]
 [ext_resource type="Script" path="res://sun.gd" id="3_ijpj1"]
 [ext_resource type="Script" path="res://planet.gd" id="3_x124e"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
 [ext_resource type="Script" path="res://shield.gd" id="4_wrf7d"]
 [ext_resource type="Shader" path="res://shield.gdshader" id="5_hil2g"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
 [ext_resource type="Script" path="res://laser.gd" id="6_11vxj"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="6_vnedh"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="6_vnedh"]
 [ext_resource type="Script" path="res://menu_parallax.gd" id="7_7m6lj"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="7_s6n8t"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="7_s6n8t"]
 [ext_resource type="Texture2D" uid="uid://ce3tt4m8u3iqp" path="res://img/laser_unactive.png" id="7_x7gt6"]
 [ext_resource type="Script" path="res://earth_bot_script.gd" id="8_0gg04"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="8_4tw2u"]
@@ -1204,7 +1203,7 @@ label_settings = SubResource("LabelSettings_6n8eb")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
@@ -1214,7 +1213,6 @@ theme_override_styles/hover_pressed = ExtResource("5_qqgc2")
 theme_override_styles/hover = ExtResource("6_vnedh")
 theme_override_styles/pressed = ExtResource("5_qqgc2")
 theme_override_styles/normal = ExtResource("7_s6n8t")
-icon = ExtResource("2_0d3iq")
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/PlayButton"]
 texture_filter = 1
@@ -1231,7 +1229,7 @@ vertical_alignment = 1
 
 [node name="SourceButton" type="Button" parent="CanvasLayer/VBoxContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(0, 60)
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
@@ -1241,7 +1239,6 @@ theme_override_styles/hover_pressed = ExtResource("5_qqgc2")
 theme_override_styles/hover = ExtResource("6_vnedh")
 theme_override_styles/pressed = ExtResource("5_qqgc2")
 theme_override_styles/normal = ExtResource("7_s6n8t")
-icon = ExtResource("2_0d3iq")
 script = ExtResource("9_simxa")
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/SourceButton"]
@@ -1260,7 +1257,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Github Icon" type="Sprite2D" parent="CanvasLayer/VBoxContainer/SourceButton"]
-position = Vector2(185, 28)
+position = Vector2(200, 28)
 texture = ExtResource("10_62vx5")
 
 [node name="Camera2D" type="Camera2D" parent="."]

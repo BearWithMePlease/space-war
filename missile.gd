@@ -56,8 +56,10 @@ func _process(delta: float) -> void:
 				launcher.object_struck_shield2 = false
 				detonate(target)
 			else:
-				target.find_child("Population").take_hit(900000)
-				detonate(target)
+				var population_child = target.find_child("Population")
+				if population_child != null:
+					target.find_child("Population").take_hit(900000)
+					detonate(target)
 		
 		collision_detection()
 		
