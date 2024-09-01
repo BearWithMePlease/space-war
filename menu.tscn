@@ -1,4 +1,4 @@
-[gd_scene load_steps=195 format=3 uid="uid://cwu72ds36ylg8"]
+[gd_scene load_steps=208 format=3 uid="uid://cwu72ds36ylg8"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_chtbm"]
 [ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="2_kcwb4"]
@@ -29,6 +29,18 @@
 [ext_resource type="Texture2D" uid="uid://dny8ky8woo8vn" path="res://animated/2237296662.png" id="15_pl1la"]
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="16_a055i"]
 [ext_resource type="Texture2D" uid="uid://b2pny2n8nmg2n" path="res://animated/rocket_fire.png" id="25_tifi2"]
+[ext_resource type="Script" path="res://audio_player.gd" id="30_4nmah"]
+[ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="31_pow2m"]
+[ext_resource type="AudioStream" uid="uid://b0dnfm8gwtyu5" path="res://sound/game-background-music-4.mp3" id="32_xda0j"]
+[ext_resource type="AudioStream" uid="uid://bnopi05c65xgo" path="res://sound/intro-background-music.mp3" id="33_fkfab"]
+[ext_resource type="AudioStream" uid="uid://jvvqv1l1kx21" path="res://sound/laser-launch-sound.mp3" id="34_gj4xc"]
+[ext_resource type="AudioStream" uid="uid://canhx72504m37" path="res://sound/rocket-launch-sound.mp3" id="35_jxw0y"]
+[ext_resource type="AudioStream" uid="uid://dcqqyt4lsyng2" path="res://sound/sound-button-click.mp3" id="36_euywn"]
+[ext_resource type="AudioStream" uid="uid://1n424ssmt5ph" path="res://sound/shield_activate.mp3" id="37_6g7h0"]
+[ext_resource type="AudioStream" uid="uid://dnjaq35duuhh4" path="res://sound/shop-window.mp3" id="38_gbcj7"]
+[ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="39_rep05"]
+[ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="40_h3fyc"]
+[ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="41_porsf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6n8eb"]
 font = ExtResource("2_kcwb4")
@@ -1171,6 +1183,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_3gsgh"]
+
 [node name="Menu" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_chtbm")
@@ -1418,6 +1432,15 @@ texture = ExtResource("14_oujdv")
 [node name="Asteroid3" type="Sprite2D" parent="Planets"]
 position = Vector2(475, -187)
 texture = ExtResource("12_yu5p2")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = SubResource("AudioStreamPolyphonic_3gsgh")
+volume_db = 24.0
+autoplay = true
+script = ExtResource("30_4nmah")
+sounds = Array[AudioStreamMP3]([ExtResource("31_pow2m"), ExtResource("32_xda0j"), ExtResource("33_fkfab"), ExtResource("34_gj4xc"), ExtResource("35_jxw0y"), ExtResource("36_euywn"), ExtResource("37_6g7h0"), ExtResource("38_gbcj7"), ExtResource("39_rep05"), ExtResource("40_h3fyc"), ExtResource("41_porsf")])
+change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
 
 [connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="change_state" binds= [2]]
 [connection signal="button_down" from="CanvasLayer/VBoxContainer/SourceButton" to="CanvasLayer/VBoxContainer/SourceButton" method="_open_github"]

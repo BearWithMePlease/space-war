@@ -72,11 +72,14 @@ func _process(delta: float) -> void:
 		elif isPlayer && Input.is_action_just_pressed("click"):
 			shot(targetPos)
 
+
+@onready var audioplayer = $"../../../AudioPlayer"
+
 func shot(targetPos: Vector2) -> void:
 	coolDownTimer = shotCooldownBeforeHide
 	isInitialized = false
 	canApplyDamage = true
-	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
+	#audioplayer.play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
 
 
 func _physics_process(delta):
