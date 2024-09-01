@@ -62,9 +62,27 @@ func _process(delta: float) -> void:
 	
 	
 	if target_vector.length() < 45.0:
-		target.find_child("Population").take_hit(100000)
-		detonate(target)
-		
+		var shield = target.find_child("Shield")
+			
+		if shield.shieldCount > 0:
+			shield.removeShield()
+			detonate(target)
+			#queue_free()
+		#if launcher.object_struck_shield1:
+			#target.find_child("Shield").removeShield()
+			#target.find_child("Missile Launcher").object_struck_shield1 = false
+			#detonate(target)
+		#elif launcher.object_struck_shield2:
+			#target.find_child("Shield").removeShield()
+			#target.find_child("Missile Launcher").object_struck_shield2 = false
+			#detonate(target)
+			
+		else:
+			var population = target.find_child("Population")
+			if population != null:
+				target.find_child("Population").take_hit(100000)
+				detonate(target)
+
 	
 	collision_detection()
 
