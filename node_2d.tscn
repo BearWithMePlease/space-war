@@ -2440,7 +2440,7 @@ autostart = true
 wait_time = 15.668
 
 [node name="allout" type="Timer" parent="earth_bot_script"]
-wait_time = 0.001
+wait_time = 100.0
 autostart = true
 
 [node name="Planets" type="Node2D" parent="."]
