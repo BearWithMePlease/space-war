@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://earth_bot_script.gd" id="2_ua6it"]
 [ext_resource type="Script" path="res://slimmy.gd" id="3_lcebc"]
 [ext_resource type="Texture2D" uid="uid://dny8ky8woo8vn" path="res://animated/2237296662.png" id="4_7j4en"]
-[ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://animated/img/asteroid.png" id="4_f8klw"]
+[ext_resource type="Texture2D" uid="uid://bwfrd6sm76wxg" path="res://img/asteroid.png" id="4_f8klw"]
 [ext_resource type="Script" path="res://planet.gd" id="5_58hys"]
 [ext_resource type="Texture2D" uid="uid://cd23okjuqxwn6" path="res://animated/1116186123.png" id="7_gwdc2"]
 [ext_resource type="Texture2D" uid="uid://cvtjlcwgo8c3l" path="res://animated/703547277.png" id="7_wlt61"]
@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dipx7b38jl1ro" path="res://asteroid.png" id="19_c0fgu"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Script" path="res://population.gd" id="19_yweg1"]
-[ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://animated/img/factory.png" id="20_n7my1"]
+[ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
 [ext_resource type="Texture2D" uid="uid://cquk6gsc360ui" path="res://img/laser.png" id="25_luuys"]
@@ -2839,7 +2839,7 @@ theme_override_constants/separation = 10
 [node name="label" type="Label" parent="GUI/Stats/Population_Mars"]
 texture_filter = 1
 layout_mode = 2
-text = "Martians: "
+text = "Martians (you): "
 label_settings = SubResource("LabelSettings_ca6o5")
 vertical_alignment = 1
 

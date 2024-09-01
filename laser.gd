@@ -57,20 +57,22 @@ func _process(delta: float) -> void:
 	coolDownTimer = max(coolDownTimer - delta, 0.0)
 	initCoolDownTimer = max(initCoolDownTimer - delta, 0.0)
 	self.visible = coolDownTimer > 0.01 or isInitialized
-	laserLine.visible = coolDownTimer > 0.01 and not isInitialized
-	var alpha: float = -(4.0 * (coolDownTimer - shotCooldownBeforeHide)) * (4.0 * (coolDownTimer - shotCooldownBeforeHide)) + 1.0
-	laserLine.default_color = Color(172.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0, alpha)
 	self.texture = activeLaser if coolDownTimer > shotCooldownBeforeHide - 0.1 else unActiveLaser
 	
 	if not isInitialized:
+		var alpha: float = -(4.0 * (coolDownTimer - shotCooldownBeforeHide)) * (4.0 * (coolDownTimer - shotCooldownBeforeHide)) + 1.0
+		laserLine.default_color = Color(172.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0, alpha)
 		return
 		
 	# Input for shot
 	if coolDownTimer < 0.01:
 		if !isPlayer and initCoolDownTimer < 0.01:
 			shot(targetPos)
-		elif isPlayer && Input.is_action_just_pressed("click"):
-			shot(targetPos)
+		elif isPlayer:
+			const AIM_COLOR := Color("9badb7")
+			laserLine.default_color = AIM_COLOR
+			if Input.is_action_just_pressed("click"):
+				shot(targetPos)
 
 
 
@@ -83,34 +85,33 @@ func shot(targetPos: Vector2) -> void:
 
 func _physics_process(delta):
 	# Raycast planets
-	if coolDownTimer > 0.01:
-		var space_state = get_world_2d().direct_space_state
-		var query = PhysicsRayQueryParameters2D.create(
-			laserLine.global_position, 
-			laserLine.global_position + targetDirection * MAX_LASER_DST
-		)
-		query.collide_with_areas = true
-		
-		var result = space_state.intersect_ray(query) 
-		if result:
-			laserLine.points[0] = laserLine.position
-			const I_DONT_KNOW_WHY := 1.65
-			var dst: float = (result.position - laserLine.global_position).length()
-			laserLine.points[1] = laserLine.position + Vector2(0, -dst * I_DONT_KNOW_WHY)
-			var hitPlanet := result.collider.get_parent() as Planet
-			var hitShield := result.collider.get_parent().get_parent() as Shield
-			if canApplyDamage:
-				canApplyDamage = false
-				if hitPlanet != null:
-					print("reached the planet")
-					for child in hitPlanet.get_children():
-						if child is Population:
-							child.take_hit(10000)
-							break
-				if hitShield != null:
-					print("reached the shield")
-					hitShield.removeShield()
-				
-		else:
-			laserLine.points[0] = laserLine.position
-			laserLine.points[1] = laserLine.position + Vector2(0, -MAX_LASER_DST)
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(
+		laserLine.global_position, 
+		laserLine.global_position + targetDirection * MAX_LASER_DST
+	)
+	query.collide_with_areas = true
+	
+	var result = space_state.intersect_ray(query) 
+	if result:
+		laserLine.points[0] = laserLine.position
+		const I_DONT_KNOW_WHY := 1.65
+		var dst: float = (result.position - laserLine.global_position).length()
+		laserLine.points[1] = laserLine.position + Vector2(0, -dst * I_DONT_KNOW_WHY)
+		var hitPlanet := result.collider.get_parent() as Planet
+		var hitShield := result.collider.get_parent().get_parent() as Shield
+		if canApplyDamage:
+			canApplyDamage = false
+			if hitPlanet != null:
+				print("reached the planet")
+				for child in hitPlanet.get_children():
+					if child is Population:
+						child.take_hit(10000)
+						break
+			if hitShield != null:
+				print("reached the shield")
+				hitShield.removeShield()
+			
+	else:
+		laserLine.points[0] = laserLine.position
+		laserLine.points[1] = laserLine.position + Vector2(0, -MAX_LASER_DST)
