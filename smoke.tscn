@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf0g33hp1228y"]
+
+[ext_resource type="Texture2D" uid="uid://bq1cmvhhido1k" path="res://animated/Circle_explosion/Smoke_4_128-sheet.png" id="1_j6oqw"]
+[ext_resource type="Script" path="res://smoke.gd" id="2_gcvp2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h03f"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx8a3"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48bng"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oikcg"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkcre"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfycb"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 640, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl8i7"]
+atlas = ExtResource("1_j6oqw")
+region = Rect2(0, 768, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qk7rr"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_2h03f")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_mx8a3")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_48bng")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_oikcg")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_qkcre")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_nfycb")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_rl8i7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="smoke" type="AnimatedSprite2D"]
+position = Vector2(91, 0)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_qk7rr")
+frame_progress = 0.718877
+script = ExtResource("2_gcvp2")
+
+[connection signal="animation_looped" from="." to="." method="_on_animation_looped"]
