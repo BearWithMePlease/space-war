@@ -1,4 +1,5 @@
 extends Button
 
 func _open_github() -> void:
-	OS.shell_open("https://github.com/BearWithMePlease/space-war") 
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.SOUND_BUTTON_CLICK)
+	OS.shell_open("https://github.com/BearWithMePlease/space-war")

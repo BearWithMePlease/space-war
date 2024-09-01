@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="2_y767o"]
 [ext_resource type="Script" path="res://sun.gd" id="3_ijpj1"]
 [ext_resource type="Script" path="res://planet.gd" id="3_x124e"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
 [ext_resource type="Script" path="res://shield.gd" id="4_wrf7d"]
 [ext_resource type="Shader" path="res://shield.gdshader" id="5_hil2g"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
 [ext_resource type="Script" path="res://laser.gd" id="6_11vxj"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="6_vnedh"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="6_vnedh"]
 [ext_resource type="Script" path="res://menu_parallax.gd" id="7_7m6lj"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="7_s6n8t"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="7_s6n8t"]
 [ext_resource type="Texture2D" uid="uid://ce3tt4m8u3iqp" path="res://img/laser_unactive.png" id="7_x7gt6"]
 [ext_resource type="Script" path="res://earth_bot_script.gd" id="8_0gg04"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="8_4tw2u"]
@@ -1497,7 +1497,14 @@ script = ExtResource("30_4nmah")
 sounds = Array[AudioStreamMP3]([ExtResource("31_pow2m"), ExtResource("32_xda0j"), ExtResource("33_fkfab"), ExtResource("34_gj4xc"), ExtResource("35_jxw0y"), ExtResource("36_euywn"), ExtResource("37_6g7h0"), ExtResource("38_gbcj7"), ExtResource("39_rep05"), ExtResource("40_h3fyc"), ExtResource("41_porsf")])
 change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
 
-[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="change_state" binds= [2]]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_fkfab")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="change_state" binds= [1]]
+[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="AudioPlayer" method="play_sound" binds= [5]]
 [connection signal="button_down" from="CanvasLayer/VBoxContainer/SourceButton" to="CanvasLayer/VBoxContainer/SourceButton" method="_open_github"]
 [connection signal="timeout" from="earth_bot_script/start_of_match" to="earth_bot_script" method="_on_start_of_match_timeout"]
 [connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
