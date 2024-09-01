@@ -49,8 +49,8 @@ func shop_animation(property: String, value):
 	tween.tween_property(self, property, value, seconds).set_trans(transition_type)
 
 func _on_item_buy(index: int) -> void:
-	if $"../Money".can_obtain_item(index):
-		$"../Money".buy_item(current_prices[index])     # Buy first
+	if $"../Stats/Money".can_obtain_item(index):
+		$"../Stats/Money".buy_item(current_prices[index])     # Buy first
 		$"../Inventory".add_item(index)                # Then maybe change price
 		
 		if index == Inventory.ITEM_TYPES.FACTORY:

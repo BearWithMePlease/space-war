@@ -110,8 +110,8 @@ func _useItemInSlot(slotIndex: int) -> void:
 
 # Build Factory: Money -> +1 Factory && Shop update Factory price
 func build_factory() -> void:
-	$"../Money".build_factory()
-	$"../Shop".build_factory($"../Money".factory_count)
+	$"../Stats/Money".build_factory()
+	$"../Shop".build_factory($"../Stats/Money".factory_count)
 
 # Check if there are LOCKED slots
 func can_add_new_slot() -> bool:
