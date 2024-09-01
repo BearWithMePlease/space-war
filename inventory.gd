@@ -94,19 +94,17 @@ func _useItemInSlot(slotIndex: int) -> void:
 	if slotItems[slotIndex] == ITEM_TYPES.SHIELD:
 		if $"../../Planets/mars/Shield".addShield():
 			remove_item_at(slotIndex)
-			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.SHIELD_ACTIVATE)
+
 	elif slotItems[slotIndex] == ITEM_TYPES.ROCKET:
 		$"../../Planets/mars/Missile Launcher".launch_missile(earth)
 		remove_item_at(slotIndex)
-		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ROCKET_LAUNCH_SOUND)
+
 	elif slotItems[slotIndex] == ITEM_TYPES.LASER:
 		if $"../../Planets/mars/Laser".initialize():
 			remove_item_at(slotIndex)
-			$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
 	elif slotItems[slotIndex] == ITEM_TYPES.ASTEROID:
 		$"../../Planets/mars/Missile Launcher".launch_asteroid(earth,true)
 		remove_item_at(slotIndex)
-		$"../../AudioPlayer".play_sound(AudioPlayer.SoundType.ASTEROID_LAUNCH_SOUND)
 
 # Build Factory: Money -> +1 Factory && Shop update Factory price
 func build_factory() -> void:

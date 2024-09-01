@@ -76,6 +76,8 @@ func shot(targetPos: Vector2) -> void:
 	coolDownTimer = shotCooldownBeforeHide
 	isInitialized = false
 	canApplyDamage = true
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.LASER_LAUNCH_SOUND)
+
 
 func _physics_process(delta):
 	# Raycast planets
