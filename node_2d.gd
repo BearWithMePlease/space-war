@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 class_name Main
 
 @export var pause_panel: Panel
@@ -31,7 +31,10 @@ func change_state(state:GameState):
 	if current_state == state: 
 		return
 	print("change scene to: " + str(state))
-
+	
+	if current_state == GameState.MENU:
+		$AudioPlayer.play_sound(AudioPlayer.SoundType.SOUND_BUTTON_CLICK)
+	
 	if state == GameState.PAUSE:
 		if pause_panel != null:
 			pause_panel.visible = true
@@ -53,10 +56,14 @@ func change_state(state:GameState):
 		print("From play to menu")
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://menu.tscn")
-	elif current_state == GameState.MENU and state == GameState.PLAYING:
+	elif current_state == GameState.INTRO and state == GameState.PLAYING:
 		print("From menu to play")
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://node_2d.tscn")
+	elif current_state == GameState.MENU and state == GameState.INTRO:
+		print("From menu to intro")
+		set_pause_mode(false)
+		get_tree().change_scene_to_file("res://intro.tscn")
 	
 	current_state = state
 	

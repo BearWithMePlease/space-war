@@ -1497,7 +1497,14 @@ script = ExtResource("30_4nmah")
 sounds = Array[AudioStreamMP3]([ExtResource("31_pow2m"), ExtResource("32_xda0j"), ExtResource("33_fkfab"), ExtResource("34_gj4xc"), ExtResource("35_jxw0y"), ExtResource("36_euywn"), ExtResource("37_6g7h0"), ExtResource("38_gbcj7"), ExtResource("39_rep05"), ExtResource("40_h3fyc"), ExtResource("41_porsf")])
 change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
 
-[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="change_state" binds= [2]]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("33_fkfab")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
+
+[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="." method="change_state" binds= [1]]
+[connection signal="button_down" from="CanvasLayer/VBoxContainer/PlayButton" to="AudioPlayer" method="play_sound" binds= [5]]
 [connection signal="button_down" from="CanvasLayer/VBoxContainer/SourceButton" to="CanvasLayer/VBoxContainer/SourceButton" method="_open_github"]
 [connection signal="timeout" from="earth_bot_script/start_of_match" to="earth_bot_script" method="_on_start_of_match_timeout"]
 [connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
