@@ -10,11 +10,25 @@ class_name Shield
 func addShield() -> bool:
 	if shieldCount >= 2:
 		return false
+	
+	#if firstShieldSprite.visible == false:
+		#firstShieldSprite.visible = true
+	#else:
+		#secondShieldSprite.visible = true
 	shieldCount += 1
 	updateVisible()
 	return true
-	
+
+#func removeSpecificShield(number):
+	#if number == 1:
+		#firstShieldSprite.visible = false
+		#shieldCount -= 1
+	#if number == 2:
+		#secondShieldSprite.visible = false
+		#shieldCount -= 1
+
 func removeShield() -> bool:
+	pass
 	if shieldCount <= 0:
 		return false
 	shieldCount -= 1

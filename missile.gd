@@ -15,17 +15,17 @@ var sun = null
 var venus = null
 var mercury = null
 
-var hit:bool = false
+var hit: bool = false
 
 func sendRocket(target: Node2D, launcher: Node2D) -> void:
 	self.target = target
 	self.launcher = launcher
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:	
-	scale = Vector2(0.1*time, 0.1*time)
+func _ready() -> void:
+	scale = Vector2(0.1 * time, 0.1 * time)
 	global_position = launcher.global_position
-	target_vector = Vector2(position.x - target.position.x, position.y- target.position.y)
+	target_vector = Vector2(position.x - target.position.x, position.y - target.position.y)
 	#print(rad_to_deg(target_vector.angle()))
 	self.rotation = target_vector.angle() - 0.5 * PI
 	pass # Replace with function body.
@@ -34,8 +34,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	time += delta
 	if time < 0.3:
-		speed = 1300*time + 300
-		scale = Vector2(0.0 + 1.5*time, 0.0 + 1.5*time)
+		speed = 1300 * time + 300
+		scale = Vector2(0.0 + 1.5 * time, 0.0 + 1.5 * time)
 	else:
 		target_vector = Vector2(position.x - target.position.x, position.y - target.position.y)
 		target_angle = target_vector.angle()
@@ -44,26 +44,33 @@ func _process(delta: float) -> void:
 			self.rotation = target_angle - 0.5 * PI
 
 
-	
 	if !hit:
 		if target_vector.length() < 30:
-			if launcher.object_struck_shield1:
-				target.find_child("Shield").removeShield()
-				launcher.object_struck_shield1 = false
+			var shield = target.find_child("Shield")
+			
+			if shield.shieldCount > 0:
+				shield.removeShield()
 				detonate(target)
-			elif launcher.object_struck_shield2:
-				target.find_child("Shield").removeShield()
-				launcher.object_struck_shield2 = false
-				detonate(target)
+				#queue_free()
+			#if launcher.object_struck_shield1:
+				#target.find_child("Shield").removeShield()
+				#target.find_child("Missile Launcher").object_struck_shield1 = false
+				#detonate(target)
+			#elif launcher.object_struck_shield2:
+				#target.find_child("Shield").removeShield()
+				#target.find_child("Missile Launcher").object_struck_shield2 = false
+				#detonate(target)
+				
 			else:
-				var population_child = target.find_child("Population")
-				if population_child != null:
+				var population = target.find_child("Population")
+				if population != null:
 					target.find_child("Population").take_hit(900000)
-					detonate(target)
+
+				detonate(target)
 		
 		collision_detection()
 		
-		move_local_y(-speed*delta)
+		move_local_y(-speed * delta)
 
 
 #static var venus_hit:bool = false
@@ -74,9 +81,9 @@ var explosion = preload("res://explosion.tscn")
 func detonate(strike):
 	hit = true
 	var new_explosion = explosion.instantiate()
-	new_explosion.attackVector = self.global_position-strike.global_position
+	new_explosion.attackVector = self.global_position - strike.global_position
 	new_explosion.mercury = mercury
-	new_explosion.venus = venus	
+	new_explosion.venus = venus
 	strike.add_child(new_explosion)
 	queue_free()
 
@@ -95,14 +102,13 @@ func collision_detection():
 			detonate(venus)
 		
 	if mercury != null and !mercury.isHit:
-		mercury_vector = Vector2(position.x -mercury.position.x, position.y - mercury.position.y)
+		mercury_vector = Vector2(position.x - mercury.position.x, position.y - mercury.position.y)
 		if mercury_vector.length() < 30:
 			print("hit the mercury")
 			mercury.isHit = true
 			detonate(mercury)
 	
 	
-
 #func _on_missile_area_entered(hit: Area2D) -> void:
 	
 	#
