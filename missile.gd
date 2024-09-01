@@ -63,7 +63,10 @@ func _process(delta: float) -> void:
 				#detonate(target)
 				
 			else:
-				target.find_child("Population").take_hit(900000)
+				var population = target.find_child("Population")
+				if population != null:
+					target.find_child("Population").take_hit(900000)
+
 				detonate(target)
 		
 		collision_detection()

@@ -42,10 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="Texture2D" uid="uid://5ry1e3lmybb0" path="res://img/population_icon.png" id="28_4a5l7"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="32_lb4f2"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
@@ -3853,6 +3853,8 @@ label_settings = ExtResource("32_lb4f2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Node2D" type="Node2D" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
+
 [node name="GameEndPanel" type="Panel" parent="GUI"]
 process_mode = 3
 visible = false
@@ -3974,8 +3976,6 @@ text = "Back to Menu"
 label_settings = ExtResource("32_lb4f2")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Node2D" type="Node2D" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
 
 [node name="position_hidden" type="Control" parent="GUI"]
 layout_mode = 3
