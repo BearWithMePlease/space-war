@@ -1,4 +1,4 @@
-[gd_scene load_steps=406 format=3 uid="uid://s50q1qay2ur3"]
+[gd_scene load_steps=441 format=3 uid="uid://s50q1qay2ur3"]
 
 [ext_resource type="Script" path="res://inventory.gd" id="1_1rxv7"]
 [ext_resource type="Script" path="res://node_2d.gd" id="1_1wgy6"]
@@ -36,15 +36,17 @@
 [ext_resource type="Texture2D" uid="uid://cyyr5rsrhrs8l" path="res://img/slot.png" id="25_mqxf5"]
 [ext_resource type="Texture2D" uid="uid://71ovu7em00na" path="res://img/key_lock.png" id="26_b27ab"]
 [ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="26_n6a6a"]
+[ext_resource type="Script" path="res://menu.gd" id="27_8qsbf"]
 [ext_resource type="Texture2D" uid="uid://bpb052dx3smid" path="res://img/buy_panel.png" id="27_iklvs"]
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
 [ext_resource type="Texture2D" uid="uid://5ry1e3lmybb0" path="res://img/population_icon.png" id="28_4a5l7"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="32_lb4f2"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
 [ext_resource type="AudioStream" uid="uid://caosivgc6bqx0" path="res://sound/asteroid-launch-sound.mp3" id="37_uwx67"]
@@ -2370,11 +2372,38 @@ font_size = 22
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pfer"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5ul4"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 0.784314)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_qulgs"]
+font = ExtResource("26_n6a6a")
+font_size = 80
+font_color = Color(0.682242, 0.660645, 0.693088, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4nu8m"]
+font = ExtResource("26_n6a6a")
+font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx6yb"]
+bg_color = Color(0.682353, 0.658824, 0.694118, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ymgt3"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("pause_panel")]
 position = Vector2(782, 460)
 script = ExtResource("1_1wgy6")
+pause_panel = NodePath("GUI/PausePanel")
 
 [node name="earth_bot_script" type="Node" parent="."]
 script = ExtResource("2_ua6it")
@@ -3677,6 +3706,120 @@ texture = ExtResource("25_luuys")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="PausePanel" type="Panel" parent="GUI"]
+process_mode = 3
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5ul4")
+script = ExtResource("27_8qsbf")
+
+[node name="Container" type="VBoxContainer" parent="GUI/PausePanel"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_right = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="GUI/PausePanel/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_qulgs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume" type="VBoxContainer" parent="GUI/PausePanel/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GUI/PausePanel/Container/Volume"]
+layout_mode = 2
+text = "Master Volume:"
+label_settings = SubResource("LabelSettings_4nu8m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="GUI/PausePanel/Container/Volume"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_icons/grabber = ExtResource("25_mqxf5")
+theme_override_icons/grabber_highlight = ExtResource("25_mqxf5")
+theme_override_styles/slider = SubResource("StyleBoxFlat_vx6yb")
+value = 50.0
+rounded = true
+
+[node name="Buttons" type="VBoxContainer" parent="GUI/PausePanel/Container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="Resume" type="Button" parent="GUI/PausePanel/Container/Buttons"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t3xxb")
+theme_override_styles/disabled = ExtResource("30_tims1")
+theme_override_styles/hover_pressed = ExtResource("31_wyo3l")
+theme_override_styles/hover = ExtResource("32_asw5v")
+theme_override_styles/pressed = ExtResource("31_wyo3l")
+theme_override_styles/normal = ExtResource("30_ay4ey")
+
+[node name="Label" type="Label" parent="GUI/PausePanel/Container/Buttons/Resume"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+label_settings = ExtResource("32_lb4f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit_To_Menu" type="Button" parent="GUI/PausePanel/Container/Buttons"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t3xxb")
+theme_override_styles/disabled = ExtResource("30_tims1")
+theme_override_styles/hover_pressed = ExtResource("31_wyo3l")
+theme_override_styles/hover = ExtResource("32_asw5v")
+theme_override_styles/pressed = ExtResource("31_wyo3l")
+theme_override_styles/normal = ExtResource("30_ay4ey")
+
+[node name="Label" type="Label" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit to Menu"
+label_settings = ExtResource("32_lb4f2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="position_hidden" type="Control" parent="GUI"]
 layout_mode = 3
 anchors_preset = 1
@@ -3700,8 +3843,9 @@ offset_bottom = 10.0
 grow_horizontal = 0
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamPolyphonic_ymgt3")
-volume_db = -5.0
+volume_db = 24.0
 autoplay = true
 script = ExtResource("36_q1dpw")
 sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6")])
@@ -3751,11 +3895,14 @@ min_zoom = 0.5
 [connection signal="focus_entered" from="GUI/Inventory/Slot_4/Button" to="GUI/Inventory" method="on_focus"]
 [connection signal="button_down" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="_useItemInSlot" binds= [5]]
 [connection signal="focus_entered" from="GUI/Inventory/Slot_5/Button" to="GUI/Inventory" method="on_focus"]
-[connection signal="gui_input" from="GUI/Shop" to="GUI/Shop" method="_on_gui_input"]
-[connection signal="gui_input" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="_on_control_gui_input"]
+[connection signal="mouse_entered" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="change_mouse_over_arrow" binds= [true]]
+[connection signal="mouse_exited" from="GUI/Shop/HBoxContainer/Control" to="GUI/Shop" method="change_mouse_over_arrow" binds= [false]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_0/Button" to="GUI/Shop" method="_on_item_buy" binds= [0]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_1/Button" to="GUI/Shop" method="_on_item_buy" binds= [1]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2/Button" to="GUI/Shop" method="_on_item_buy" binds= [2]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_3/Button" to="GUI/Shop" method="_on_item_buy" binds= [3]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_4/Button" to="GUI/Shop" method="_on_item_buy" binds= [4]]
 [connection signal="button_down" from="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_5/Button" to="GUI/Shop" method="_on_item_buy" binds= [5]]
+[connection signal="value_changed" from="GUI/PausePanel/Container/Volume/VolumeSlider" to="AudioPlayer" method="_on_volume_slider_value_changed"]
+[connection signal="button_down" from="GUI/PausePanel/Container/Buttons/Resume" to="GUI/PausePanel" method="_on_resume_button_down"]
+[connection signal="button_down" from="GUI/PausePanel/Container/Buttons/Quit_To_Menu" to="GUI/PausePanel" method="_on_quit_to_menu_button_down"]

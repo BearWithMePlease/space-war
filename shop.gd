@@ -18,6 +18,7 @@ extends Panel
 
 var current_state: String = "hidden"
 var current_prices: Array[int] = []
+var mouse_over_arrow: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,12 +29,8 @@ func _ready() -> void:
 		current_prices.append(starting_prices[index])
 		update_price(index)
 
-
-func update_price(index:int):
-	labels_prices[index].text = default_price_label + " " + str(current_prices[index])
-
-func _on_control_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("click") and mouse_over_arrow:
 		arrow_image.flip_h = !arrow_image.flip_h
 		if current_state == "hidden":
 			current_state = "visible"
@@ -47,6 +44,12 @@ func _on_control_gui_input(event: InputEvent) -> void:
 			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
 			var camera := $"../../Camera2D" as PanZoomCamera
 			camera.setActive(true)
+
+func update_price(index:int):
+	labels_prices[index].text = default_price_label + " " + str(current_prices[index])
+
+func change_mouse_over_arrow(status:bool):
+	mouse_over_arrow = status
 
 func shop_animation(property: String, value):
 	var tween = get_tree().create_tween()
