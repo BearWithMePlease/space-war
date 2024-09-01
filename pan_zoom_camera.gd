@@ -12,13 +12,32 @@ var position_before_drag2
 
 var is_active := true
 
+@export var randomStrength: float = 30.0
+@export var shakeFade: float = 5.0
+var rng = RandomNumberGenerator.new()
+var shake_strength: float = 0.0
+
+func setActive(state: bool) -> void:
+	is_active = state
+	
+func apply_shake() -> void:
+	shake_strength = randomStrength
+
 func _ready():
 	pass
 	#GlobalEvents.center_camera.connect(center_on_tables)
 
-func setActive(state: bool) -> void:
-	is_active = state
-
+func _process(delta: float) -> void:
+	if shake_strength > 0:
+		shake_strength = lerpf(shake_strength, 0, shakeFade * delta)
+		self.offset = _randomOffset()
+		
+func _randomOffset() -> Vector2:
+	return Vector2(
+		rng.randf_range(-shake_strength, shake_strength),
+		rng.randf_range(-shake_strength, shake_strength)
+	)
+	
 func _unhandled_input(event):
 	if not is_active:
 		return

@@ -37,6 +37,7 @@ func removeShield() -> bool:
 		return false
 	shieldCount -= 1
 	updateVisible()
+	$"../../../AudioPlayer".play_sound(AudioPlayer.SoundType.SHIELD_BREAK)
 	return true
 
 func updateVisible() -> void:

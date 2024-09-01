@@ -18,7 +18,8 @@ enum SoundType {
 	SHOP_WINDOW = 7,
 	SLOT_SELECT = 8,
 	UNLOCK_SLOT = 9,
-	BUILD_FACTORY = 10
+	BUILD_FACTORY = 10,
+	SHIELD_BREAK = 11,
 }
 
 func _ready() -> void:

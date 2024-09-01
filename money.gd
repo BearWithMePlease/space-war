@@ -33,10 +33,10 @@ func update_label():
 
 func update_buttons():
 	for index in $"../../Shop".current_prices.size():
-		if can_obtain_item(index):
+		if can_obtain_item(index) and item_buttons[index] != null:
 			item_buttons[index].disabled = false
 			item_buttons[index].mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		else:
+		elif item_buttons[index] != null:
 			item_buttons[index].disabled = true
 			item_buttons[index].mouse_default_cursor_shape = Control.CURSOR_ARROW
  

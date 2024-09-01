@@ -49,6 +49,7 @@ func can_add_item():
 
 # Bought item: Does not add to inv if Factory/New_Slot && Check if possible otherwise
 func add_item(type: int):
+	print(type)
 	if type == ITEM_TYPES.FACTORY: 
 		build_factory()
 	elif type == ITEM_TYPES.SLOT:
@@ -70,13 +71,13 @@ func set_cooldown(slotIndex:int, seconds: int):
 	cooldowns[slotIndex] = true
 	
 	# animate
-	cooldown_images[slotIndex].size = Vector2(88, 88)
-	cooldown_images[slotIndex].position = Vector2(6, 6)
+	cooldown_images[slotIndex].size = Vector2(75, 75)
+	cooldown_images[slotIndex].position = Vector2(0, 7)
 	
 	var tween = get_tree().create_tween()
 	tween.set_parallel()
-	tween.tween_property(cooldown_images[slotIndex], "position", Vector2(6, 94), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
-	tween.tween_property(cooldown_images[slotIndex], "size", Vector2(88, 0), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	tween.tween_property(cooldown_images[slotIndex], "position", Vector2(0, 70), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	tween.tween_property(cooldown_images[slotIndex], "size", Vector2(75, 0), seconds).set_trans(Tween.TransitionType.TRANS_LINEAR)
 	
 	# wait for cooldown to finish and enable slot use
 	await get_tree().create_timer(seconds).timeout

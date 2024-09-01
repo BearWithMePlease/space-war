@@ -14,6 +14,7 @@ class_name Population
 @export var DAMAGE_COLOR: Color
 @export var GROWTH_COLOR: Color
 @export var isEarth: bool
+@export var camera: PanZoomCamera = null
 
 var population:int
 var cycle_time = 0
@@ -67,6 +68,8 @@ func take_hit(kill_count:int) -> bool:
 	if !isEarth && population > 0:
 		dmgTag = true
 	
+	if !isEarth && camera != null:
+		camera.apply_shake()
 	
 	if isEarth && population == 0:
 		recoveryTimer.start()

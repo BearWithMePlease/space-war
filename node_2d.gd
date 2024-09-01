@@ -11,7 +11,8 @@ enum GameState {
 	PLAYING = 2,
 	PAUSE = 3,
 	DEFEAT = 4,
-	VICTORY = 5
+	VICTORY = 5,
+	TUTORIAL = 6,
 }
 
 @export var current_state: GameState = GameState.PLAYING
@@ -30,8 +31,7 @@ func _ready() -> void:
 func change_state(state:GameState):
 	if current_state == state: 
 		return
-	print("change scene to: " + str(state))
-
+	$AudioPlayer.play_sound(AudioPlayer.SoundType.SOUND_BUTTON_CLICK)
 	if state == GameState.PAUSE:
 		if pause_panel != null:
 			pause_panel.visible = true
@@ -50,13 +50,14 @@ func change_state(state:GameState):
 		victory_panel.visible = true
 		set_pause_mode(false)
 	elif state == GameState.MENU:
-		print("From play to menu")
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://menu.tscn")
-	elif current_state == GameState.MENU and state == GameState.PLAYING:
-		print("From menu to play")
+	elif state == GameState.PLAYING:
 		set_pause_mode(false)
 		get_tree().change_scene_to_file("res://node_2d.tscn")
+	elif state == GameState.TUTORIAL:
+		set_pause_mode(false)
+		get_tree().change_scene_to_file("res://tutorial.tscn")
 	
 	current_state = state
 	

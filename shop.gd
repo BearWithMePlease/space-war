@@ -37,16 +37,19 @@ func _process(delta: float) -> void:
 			shop_animation("position", position_visible.position)
 			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
 			var camera := $"../../Camera2D" as PanZoomCamera
-			camera.setActive(false)
+			if camera != null:
+				camera.setActive(false)
 		elif current_state == "visible":
 			current_state = "hidden"
 			shop_animation("position", position_hidden.position)
 			$"../../AudioPlayer".play_sound($"../../AudioPlayer".SoundType.SHOP_WINDOW)
 			var camera := $"../../Camera2D" as PanZoomCamera
-			camera.setActive(true)
+			if camera != null:
+				camera.setActive(true)
 
 func update_price(index:int):
-	labels_prices[index].text = default_price_label + " " + str(current_prices[index])
+	if labels_prices[index] != null:
+		labels_prices[index].text = default_price_label + " " + str(current_prices[index])
 
 func change_mouse_over_arrow(status:bool):
 	mouse_over_arrow = status

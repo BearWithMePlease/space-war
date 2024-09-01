@@ -91,20 +91,17 @@ func collision_detection():
 	if sun != null:
 		sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
 		if sun_vector.length() < 50:
-			print("hit the sun")
 			detonate(sun)
 	
 	if venus != null and !venus.isHit:
 		venus_vector = Vector2(position.x - venus.position.x, position.y - venus.position.y)
 		if venus_vector.length() < 30:
-			print("hit the venus")
 			venus.isHit = true
 			detonate(venus)
 		
 	if mercury != null and !mercury.isHit:
 		mercury_vector = Vector2(position.x - mercury.position.x, position.y - mercury.position.y)
 		if mercury_vector.length() < 30:
-			print("hit the mercury")
 			mercury.isHit = true
 			detonate(mercury)
 	
