@@ -98,12 +98,18 @@ func _physics_process(delta):
 			var dst: float = (result.position - laserLine.global_position).length()
 			laserLine.points[1] = laserLine.position + Vector2(0, -dst * I_DONT_KNOW_WHY)
 			var hitPlanet := result.collider.get_parent() as Planet
-			if canApplyDamage and hitPlanet != null:
+			var hitShield := result.collider.get_parent().get_parent() as Shield
+			if canApplyDamage:
 				canApplyDamage = false
-				for child in hitPlanet.get_children():
-					if child is Population:
-						child.take_hit(10000)
-						break
+				if hitPlanet != null:
+					print("reached the planet")
+					for child in hitPlanet.get_children():
+						if child is Population:
+							child.take_hit(10000)
+							break
+				if hitShield != null:
+					print("reached the shield")
+					hitShield.removeShield()
 				
 		else:
 			laserLine.points[0] = laserLine.position

@@ -1,18 +1,18 @@
-[gd_scene load_steps=208 format=3 uid="uid://cwu72ds36ylg8"]
+[gd_scene load_steps=211 format=3 uid="uid://cwu72ds36ylg8"]
 
 [ext_resource type="Script" path="res://node_2d.gd" id="1_chtbm"]
 [ext_resource type="FontFile" uid="uid://b6arxd0owoimo" path="res://img/PressStart2P-Regular.ttf" id="2_kcwb4"]
 [ext_resource type="Texture2D" uid="uid://da1a7qge2ju36" path="res://animated/mars.png" id="2_y767o"]
 [ext_resource type="Script" path="res://sun.gd" id="3_ijpj1"]
 [ext_resource type="Script" path="res://planet.gd" id="3_x124e"]
-[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
+[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="4_3vhpe"]
 [ext_resource type="Script" path="res://shield.gd" id="4_wrf7d"]
 [ext_resource type="Shader" path="res://shield.gdshader" id="5_hil2g"]
-[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
+[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="5_qqgc2"]
 [ext_resource type="Script" path="res://laser.gd" id="6_11vxj"]
-[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="6_vnedh"]
+[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="6_vnedh"]
 [ext_resource type="Script" path="res://menu_parallax.gd" id="7_7m6lj"]
-[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="7_s6n8t"]
+[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="7_s6n8t"]
 [ext_resource type="Texture2D" uid="uid://ce3tt4m8u3iqp" path="res://img/laser_unactive.png" id="7_x7gt6"]
 [ext_resource type="Script" path="res://earth_bot_script.gd" id="8_0gg04"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="8_4tw2u"]
@@ -406,7 +406,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2bex"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uq4fr"]
+radius = 49.2319
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7a4nd"]
 shader = ExtResource("5_hil2g")
 shader_parameter/SHIELD_COLOR = Vector3(0.37, 0.8, 0.89)
 shader_parameter/EDGE_COLOR = Vector3(0.8, 0.86, 0.95)
@@ -415,13 +418,10 @@ shader_parameter/noiseFrequency = 50.0
 shader_parameter/noiseClamp = 0.2
 shader_parameter/edgeThreshhold = 0.9
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nvinr"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f0er2"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nm0fj"]
-noise = SubResource("FastNoiseLite_nvinr")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_uq4fr"]
-radius = 49.2319
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wqild"]
+noise = SubResource("FastNoiseLite_f0er2")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnb68"]
 atlas = ExtResource("15_pl1la")
@@ -1147,6 +1147,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0m8b"]
 radius = 50.111
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2o70i"]
+shader = ExtResource("5_hil2g")
+shader_parameter/SHIELD_COLOR = Vector3(0.37, 0.8, 0.89)
+shader_parameter/EDGE_COLOR = Vector3(0.8, 0.86, 0.95)
+shader_parameter/radius = 90.0
+shader_parameter/noiseFrequency = 50.0
+shader_parameter/noiseClamp = 0.2
+shader_parameter/edgeThreshhold = 0.9
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2y1d1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cd1gy"]
+noise = SubResource("FastNoiseLite_2y1d1")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2srgs"]
 atlas = ExtResource("25_tifi2")
 region = Rect2(0, 0, 43, 104)
@@ -1329,27 +1343,40 @@ position = Vector2(-355, -150)
 sprite_frames = SubResource("SpriteFrames_tr68g")
 script = ExtResource("3_ijpj1")
 
-[node name="Shield" type="Node2D" parent="Planets/mars" node_paths=PackedStringArray("firstShieldSprite", "secondShieldSprite")]
-script = ExtResource("4_wrf7d")
-shieldCount = 1
-firstShieldSprite = NodePath("Sprite2D")
-secondShieldSprite = NodePath("Sprite2D2")
-
-[node name="Sprite2D" type="Sprite2D" parent="Planets/mars/Shield"]
-material = SubResource("ShaderMaterial_x2bex")
-scale = Vector2(0.359623, 0.359623)
-texture = SubResource("NoiseTexture2D_nm0fj")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Planets/mars/Shield"]
-material = SubResource("ShaderMaterial_x2bex")
-rotation = -3.14159
-scale = Vector2(0.359623, 0.359623)
-texture = SubResource("NoiseTexture2D_nm0fj")
-
 [node name="Area2D" type="Area2D" parent="Planets/mars"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Planets/mars/Area2D"]
 shape = SubResource("CircleShape2D_uq4fr")
+
+[node name="Shield" type="Node2D" parent="Planets/mars" node_paths=PackedStringArray("firstShieldSprite", "firstShieldArea", "secondShieldSprite", "secondShieldArea")]
+script = ExtResource("4_wrf7d")
+firstShieldSprite = NodePath("Sprite2D")
+firstShieldArea = NodePath("Sprite2D/Area2D")
+secondShieldSprite = NodePath("Sprite2D2")
+secondShieldArea = NodePath("Sprite2D2/Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planets/mars/Shield"]
+material = SubResource("ShaderMaterial_7a4nd")
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_wqild")
+
+[node name="Area2D" type="Area2D" parent="Planets/mars/Shield/Sprite2D"]
+scale = Vector2(2.78069, 2.78069)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/mars/Shield/Sprite2D/Area2D"]
+polygon = PackedVector2Array(0, -85.7143, 14.2857, -84.127, 26.9841, -80.9524, 36.5079, -77.7778, 46.0317, -71.4286, 55.5556, -65.0794, 63.4921, -57.1429, 69.8413, -49.2063, 77.7778, -36.5079, 82.5397, -22.2222, 85.7143, -6.34921, 85.7143, 6.34921, 82.5397, 20.6349, 76.1905, 36.5079, 66.6667, 52.381, 58.7302, 61.9048, 47.619, 71.4286, 36.5079, 77.7778, 22.2222, 82.5397, 6.34921, 85.7143, 0, 85.7143, 0, 68.254, 41.2698, 53.9683, 65.0794, 6.34921, 57.1429, -36.5079, 0, -68.254)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Planets/mars/Shield"]
+material = SubResource("ShaderMaterial_7a4nd")
+rotation = -3.14159
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_wqild")
+
+[node name="Area2D" type="Area2D" parent="Planets/mars/Shield/Sprite2D2"]
+scale = Vector2(2.78069, 2.78069)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/mars/Shield/Sprite2D2/Area2D"]
+polygon = PackedVector2Array(0, -85.7143, 14.2857, -84.127, 26.9841, -80.9524, 36.5079, -77.7778, 46.0317, -71.4286, 55.5556, -65.0794, 63.4921, -57.1429, 69.8413, -49.2063, 77.7778, -36.5079, 82.5397, -22.2222, 85.7143, -6.34921, 85.7143, 6.34921, 82.5397, 20.6349, 76.1905, 36.5079, 66.6667, 52.381, 58.7302, 61.9048, 47.619, 71.4286, 36.5079, 77.7778, 22.2222, 82.5397, 6.34921, 85.7143, 0, 85.7143, 0, 68.254, 41.2698, 53.9683, 65.0794, 6.34921, 57.1429, -36.5079, 0, -68.254)
 
 [node name="earth" type="AnimatedSprite2D" parent="Planets"]
 z_index = 1
@@ -1370,22 +1397,6 @@ script = ExtResource("3_x124e")
 rotation_time = 2.0
 height = 100.0
 length = 100.0
-
-[node name="Shield" type="Node2D" parent="Planets/earth" node_paths=PackedStringArray("firstShieldSprite", "secondShieldSprite")]
-script = ExtResource("4_wrf7d")
-firstShieldSprite = NodePath("Sprite2D")
-secondShieldSprite = NodePath("Sprite2D2")
-
-[node name="Sprite2D" type="Sprite2D" parent="Planets/earth/Shield"]
-material = SubResource("ShaderMaterial_x2bex")
-scale = Vector2(0.359623, 0.359623)
-texture = SubResource("NoiseTexture2D_nm0fj")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Planets/earth/Shield"]
-material = SubResource("ShaderMaterial_x2bex")
-rotation = -3.14159
-scale = Vector2(0.359623, 0.359623)
-texture = SubResource("NoiseTexture2D_nm0fj")
 
 [node name="Missile Launcher" type="Node2D" parent="Planets/earth"]
 script = ExtResource("9_xnymi")
@@ -1414,6 +1425,34 @@ texture_filter = 1
 points = PackedVector2Array(0, 0, 0, 0)
 width = 3.0
 default_color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[node name="Shield" type="Node2D" parent="Planets/earth" node_paths=PackedStringArray("firstShieldSprite", "firstShieldArea", "secondShieldSprite", "secondShieldArea")]
+script = ExtResource("4_wrf7d")
+firstShieldSprite = NodePath("Sprite2D")
+firstShieldArea = NodePath("Sprite2D/Area2D")
+secondShieldSprite = NodePath("Sprite2D2")
+secondShieldArea = NodePath("Sprite2D2/Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Planets/earth/Shield"]
+material = SubResource("ShaderMaterial_2o70i")
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_cd1gy")
+
+[node name="Area2D" type="Area2D" parent="Planets/earth/Shield/Sprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/earth/Shield/Sprite2D/Area2D"]
+polygon = PackedVector2Array(0, -237.517, 18.1349, -237.517, 54.4048, -231.724, 96.7197, -220.138, 120.9, -202.759, 157.169, -179.586, 181.349, -150.621, 199.484, -127.448, 211.574, -104.276, 223.664, -69.5172, 235.754, -23.1724, 235.754, 17.3793, 229.709, 57.931, 217.619, 92.6897, 181.349, 150.621, 157.169, 173.793, 120.9, 202.759, 84.6297, 220.138, 42.3149, 231.724, 0, 237.517, 0, 185.379, 126.945, 139.035, 187.394, 23.1724, 145.079, -121.655, 0, -191.172)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Planets/earth/Shield"]
+material = SubResource("ShaderMaterial_2o70i")
+rotation = -3.14159
+scale = Vector2(0.359623, 0.359623)
+texture = SubResource("NoiseTexture2D_cd1gy")
+
+[node name="Area2D" type="Area2D" parent="Planets/earth/Shield/Sprite2D2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Planets/earth/Shield/Sprite2D2/Area2D"]
+polygon = PackedVector2Array(0, -237.517, 18.1349, -237.517, 54.4048, -231.724, 96.7197, -220.138, 120.9, -202.759, 157.169, -179.586, 181.349, -150.621, 199.484, -127.448, 211.574, -104.276, 223.664, -69.5172, 235.754, -23.1724, 235.754, 17.3793, 229.709, 57.931, 217.619, 92.6897, 181.349, 150.621, 157.169, 173.793, 120.9, 202.759, 84.6297, 220.138, 42.3149, 231.724, 0, 237.517, 0, 185.379, 126.945, 139.035, 187.394, 23.1724, 145.079, -121.655, 0, -191.172)
 
 [node name="Static rocket" type="AnimatedSprite2D" parent="Planets"]
 position = Vector2(-207, -210)

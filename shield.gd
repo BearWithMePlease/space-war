@@ -4,7 +4,9 @@ class_name Shield
 
 @export var shieldCount: int = 0
 @export var firstShieldSprite: Sprite2D = null
+@export var firstShieldArea: Area2D = null
 @export var secondShieldSprite: Sprite2D = null
+@export var secondShieldArea: Area2D = null
 @export var rotationSpeed: float = 2.0
 
 func addShield() -> bool:
@@ -40,8 +42,10 @@ func removeShield() -> bool:
 func updateVisible() -> void:
 	if firstShieldSprite != null:
 		firstShieldSprite.visible = shieldCount >= 1
+		(firstShieldArea.get_child(0) as CollisionPolygon2D).disabled = !(shieldCount >= 1)
 	if secondShieldSprite != null:
 		secondShieldSprite.visible = shieldCount >= 2
+		(secondShieldArea.get_child(0) as CollisionPolygon2D).disabled = !(shieldCount >= 2)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
