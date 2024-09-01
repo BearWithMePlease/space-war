@@ -38,7 +38,7 @@ func change_state(state:GameState):
 		if victory_panel != null:
 			victory_panel.visible = false
 		set_pause_mode(false)
-	elif state == GameState.PLAYING:
+	elif current_state == GameState.PAUSE and state == GameState.PLAYING:
 		if pause_panel != null:
 			pause_panel.visible = false
 		if victory_panel != null:
@@ -46,7 +46,6 @@ func change_state(state:GameState):
 		set_pause_mode(true)
 	elif state == GameState.VICTORY or state == GameState.DEFEAT:
 		$GUI/GameEndPanel/Container/Stats.update_stats(state == GameState.VICTORY)
-		
 		pause_panel.visible = false
 		victory_panel.visible = true
 		set_pause_mode(true)
