@@ -11,7 +11,8 @@ enum GameState {
 	PLAYING = 2,
 	PAUSE = 3,
 	DEFEAT = 4,
-	VICTORY = 5
+	VICTORY = 5,
+	TUTORIAL = 6
 }
 
 @export var current_state: GameState = GameState.PLAYING
