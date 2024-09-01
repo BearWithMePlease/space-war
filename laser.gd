@@ -26,6 +26,7 @@ var coolDownTimer := 0.0
 var initCoolDownTimer := 0.0
 var isInitialized := false
 var canApplyDamage := false
+var targetDirection := Vector2(0, 0)
 
 func _ready() -> void:
 	isInitialized = false
@@ -47,7 +48,7 @@ func _process(delta: float) -> void:
 		targetPos = botTarget.global_position
 		
 	# Moving in circle around planet following mouse
-	var targetDirection: Vector2 = (targetPos - get_parent().global_position).normalized()
+	targetDirection = (targetPos - get_parent().global_position).normalized()
 	self.position = targetDirection * orbitRadius;
 	var angle := atan2(targetDirection.y, targetDirection.x) + PI * 0.5
 	self.rotation = angle
@@ -78,9 +79,6 @@ func shot(targetPos: Vector2) -> void:
 
 func _physics_process(delta):
 	# Raycast planets
-	var mousePos := get_global_mouse_position()
-	var targetDirection: Vector2 = (mousePos - laserLine.global_position).normalized()
-	
 	if coolDownTimer > 0.01:
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsRayQueryParameters2D.create(
@@ -100,7 +98,6 @@ func _physics_process(delta):
 				canApplyDamage = false
 				for child in hitPlanet.get_children():
 					if child is Population:
-						print("suck my laser")
 						child.take_hit(10000)
 						break
 				

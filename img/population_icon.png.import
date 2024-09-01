@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lq8mobli1seg"
-path="res://.godot/imported/population_icon.svg-10d22e45117ce62025ff1dfe8a6d2fbc.ctex"
+uid="uid://5ry1e3lmybb0"
+path="res://.godot/imported/population_icon.png-2f6675eb8c38ac942e2f8aeef4e0cac2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/population_icon.svg"
-dest_files=["res://.godot/imported/population_icon.svg-10d22e45117ce62025ff1dfe8a6d2fbc.ctex"]
+source_file="res://img/population_icon.png"
+dest_files=["res://.godot/imported/population_icon.png-2f6675eb8c38ac942e2f8aeef4e0cac2.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

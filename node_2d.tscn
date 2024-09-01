@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://dipx7b38jl1ro" path="res://asteroid.png" id="19_c0fgu"]
 [ext_resource type="Texture2D" uid="uid://bhjs7117w8a18" path="res://img/energy.png" id="19_lqr0b"]
 [ext_resource type="Script" path="res://population.gd" id="19_yweg1"]
-[ext_resource type="Texture2D" uid="uid://lq8mobli1seg" path="res://img/population_icon.svg" id="20_jr6a8"]
 [ext_resource type="Texture2D" uid="uid://4esh2ebtpm88" path="res://img/factory.png" id="20_n7my1"]
 [ext_resource type="Texture2D" uid="uid://csdobotqm4q3b" path="res://img/shield.png" id="24_nyhc7"]
 [ext_resource type="Texture2D" uid="uid://bmk0tc6rcfx4q" path="res://img/rocket.png" id="25_1biib"]
@@ -41,11 +40,12 @@
 [ext_resource type="Texture2D" uid="uid://bpb052dx3smid" path="res://img/buy_panel.png" id="27_iklvs"]
 [ext_resource type="LabelSettings" uid="uid://ccmo0tqjgxffx" path="res://img/shop_label.tres" id="27_m1ux1"]
 [ext_resource type="Texture2D" uid="uid://bdt73ps2e5jwc" path="res://img/close_arrow.png" id="27_vgd7e"]
+[ext_resource type="Texture2D" uid="uid://5ry1e3lmybb0" path="res://img/population_icon.png" id="28_4a5l7"]
 [ext_resource type="LabelSettings" uid="uid://6asc3sr83e51" path="res://img/shop_buy_label.tres" id="28_4v1wk"]
-[ext_resource type="StyleBox" uid="uid://bdw2ecq0j0ao0" path="res://img/button_texture.tres" id="30_ay4ey"]
-[ext_resource type="StyleBox" uid="uid://dgwajyfjlwtx7" path="res://img/button_texture_disabled.tres" id="30_tims1"]
-[ext_resource type="StyleBox" uid="uid://cen6k4x56t42r" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
-[ext_resource type="StyleBox" uid="uid://dipj0j2ekpgam" path="res://img/button_texture_hover.tres" id="32_asw5v"]
+[ext_resource type="StyleBox" path="res://img/button_texture.tres" id="30_ay4ey"]
+[ext_resource type="StyleBox" path="res://img/button_texture_disabled.tres" id="30_tims1"]
+[ext_resource type="StyleBox" path="res://img/button_texture_pressed.tres" id="31_wyo3l"]
+[ext_resource type="StyleBox" path="res://img/button_texture_hover.tres" id="32_asw5v"]
 [ext_resource type="LabelSettings" uid="uid://o6eq47owc22v" path="res://img/menu_button_texture.tres" id="32_lb4f2"]
 [ext_resource type="Script" path="res://audio_player.gd" id="36_q1dpw"]
 [ext_resource type="Texture2D" uid="uid://c8ett3glvkdnx" path="res://img/key_unlock.png" id="36_q6e3p"]
@@ -867,10 +867,10 @@ shader_parameter/noiseFrequency = 50.0
 shader_parameter/noiseClamp = 0.2
 shader_parameter/edgeThreshhold = 0.9
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nvinr"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_f0er2"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aviel"]
-noise = SubResource("FastNoiseLite_nvinr")
+noise = SubResource("FastNoiseLite_f0er2")
 
 [sub_resource type="LabelSettings" id="LabelSettings_73div"]
 font = ExtResource("26_n6a6a")
@@ -2551,8 +2551,9 @@ grow_vertical = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Planets/mars/Population/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("20_jr6a8")
+texture = ExtResource("28_4a5l7")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2721,8 +2722,9 @@ grow_vertical = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Planets/earth/Population/HBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-texture = ExtResource("20_jr6a8")
+texture = ExtResource("28_4a5l7")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2759,23 +2761,27 @@ shape = SubResource("CircleShape2D_w8r8m")
 z_index = -1
 y_sort_enabled = true
 points = PackedVector2Array(-725, -382)
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="mercury line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="venus line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="mars line" type="Line2D" parent="Planets"]
 z_index = -1
 y_sort_enabled = true
 position = Vector2(-6.10352e-05, 0)
-width = 2.0
+width = 1.0
+default_color = Color(0.607843, 0.678431, 0.717647, 1)
 
 [node name="Area2D" type="Area2D" parent="Planets/mars line"]
 
@@ -2831,7 +2837,7 @@ vertical_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="GUI/Stats/Population_Mars"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("20_jr6a8")
+texture = ExtResource("28_4a5l7")
 expand_mode = 2
 stretch_mode = 5
 
@@ -2849,7 +2855,7 @@ vertical_alignment = 1
 [node name="TextureRect" type="TextureRect" parent="GUI/Stats/Population_Earth"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("20_jr6a8")
+texture = ExtResource("28_4a5l7")
 expand_mode = 2
 stretch_mode = 5
 
@@ -3968,6 +3974,8 @@ text = "Back to Menu"
 label_settings = ExtResource("32_lb4f2")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Node2D" type="Node2D" parent="GUI/PausePanel/Container/Buttons/Quit_To_Menu"]
 
 [node name="position_hidden" type="Control" parent="GUI"]
 layout_mode = 3

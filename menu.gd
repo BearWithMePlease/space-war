@@ -18,4 +18,4 @@ func _on_resume_button_down() -> void:
 
 
 func _on_quit_to_menu_button_down() -> void:
-	pass # Replace with function body.
+	$"../..".change_state(Main.GameState.MENU)

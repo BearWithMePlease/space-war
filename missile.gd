@@ -86,19 +86,20 @@ func detonate(strike):
 	queue_free()
 
 func collision_detection():
-	sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
-	if sun_vector.length() < 50:
-		print("hit the sun")
-		detonate(sun)
+	if sun != null:
+		sun_vector = Vector2(position.x - sun.position.x, position.y - sun.position.y)
+		if sun_vector.length() < 50:
+			print("hit the sun")
+			detonate(sun)
 	
-	if !venus.isHit:
+	if venus != null and !venus.isHit:
 		venus_vector = Vector2(position.x - venus.position.x, position.y - venus.position.y)
 		if venus_vector.length() < 30:
 			print("hit the venus")
 			venus.isHit = true
 			detonate(venus)
 		
-	if !mercury.isHit:
+	if mercury != null and !mercury.isHit:
 		mercury_vector = Vector2(position.x -mercury.position.x, position.y - mercury.position.y)
 		if mercury_vector.length() < 30:
 			print("hit the mercury")
@@ -106,3 +107,21 @@ func collision_detection():
 			detonate(mercury)
 	
 	
+
+#func _on_missile_area_entered(hit: Area2D) -> void:
+	
+	#
+	#
+	#
+	#if hit.get_parent() == launcher.get_parent() or target == hit.get_parent() or hit.get_parent() == self: # friendly fire prevention, if disabled explodes on launch
+		#print("nothing happens")
+	#else:
+		#
+		#print(hit.get_parent())
+		##hit.get_parent().death()
+		#
+	#
+#
+		#
+		#print("clearing")
+		#queue_free()
