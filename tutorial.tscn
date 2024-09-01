@@ -60,7 +60,7 @@
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="60_ke6a2"]
 [ext_resource type="Script" path="res://tutorial.gd" id="61_02iy3"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="61_ttn8v"]
-[ext_resource type="AudioStream" uid="uid://bteso0owsyocp" path="res://sound/shield-break.mp3" id="62_68vbi"]
+[ext_resource type="AudioStream" uid="uid://p8dvo5po7t6p" path="res://sound/shield-break.mp3" id="62_68vbi"]
 [ext_resource type="Script" path="res://pan_zoom_camera.gd" id="63_gbee8"]
 [ext_resource type="Texture2D" uid="uid://bwutb7k5marf3" path="res://img/background.png" id="64_jjq5g"]
 
@@ -3064,6 +3064,7 @@ position_visible = NodePath("../position_visible")
 
 [node name="OpenShop" type="Label" parent="GUI/Shop"]
 texture_filter = 1
+layout_mode = 0
 offset_left = -439.0
 offset_top = 234.0
 offset_right = -7.0
@@ -3223,6 +3224,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="BuyItem" type="Label" parent="GUI/Shop/HBoxContainer/LayoutBox/ScrollContainer/Items/Item_2"]
+layout_mode = 0
 offset_left = 204.0
 offset_right = 396.0
 offset_bottom = 24.0

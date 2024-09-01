@@ -64,7 +64,6 @@
 [ext_resource type="Script" path="res://fade_in.gd" id="49_f4kqi"]
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="53_hm1g1"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="54_0l4j6"]
-[ext_resource type="AudioStream" uid="uid://bteso0owsyocp" path="res://sound/shield-break.mp3" id="62_s64u2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1smhr"]
 atlas = ExtResource("2_5i5np")

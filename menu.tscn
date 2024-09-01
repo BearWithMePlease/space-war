@@ -41,7 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://bxed4hdytim30" path="res://sound/slot-select.mp3" id="39_rep05"]
 [ext_resource type="AudioStream" uid="uid://cbggrso8oljje" path="res://sound/unlock_slot.mp3" id="40_h3fyc"]
 [ext_resource type="AudioStream" uid="uid://bo6gaypwstrh4" path="res://sound/build_factory.mp3" id="41_porsf"]
-[ext_resource type="AudioStream" uid="uid://bteso0owsyocp" path="res://sound/shield-break.mp3" id="42_ck7yw"]
+[ext_resource type="AudioStream" uid="uid://p8dvo5po7t6p" path="res://sound/shield-break.mp3" id="42_ck7yw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6n8eb"]
 font = ExtResource("2_kcwb4")
