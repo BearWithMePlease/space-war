@@ -1205,7 +1205,6 @@ script = ExtResource("1_chtbm")
 current_state = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 8
@@ -1213,10 +1212,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -800.0
-offset_top = -456.0
-offset_right = -350.0
-offset_bottom = -214.0
+offset_left = -225.0
+offset_top = -121.0
+offset_right = 225.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -1290,12 +1289,30 @@ texture = ExtResource("10_62vx5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500000.0
+offset_top = -500000.0
+offset_right = 500000.0
+offset_bottom = 500000.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_bp1lg")
+stretch_mode = 1
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." node_paths=PackedStringArray("camera")]
 scroll_ignore_camera_zoom = true
 script = ExtResource("7_7m6lj")
 camera = NodePath("../Camera2D")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(725, 510)
 

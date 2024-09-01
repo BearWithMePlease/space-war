@@ -4016,33 +4016,28 @@ script = ExtResource("36_q1dpw")
 sounds = Array[AudioStreamMP3]([ExtResource("37_uwx67"), ExtResource("38_texrt"), ExtResource("39_sevwx"), ExtResource("40_141cv"), ExtResource("41_r8hss"), ExtResource("38_ylaoy"), ExtResource("42_i1dpn"), ExtResource("43_0p38h"), ExtResource("44_pmdl1"), ExtResource("53_hm1g1"), ExtResource("54_0l4j6")])
 change_volume = Array[int]([-10, 0, 0, -10, -15, -5, 0, -15, -25, -10, -15])
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_ignore_camera_zoom = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(0, -2)
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(725, 510)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource("41_w0xhp")
-
-[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1444, 0)
-texture = ExtResource("41_w0xhp")
-
-[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1444, 1016)
-texture = ExtResource("41_w0xhp")
-
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(0, 1016)
-texture = ExtResource("41_w0xhp")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 script = ExtResource("13_puh5w")
 min_zoom = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+z_index = -100
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500000.0
+offset_top = -500000.0
+offset_right = 500000.0
+offset_bottom = 500000.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("41_w0xhp")
+stretch_mode = 1
 
 [connection signal="timeout" from="earth_bot_script/start_of_match" to="earth_bot_script" method="_on_start_of_match_timeout"]
 [connection signal="timeout" from="earth_bot_script/probing_shot" to="earth_bot_script" method="_on_probing_shot_timeout"]
