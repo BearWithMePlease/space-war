@@ -28,7 +28,9 @@ func _ready() -> void:
 		if child.process_mode == Node.PROCESS_MODE_INHERIT:
 			child.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
-	
+	ResourceLoader.load_threaded_request("res://node_2d.tscn")
+	ResourceLoader.load_threaded_request("res://intro.tscn")
+	ResourceLoader.load_threaded_request("res://tutorial.tscn")
 	
 
 func change_state(state:GameState):
@@ -55,16 +57,20 @@ func change_state(state:GameState):
 		set_pause_mode(false)
 	elif state == GameState.MENU:
 		set_pause_mode(false)
+		
+		
 		get_tree().change_scene_to_file("res://menu.tscn")
 	elif state == GameState.PLAYING:
 		set_pause_mode(false)
-		get_tree().change_scene_to_file("res://node_2d.tscn")
+		
+		#get_tree().change_scene_to_file("res://node_2d.tscn")
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get("res://node_2d.tscn"))
 	elif current_state == GameState.MENU and state == GameState.INTRO:
 		set_pause_mode(false)
-		get_tree().change_scene_to_file("res://intro.tscn")
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get("res://intro.tscn"))
 	elif state == GameState.TUTORIAL:
 		set_pause_mode(false)
-		get_tree().change_scene_to_file("res://tutorial.tscn")
+		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get("res://tutorial.tscn"))
 	
 	current_state = state
 	

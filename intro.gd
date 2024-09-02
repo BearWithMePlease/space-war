@@ -6,11 +6,14 @@ extends CanvasLayer
 @export var audio_player: AudioStreamPlayer
 @export var war_audio_player: AudioStreamPlayer
 @export var paper_fluter_player: AudioStreamPlayer
+@export var progress_label: Label
 
 var current_panel: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	progress_label.visible = false
+	
 	for txt in txts:
 		txt.visible_ratio = 0
 	

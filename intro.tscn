@@ -30,13 +30,14 @@ font = ExtResource("1_vj3ps")
 script = ExtResource("1_wgr72")
 current_state = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("panels", "txts", "audio_player", "war_audio_player", "paper_fluter_player")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("panels", "txts", "audio_player", "war_audio_player", "paper_fluter_player", "progress_label")]
 script = ExtResource("1_l7vtg")
 panels = [NodePath("Panel0"), NodePath("Panel1"), NodePath("Panel2"), NodePath("Panel3"), NodePath("Panel4"), NodePath("Panel5")]
 txts = [NodePath("Panel0/txt0"), NodePath("Panel1/txt1"), NodePath("Panel2/txt2"), NodePath("Panel3/txt3"), NodePath("Panel4/txt4"), NodePath("Panel5/txt5")]
 audio_player = NodePath("../BlubPlayer")
 war_audio_player = NodePath("../WarPlayer")
 paper_fluter_player = NodePath("../PaperFlutter")
+progress_label = NodePath("Panel5/ProgressLabel")
 
 [node name="Panel0" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -532,6 +533,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Nah I'll win"
+label_settings = SubResource("LabelSettings_4klhq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressLabel" type="Label" parent="CanvasLayer/Panel5"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = 59.0
+offset_right = 110.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Progress:"
 label_settings = SubResource("LabelSettings_4klhq")
 horizontal_alignment = 1
 vertical_alignment = 1
