@@ -9,6 +9,8 @@ extends CanvasLayer
 @export var progress_label: Label
 
 var current_panel: int = -1
+var loading_scene = false
+var scene: Main.GameState
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +29,20 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("click"):
 		if current_panel != 5:
 			next_panel()
+	if loading_scene:
+		var progress: Array[float] = [0]
+		if scene == Main.GameState.PLAYING:
+			ResourceLoader.load_threaded_get_status("res://node_2d.tscn", progress)
+		elif scene == Main.GameState.TUTORIAL:
+			ResourceLoader.load_threaded_get_status("res://tutorial.tscn", progress)
+			
+		if progress[0] >= 1:
+			if scene == Main.GameState.PLAYING:
+				$"..".change_state(Main.GameState.PLAYING)
+			elif scene == Main.GameState.TUTORIAL:
+				$"..".change_state(Main.GameState.TUTORIAL)
+		else:
+			progress_label.text = "Progress: " + str(floori(progress[0] * 100)) + "%"
 
 func next_panel():
 	audio_player.playing = false
@@ -38,11 +54,6 @@ func next_panel():
 		panels[current_panel].visible = false
 
 	current_panel += 1
-	
-	if current_panel >= panels.size():
-		# To playing state
-		$"..".change_state(Main.GameState.PLAYING)
-		return
 	
 	panels[current_panel].visible = true
 	play_animation(txts[current_panel])
@@ -67,7 +78,11 @@ func play_animation(txt: RichTextLabel):
 		audio_player.playing = false
 
 func finished_intro(tutorial:bool):
+	loading_scene = true
+	progress_label.visible = true
 	if tutorial:
-		$"..".change_state(Main.GameState.TUTORIAL)
+		scene = Main.GameState.TUTORIAL
+		#$"..".change_state(Main.GameState.TUTORIAL)
 	else:
-		$"..".change_state(Main.GameState.PLAYING)
+		scene = Main.GameState.PLAYING
+		#$"..".change_state(Main.GameState.PLAYING)
